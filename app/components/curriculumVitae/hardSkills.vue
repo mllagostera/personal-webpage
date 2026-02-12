@@ -25,7 +25,7 @@ const stack = computed(() => {
     <section class="py-base container">
       <div class="flex flex-wrap gap-3 justify-center">
         <div v-for="(item, index) in stack" :key="index">
-              <Icon :name="item" mode='css' size="50px"/>
+              <Icon :name="item" size="50px"/>
           </div>
       </div>
     </section>

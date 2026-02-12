@@ -21,6 +21,15 @@ const softskills = computed(() => {
   const skills = tm('cv.softSkills') as any
   return Array.isArray(skills) ? skills.map((s: any) => rt(s)) : []
 })
+const typewriterStyle = computed(() => {
+  const text = personal.value.position || ''
+  const length = text.length
+  return {
+    '--typewriter-steps': Math.max(1, length),
+    '--typewriter-width': length + 'ch',
+    '--typewriter-duration': Math.max(2, length * 0.1) + 's'
+  }
+})
 // #endregion
 const url = useRequestURL()
 useHead({
@@ -60,7 +69,11 @@ useSeoMeta({
         >
           {{ author.name }}
         </h1>
-        <h2 class="leading-normal mt-0 text-2xl xl:text-[38px] title-blue line-1 anim-typewriter">
+        <h2
+          class="leading-normal mt-0 text-2xl xl:text-[38px] title-blue line-1 anim-typewriter"
+          :style="typewriterStyle"
+          :key="personal.position"
+        >
           {{ personal.position }}
         </h2>
       </div>
@@ -98,3 +111,7 @@ useSeoMeta({
     </div>
   </div>
 </template>
+
+<style scoped lang="postcss">
+/* Add specific styles for the component if needed, but we are using _curriculum_vitae.scss */
+</style>

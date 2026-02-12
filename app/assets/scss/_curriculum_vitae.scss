@@ -1,68 +1,83 @@
 .title-blue {
   @apply text-blackBlue font-semibold
 }
+
 .title-secondary {
   @apply text-gray-400 font-semibold
 }
+
 html.dark {
   .title-blue {
     @apply text-gray-500
   }
+
   .title-secondary {
     @apply text-gray-500
   }
 }
 
-.line-1{
-    position: relative;
-    margin: 10px 0;
-    border-right: 2px solid rgba(255,255,255,.75);
-    font-size: 180%;
-    text-align: left;
-    white-space: nowrap;
-    overflow: hidden;
+.line-1 {
+  position: relative;
+  margin: 10px 0;
+  border-right: 2px solid rgba(255, 255, 255, .75);
+  font-size: 180%;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 /* Animation */
-.anim-typewriter{
-  animation: typewriter 4s steps(44) 1s 1 normal both,
-             blinkTextCursor 500ms steps(44) infinite normal;
+.anim-typewriter {
+  animation: typewriter var(--typewriter-duration, 4s) steps(var(--typewriter-steps)) 1s 1 normal both,
+    blinkTextCursor 500ms steps(44) infinite normal;
 }
-@keyframes typewriter{
-  from{width: 0;}
-  to{width: 40em;}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: var(--typewriter-width);
+  }
 }
-@keyframes blinkTextCursor{
-  from{border-right-color: rgba(255,255,255,.10);}
-  to{border-right-color: transparent;}
+
+@keyframes blinkTextCursor {
+  from {
+    border-right-color: rgba(255, 255, 255, .10);
+  }
+
+  to {
+    border-right-color: transparent;
+  }
 }
 
 .tag-container p {
-    margin-top: 5px;
+  margin-top: 5px;
 }
 
-.tag-container p .tag-item{
-    @apply bg-gray-700;
-    @apply text-slate-400;
-    position: relative;
-    margin-right: 5px;
-    line-height: 1;
-    border-radius: 3px;
-    padding: 6px 10px 8px;
-    display: inline-block;
-    margin-bottom: 10px;
-    font-weight: 500;
+.tag-container p .tag-item {
+  @apply bg-gray-700;
+  @apply text-slate-400;
+  position: relative;
+  margin-right: 5px;
+  line-height: 1;
+  border-radius: 3px;
+  padding: 6px 10px 8px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
-.skill-container li .skill-item{
-    position: relative;
-    margin-right: 5px;
-    line-height: 1;
-    border-radius: 3px;
-    padding: 6px 10px 8px;
-    display: inline-block;
-    margin-bottom: 10px;
-    font-weight: 500;
+.skill-container li .skill-item {
+  position: relative;
+  margin-right: 5px;
+  line-height: 1;
+  border-radius: 3px;
+  padding: 6px 10px 8px;
+  display: inline-block;
+  margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .material-symbols-light-check {
