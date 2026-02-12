@@ -1,11 +1,11 @@
-import { createResolver } from '@nuxt/kit'
-const { resolve } = createResolver(import.meta.url)
-
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  // exp
-  experimental: {
-    localLayerAliases: true,
+  future: {
+    compatibilityVersion: 4,
+  },
+  srcDir: 'app',
+  nitro: {
+    preset: 'aws-amplify',
   },
 
   // app config
@@ -20,41 +20,26 @@ export default defineNuxtConfig({
     // styling & ui
     '@nuxtjs/tailwindcss',
     'nuxt-headlessui',
-    'nuxt-icon',
+    '@nuxt/icon',
     '@nuxtjs/color-mode',
     // management
     '@pinia/nuxt',
     '@vueuse/nuxt',
-    // contents,
-    '@nuxt/content',
     // locale
     '@nuxtjs/i18n',
-    // hydration
-    'nuxt-delay-hydration',
-    // robot
-    ['@nuxtjs/robots', { configPath: '~/config/robots.config' }],
   ],
 
   css: [
-    resolve('./assets/scss/_variables.scss'),
-    resolve('./assets/scss/app.scss'),
+    '~/assets/scss/_variables.scss',
+    '~/assets/scss/app.scss',
   ],
 
   components: [
-    {
-      prefix: 'Layout',
-      path: resolve('./components/layouts'),
-      global: true,
-    },
-    {
-      prefix: 'Awesome',
-      path: resolve('./components/awesome'),
-      global: true,
-    },
+    '~/components',
   ],
 
   imports: {
-    dirs: [resolve('./stores'), '~/stores'],
+    dirs: ['~/stores'],
   },
 
   // module::pinia
@@ -70,16 +55,6 @@ export default defineNuxtConfig({
   // module::color-mode
   colorMode: {
     classSuffix: '',
-  },
-
-  // module::content
-  content: {
-    markdown: {
-      mdc: true,
-    },
-    highlight: {
-      theme: 'github-dark',
-    },
   },
 
   // localization
@@ -101,22 +76,15 @@ export default defineNuxtConfig({
         file: 'es-CA.ts',
       },
     ],
-    defaultLocale: 'en',
-    lazy: false,
-    langDir: 'locales/',
+    defaultLocale: 'es',
+    langDir: 'locales',
+    strategy: 'no_prefix',
     detectBrowserLanguage: false,
-    reloadOnLanguageChange: false,
   },
-  delayHydration: {
-    mode: 'init',
-  },
-  icon: {
-    provider: 'server',
-    customCollections: [
-      {
-        prefix: 'my-flags',
-        dir: 'assets/flags'
-      },
-    ],
+
+  devtools: {
+    timeline: {
+      enabled: true,
+    },
   },
 })
