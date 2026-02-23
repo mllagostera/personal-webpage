@@ -217,7 +217,7 @@ export default {
       'From monolithic to microservices',
     ],
     stack: [
-      'devicon-plain:symfony',
+      'devicon:symfony',
       'devicon-plain:php',
       'devicon-plain:java',
       'devicon-plain:mysql',
@@ -228,7 +228,7 @@ export default {
       'devicon-plain:jira',
       'devicon-plain:vuejs',
       'devicon-plain:nuxtjs',
-      'devicon-plain:tailwindcss-original',
+      'devicon:tailwindcss',
       'devicon-plain:javascript',
       'devicon-plain:html5',
       'devicon-plain:css3',

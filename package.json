@@ -31,20 +31,24 @@
     "npm": ">=10.0.0"
   },
   "dependencies": {
+    "@fontsource/outfit": "^5.2.8",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
+    "@iconify-json/devicon": "^1.2.59",
+    "@iconify-json/devicon-plain": "^1.2.54",
+    "@iconify-json/heroicons": "^1.2.3",
     "@nuxt/icon": "^2.2.1",
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/i18n": "^10.0.0",
-    "@nuxtjs/tailwindcss": "^6.12.2",
+    "@nuxtjs/tailwindcss": "^7.0.0-beta.1",
     "@pinia/nuxt": "^0.11.0",
+    "@tailwindcss/vite": "^4.2.0",
     "@vueuse/core": "^14.0.0",
     "@vueuse/nuxt": "^14.0.0",
     "nuxt": "^4.0.0",
     "nuxt-headlessui": "^1.1.4",
     "pinia": "^2.3.1",
     "sass": "^1.81.0",
-    "tailwindcss": "^3.4.0",
-    "@fontsource/outfit": "^5.2.8",
-    "@fontsource/plus-jakarta-sans": "^5.2.8"
+    "tailwindcss": "^4.2.0"
   },
   "overrides": {
     "minimatch": "^10.2.1",

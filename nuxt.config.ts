@@ -1,3 +1,5 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   future: {
@@ -7,13 +9,6 @@ export default defineNuxtConfig({
   srcDir: 'app',
   nitro: {
     preset: 'aws-amplify',
-  },
-
-  // app config
-  app: {
-    // global transition
-    pageTransition: { name: 'page', mode: 'out-in' },
-    layoutTransition: { name: 'layout', mode: 'out-in' },
   },
 
   // modules
@@ -30,7 +25,14 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
 
+  vite: {
+    plugins: [
+      tailwindcss()
+    ]
+  },
+
   css: [
+    '~/assets/css/main.css',
     '~/assets/scss/_variables.scss',
     '~/assets/scss/app.scss',
   ],
