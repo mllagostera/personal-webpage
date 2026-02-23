@@ -22,7 +22,7 @@ const closeMenu = () => { isMenuOpen.value = false }
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-gray-950/80 border-b border-gray-900/10 dark:border-gray-50/[0.2]">
+  <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-gray-950/80 border-b border-gray-50/[0.2]">
     <div class="max-w-screen-2xl mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo/Title -->
@@ -43,12 +43,12 @@ const closeMenu = () => { isMenuOpen.value = false }
           </div>
 
           <!-- Desktop Navigation Links -->
-          <nav class="hidden md:flex items-center gap-1 ml-4 border-l border-gray-300 dark:border-gray-700 pl-4">
+          <nav class="hidden md:flex items-center gap-1 ml-4 border-l border-gray-700 pl-4">
             <a
               v-for="link in navLinks"
               :key="String(link.to)"
               :href="String(link.to)"
-              class="px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+              class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors"
             >
               {{ link.title }}
             </a>
@@ -62,7 +62,7 @@ const closeMenu = () => { isMenuOpen.value = false }
                 :title="social.title"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="p-2 text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 transition-colors"
+                class="p-2 text-gray-400 hover:text-primary-400 transition-colors"
               >
                 <Icon :name="social.icon" class="text-xl" />
               </a>
@@ -71,7 +71,7 @@ const closeMenu = () => { isMenuOpen.value = false }
 
           <!-- Mobile Menu Toggle -->
           <button 
-            class="md:hidden p-2 text-gray-600 dark:text-gray-400 ml-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            class="md:hidden p-2 text-gray-400 ml-2 rounded-lg hover:bg-gray-800 transition-colors"
             :aria-label="isMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
             @click="isMenuOpen = !isMenuOpen"
           >
@@ -96,7 +96,7 @@ const closeMenu = () => { isMenuOpen.value = false }
     >
       <div
         v-show="isMenuOpen"
-        class="md:hidden border-t border-gray-900/10 dark:border-gray-50/[0.1] bg-white/95 dark:bg-gray-950/95 backdrop-blur-md"
+        class="md:hidden border-t border-gray-50/[0.1] bg-gray-950/95 backdrop-blur-md"
       >
         <div class="max-w-screen-2xl mx-auto px-4 py-4 space-y-1">
           <!-- Nav Links -->
@@ -104,7 +104,7 @@ const closeMenu = () => { isMenuOpen.value = false }
             v-for="link in navLinks"
             :key="String(link.to)"
             :href="String(link.to)"
-            class="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-primary-500/10 hover:text-primary-500 dark:hover:text-primary-400 transition-all"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-primary-500/10 hover:text-primary-400 transition-all"
             @click="closeMenu"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
@@ -112,7 +112,7 @@ const closeMenu = () => { isMenuOpen.value = false }
           </a>
 
           <!-- Social Links -->
-          <div v-if="socialLinks.length" class="pt-3 mt-3 border-t border-gray-200 dark:border-gray-800 flex items-center gap-2 flex-wrap px-2">
+          <div v-if="socialLinks.length" class="pt-3 mt-3 border-t border-gray-800 flex items-center gap-2 flex-wrap px-2">
             <a
               v-for="social in socialLinks"
               :key="social.href"
@@ -120,7 +120,7 @@ const closeMenu = () => { isMenuOpen.value = false }
               :title="social.title"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 hover:bg-primary-500/10 transition-all"
+              class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-400 hover:text-primary-400 hover:bg-primary-500/10 transition-all"
               @click="closeMenu"
             >
               <Icon :name="social.icon" class="text-xl" />

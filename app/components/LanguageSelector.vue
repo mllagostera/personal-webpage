@@ -28,11 +28,11 @@ const setLanguage = async (code: string) => {
   <HeadlessListbox :model-value="currentLanguage.code" @update:model-value="setLanguage">
     <div class="relative">
       <HeadlessListboxButton
-        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center gap-2"
+        class="p-2 rounded-lg hover:bg-gray-800 transition-colors flex items-center gap-2"
         :title="`Current language: ${currentLanguage.name}`"
       >
         <Icon :name="currentLanguage.icon" class="text-xl" />
-        <span class="text-sm font-medium text-gray-600 dark:text-gray-400 hidden sm:inline">
+        <span class="text-sm font-medium text-gray-400 hidden sm:inline">
           {{ currentLanguage.code.toUpperCase() }}
         </span>
         <Icon name="heroicons:chevron-down-20-solid" class="text-gray-400 text-xs" />
@@ -44,7 +44,7 @@ const setLanguage = async (code: string) => {
         leave-to-class="opacity-0"
       >
         <HeadlessListboxOptions
-          class="absolute right-0 mt-1 max-h-60 w-40 overflow-auto rounded-md bg-white dark:bg-gray-900 py-1 text-base shadow-lg ring-1 ring-black/5 dark:ring-white/10 focus:outline-none sm:text-sm z-[60]"
+          class="absolute right-0 mt-1 max-h-60 w-40 overflow-auto rounded-md bg-gray-900 py-1 text-base shadow-lg ring-1 ring-white/10 focus:outline-none sm:text-sm z-[60]"
         >
           <HeadlessListboxOption
             v-for="lang in availableLanguages"
@@ -55,7 +55,7 @@ const setLanguage = async (code: string) => {
           >
             <li
               :class="[
-                active ? 'bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400' : 'text-gray-900 dark:text-gray-100',
+                active ? 'bg-primary-900/20 text-primary-400' : 'text-gray-100',
                 'relative cursor-default select-none py-2 pl-10 pr-4',
               ]"
             >
@@ -67,7 +67,7 @@ const setLanguage = async (code: string) => {
               </span>
               <span
                 v-if="selected"
-                class="absolute inset-y-0 right-0 flex items-center pr-3 text-primary-600 dark:text-primary-400"
+                class="absolute inset-y-0 right-0 flex items-center pr-3 text-primary-400"
               >
                 <Icon name="heroicons:check-20-solid" class="text-lg" />
               </span>

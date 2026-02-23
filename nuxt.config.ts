@@ -55,11 +55,19 @@ export default defineNuxtConfig({
     prefix: 'Headless',
   },
 
+  app: {
+    head: {
+      htmlAttrs: {
+        class: 'dark',
+      },
+    },
+  },
+
   // module::color-mode
   colorMode: {
-    classSuffix: '',
     preference: 'dark',
     fallback: 'dark',
+    classSuffix: '',
     storageKey: 'nuxt-color-mode'
   },
 
