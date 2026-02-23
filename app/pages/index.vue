@@ -36,17 +36,17 @@ useHead({
 </script>
 
 <template>
-  <div class="mx-auto w-screen xl:w-auto">
-    <Personal />
-    <WorkExperience />
-    <div class="py-4 px-4 2xl:px-0 grid grid-cols-1 xl:grid-cols-2 gap-4 border-b border-b-gray-300">
+  <div class="mx-auto w-full overflow-x-hidden">
+    <Personal class="animate-fade-in-up" />
+    <WorkExperience class="animate-fade-in-up delay-100" />
+    <div class="py-4 px-4 2xl:px-0 grid grid-cols-1 xl:grid-cols-2 gap-8 border-b border-white/10 animate-fade-in-up delay-200">
       <Education />
       <Languages />
     </div>
-    <div class="py-4 px-4 2xl:px-0 grid grid-cols-1 xl:grid-cols-2 gap-4 border-b border-b-gray-300">
+    <div class="py-4 px-4 2xl:px-0 grid grid-cols-1 xl:grid-cols-2 gap-8 border-b border-white/10 animate-fade-in-up delay-300">
       <HardSkills />
       <SoftSkills />
     </div>
-    <Projects />
+    <Projects class="animate-fade-in-up delay-400" />
   </div>
 </template>

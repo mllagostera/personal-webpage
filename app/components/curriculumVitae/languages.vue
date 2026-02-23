@@ -18,19 +18,56 @@ const url = useRequestURL()
 </script>
 <template>
   <div class="h-fit">
-    <div v-if="languages">
-      <div class="">
-        <h2 class="leading-normal text-[32px] title-blue">
+    <!-- Main Languages Block -->
+    <div v-if="languages" class="mb-12">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="heroicons:language" class="w-8 h-8 text-primary-400" />
+        <h2 class="leading-normal text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
           {{ $t('languages') }}
         </h2>
       </div>
-      <div>
-          <div v-for="(item, index) in languages" class="text-xl xl:text-xl ">
-            <Icon :name="item.flag" mode='css'/> {{ item.name }} <span v-if="item.level == 'native'" class="mb-2 font-semibold text-gray-400">C2</span><span v-else class="mb-2 font-semibold text-gray-400">B2</span>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div 
+            v-for="(item, index) in languages" 
+            :key="index" 
+            class="glass-card p-6 flex items-center gap-6 group hover:bg-dark-900/60 transition-colors duration-300"
+          >
+             <!-- Flag Circle with Pulse Effect -->
+             <div class="relative flex-shrink-0">
+                 <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                 <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700/50 relative z-10 bg-dark-900 flex items-center justify-center">
+                    <Icon :name="item.flag" size="64px" class="opacity-90"/> 
+                 </div>
+             </div>
+
+             <div class="flex-grow">
+                 <div class="flex justify-between items-center mb-2">
+                     <h3 class="font-bold text-xl text-slate-100 font-display">{{ item.name }}</h3>
+                     <span 
+                        class="text-xs font-bold px-2 py-1 rounded bg-dark-950/50 border border-slate-700 text-secondary-400"
+                        :class="{ 'text-primary-400 border-primary-500/30': item.level === 'native' }"
+                     >
+                        {{ item.level === 'native' ? 'C2 (Native)' : 'B2' }}
+                     </span>
+                 </div>
+                 
+                 <!-- Progress Bar -->
+                 <div class="h-2 w-full bg-dark-950 rounded-full overflow-hidden">
+                     <div 
+                        class="h-full bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full transition-all duration-1000 ease-out"
+                        :style="{ width: item.level === 'native' ? '100%' : '75%' }"
+                     ></div>
+                 </div>
+                 <div class="text-right mt-1 text-xs text-slate-500 font-mono">
+                     {{ item.level === 'native' ? '100%' : '75%' }} Proficiency
+                 </div>
+             </div>
           </div>
       </div>
     </div>
-    <div v-else class="font-bold text-red underline">
+    
+    <div v-else class="font-bold text-red-500 underline text-center">
       Please add language in app config
     </div>
   </div>

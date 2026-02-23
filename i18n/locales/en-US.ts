@@ -37,32 +37,7 @@ export default {
     },
     workExperience: [
       {
-        companyName: 'Logalty',
-        startDate: 'Nov 2022',
-        endDate: 'Present',
-        position: 'Scrum Master',
-        description: [
-          'Facilitated daily stand-up meetings, sprint planning, and retrospectives to ensure team alignment and continuous improvement',
-          'Coached team members on Scrum framework principles and best practices to increase efficiency and productivity',
-          'Collaborated with product owners to prioritize backlog items and ensure timely delivery of high-quality software products',
-          'Implemented Agile methodologies and tools to track project progress and drive successful completion of deliverables',
-        ],
-        projects: [
-          'Implement Agile Development Workflow using Jira',
-        ],
-        technologies: [
-          'Scrum',
-          'Jira',
-          'Teamwork',
-          'Software Management',
-          'Agile Methodologies',
-          'Agile Software Methodologies',
-          'Problem Solving',
-          'Facilitation',
-        ]
-      },
-      {
-        companyName: 'Firmaprofesional',
+        companyName: 'Firmaprofesional, Logalty Group',
         startDate: 'Oct 2023',
         endDate: 'Present',
         position: 'Scrum Master',
@@ -242,7 +217,7 @@ export default {
       'From monolithic to microservices',
     ],
     stack: [
-      'devicon-plain:symfony',
+      'devicon:symfony',
       'devicon-plain:php',
       'devicon-plain:java',
       'devicon-plain:mysql',
@@ -253,7 +228,7 @@ export default {
       'devicon-plain:jira',
       'devicon-plain:vuejs',
       'devicon-plain:nuxtjs',
-      'devicon-plain:tailwindcss',
+      'devicon:tailwindcss',
       'devicon-plain:javascript',
       'devicon-plain:html5',
       'devicon-plain:css3',
@@ -269,7 +244,7 @@ export default {
         school: 'PUE',
         scholastic: 'Sep 2016',
         urlDescription: 'Show Credential',
-        url: 'https://scrummanager.com/website/c/profile/member.php?id=15517'
+        url: 'https://scrummanager.com/website/c/profile/member.php?id=15517&scrumal=en'
       },
       {
         title: 'nCSD – Thales Certified Solution Developer',
@@ -298,11 +273,11 @@ export default {
       {
         name: 'My personal webpage',
         position: 'Full stack',
-        description: 'My own CV using NUXT 3',
+        description: 'My own CV using NUXT 4',
         startDate: 'Sep 2024',
         endDate: 'Current',
         tools: 'Sublime',
-        technologies: 'Vue 3, Nuxt 3, HTML, SCSS, Tailwind CSS',
+        technologies: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
         release: 'Sep 2024',
       }
     ],

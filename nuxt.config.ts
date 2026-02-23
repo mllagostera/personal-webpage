@@ -1,18 +1,14 @@
+import tailwindcss from '@tailwindcss/vite'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  compatibilityDate: '2026-02-23',
   srcDir: 'app',
   nitro: {
     preset: 'aws-amplify',
-  },
-
-  // app config
-  app: {
-    // global transition
-    pageTransition: { name: 'page', mode: 'out-in' },
-    layoutTransition: { name: 'layout', mode: 'out-in' },
   },
 
   // modules
@@ -29,7 +25,14 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
   ],
 
+  vite: {
+    plugins: [
+      tailwindcss()
+    ]
+  },
+
   css: [
+    '~/assets/css/main.css',
     '~/assets/scss/_variables.scss',
     '~/assets/scss/app.scss',
   ],
@@ -55,6 +58,9 @@ export default defineNuxtConfig({
   // module::color-mode
   colorMode: {
     classSuffix: '',
+    preference: 'dark',
+    fallback: 'dark',
+    storageKey: 'nuxt-color-mode'
   },
 
   // localization

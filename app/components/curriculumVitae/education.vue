@@ -25,31 +25,56 @@ const url = useRequestURL()
 </script>
 <template>
   <div class="h-fit">
-    <div id="education" v-if="education">
-      <div class="">
-        <h2 class="leading-normal text-[32px] title-blue">
+    <!-- Main Education Block -->
+    <div id="education" v-if="education" class="mb-12">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="heroicons:academic-cap" class="w-8 h-8 text-secondary-400" />
+        <h2 class="leading-normal text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-primary-400">
           {{ $t('education') }}
         </h2>
       </div>
-      <div class="pl-2">
-        <div class="font-bold text-2xl">{{ education.title }}</div>
-        <div class="font-semibold text-gray-400">
-          <span>{{ education.school }}</span>,
-          <span>{{ education.scholastic }}</span>
+
+      <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-8">
+        <!-- Formal Education -->
+        <div class="relative pl-8 md:pl-12">
+            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark-950 border-2 border-secondary-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+            
+            <div class="glass-card p-6 md:p-8 hover:border-secondary-500/30 transition-colors duration-300">
+                <h3 class="font-bold text-xl md:text-2xl text-slate-100 font-display mb-1">{{ education.title }}</h3>
+                <div class="text-primary-400 font-semibold text-lg flex flex-wrap items-center gap-2">
+                    <Icon name="heroicons:building-library" class="w-5 h-5" />
+                    <span>{{ education.school }}</span>
+                    <span class="text-slate-500">•</span>
+                    <span class="text-slate-300">{{ education.scholastic }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Certifications -->
+        <div
+          v-for="(item, index) in certifications"
+          :key="index"
+          class="relative pl-8 md:pl-12"
+        >
+          <div class="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-slate-500"></div>
+           <div class="glass-card p-5 md:p-6 border-slate-800/50 hover:border-secondary-500/20 transition-colors duration-300">
+              <h3 class="font-bold text-lg text-slate-200 font-display flex items-center justify-between">
+                  {{ item.title }}
+                  <a v-if="item.url" :href="rt(item.url)" target="_blank" class="text-xs font-mono text-secondary-400 border border-secondary-500/30 px-2 py-1 rounded hover:bg-secondary-500/10 transition-colors flex items-center gap-1">
+                      {{ item.urlDescription }} <Icon name="heroicons:arrow-top-right-on-square" class="w-3 h-3" />
+                  </a>
+              </h3>
+              <div class="text-slate-400 font-medium text-sm mt-1 flex flex-wrap items-center gap-2">
+                <span>{{ item.school }}</span>
+                <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+                <span>{{ item.scholastic }}</span>
+              </div>
+          </div>
         </div>
       </div>
-      <div
-          v-for="(item, index) in certifications"
-          class="pl-2"
-        >
-          <p class="font-bold text-2xl">{{ item.title }}</p>
-          <p class="mb-2 font-semibold text-gray-400">
-            <span>{{ item.school }}</span>, <span>{{ item.scholastic }}</span> 
-            <span v-if="item.url"> - <a class="button" :href="item.url">{{ item.urlDescription }}🔗</a></span>
-          </p>
-        </div>
     </div>
-    <div v-else class="font-bold text-red underline">
+    
+    <div v-else class="font-bold text-red-500 underline text-center">
       Please add education in app config
     </div>
   </div>

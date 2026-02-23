@@ -37,7 +37,7 @@ useHead({
     lang: locale.value,
   },
   meta: [
-    { name: 'theme-color', content: String(nuxtApp?.$colorMode?.preference || 'light') }
+    { name: 'theme-color', content: '#020617' }
   ]
 })
 useSeoMeta({
@@ -60,58 +60,84 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 </script>
+
 <template>
-  <div class="mx-auto pb-4 px-4 2xl:px-0 h-fit border-b border-b-gray-300">
-    <div id="about" v-if="personal">
-      <div class="sticky top-0">
+  <div class="mx-auto pb-12 px-4 2xl:px-0 h-fit border-b border-white/10 relative overflow-x-hidden">
+    <!-- Starry Background Elements (Optional extra decoration) -->
+    <div class="absolute top-0 right-0 w-64 h-64 bg-primary-500/20 rounded-full blur-3xl -z-10 animate-pulse"></div>
+
+    <div id="about" v-if="personal" class="pt-20">
+      <div class="text-center mb-16 relative">
         <h1
-          class="leading-8 mt-6 font-bold uppercase text-3xl xl:text-[48px] dark:text-primary-500"
+          class="font-display font-bold uppercase text-4xl sm:text-5xl md:text-7xl xl:text-8xl mb-4 tracking-tight"
         >
-          {{ author.name }}
+          <span class="cosmic-text text-glow">{{ author.name }}</span>
         </h1>
-        <h2
-          class="leading-normal mt-0 text-2xl xl:text-[38px] title-blue line-1 anim-typewriter"
-          :style="typewriterStyle"
-          :key="personal.position"
-        >
-          {{ personal.position }}
-        </h2>
+        <div class="flex justify-center">
+            <h2
+            class="leading-normal mt-0 text-xl md:text-3xl title-blue line-1 anim-typewriter font-light text-slate-300"
+            :style="typewriterStyle"
+            :key="personal.position"
+            >
+            {{ personal.position }}
+            </h2>
+        </div>
       </div>
-      <div class="flex flex-col-reverse xl:flex-row gap-4 mt-4">
-        <div class="max-w-[620px]">
-          <div class="leading-normal text-[32px] title-blue">
+
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-8 mt-4">
+        <!-- Summary Card -->
+        <div class="xl:col-span-7 glass-card p-8 hover:bg-dark-900/60 transition-colors duration-300">
+          <div class="leading-normal text-3xl font-display text-primary-400 mb-6 flex items-center gap-3">
+             <Icon name="heroicons:user" class="w-8 h-8" />
             {{ $t('summary') }}
           </div>
-          <ul class="p-4">
+          <ul class="space-y-3">
             <li
               v-for="(item, index) in summaryDetail"
               :key="index"
-              class="list-disc"
+              class="flex items-start gap-3 text-slate-300 text-lg leading-relaxed"
             >
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-secondary-400 flex-shrink-0"></span>
               {{ item }}
             </li>
           </ul>
         </div>
-        <div id="contact" class="space-y-4 min-w-[600px]">
-          <div class="leading-normal text-[32px] title-blue">
-            {{ $t('about') }}
-          </div>
-          <div v-show="author.name">
-            <div>{{ author.name }} - {{ author.city }} </div>
-          </div>
-          <div v-show="author.email">
-            <div class="title-secondary">{{ $t('Email') }}</div>
-            <div>{{ author.email }}</div>
-          </div>
+
+        <!-- Contact Card -->
+        <div id="contact" class="xl:col-span-5 space-y-4">
+            <div class="glass-card p-8 h-full flex flex-col justify-center">
+                <div class="leading-normal text-3xl font-display text-secondary-400 mb-6 flex items-center gap-3">
+                    <Icon name="heroicons:identification" class="w-8 h-8" />
+                    {{ $t('about') }}
+                </div>
+                
+                <div v-show="author.name" class="mb-6">
+                    <div class="text-slate-400 text-sm uppercase tracking-wider mb-1">Location</div>
+                    <div class="text-xl text-slate-100 flex items-center gap-2">
+                         <Icon name="heroicons:map-pin" class="w-5 h-5 text-primary-400" />
+                        {{ author.name }} - {{ author.city }} 
+                    </div>
+                </div>
+
+                <div v-show="author.email">
+                   <div class="text-slate-400 text-sm uppercase tracking-wider mb-1">{{ $t('Email') }}</div>
+                    <a :href="`mailto:${author.email}`" class="text-base sm:text-xl text-slate-100 hover:text-primary-400 transition-colors flex items-center gap-2 break-all">
+                        <Icon name="heroicons:envelope" class="w-5 h-5 text-secondary-400 flex-shrink-0" />
+                        {{ author.email }}
+                    </a>
+                </div>
+            </div>
         </div>
       </div>
     </div>
-    <div v-else class="font-bold text-red underline">
+    <div v-else class="font-bold text-red-500 underline text-center pt-20">
       Please add personal information in app config
     </div>
   </div>
 </template>
 
 <style scoped lang="postcss">
-/* Add specific styles for the component if needed, but we are using _curriculum_vitae.scss */
+.text-glow {
+  text-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
+}
 </style>

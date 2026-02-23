@@ -37,33 +37,7 @@ export default {
     },
     workExperience: [
       {
-        companyName: 'Logalty',
-        startDate: 'Nov 2022',
-        endDate: 'Actualmente',
-        position: 'Scrum Master',
-        description: [
-          'Facilitar reuniones diarias, planificación de sprints y retrospectivas para asegurar la alineación del equipo y la mejora continua',
-          'Coach a los miembros del equipo en los principios y mejores prácticas del marco de trabajo Scrum para aumentar la eficiencia y la productividad',
-          'Colaborar con los product owners para priorizar los elementos del backlog y asegurar la entrega oportuna de productos de software de alta calidad',
-          'Implementar metodologías y herramientas ágiles para rastrear el progreso del proyecto y asegurar la finalización exitosa de los entregables',
-        ],
-        projects:
-          [
-            'Implementar el flujo de desarrollo ágil usando Jira'
-          ],
-        technologies: [
-          'Scrum',
-          'Jira',
-          'Trabajo en equipo',
-          'Gestión de desarrollo',
-          'Metodologías ágiles',
-          'Metodologías de desarrollo ágiles',
-          'Solucion de problemas',
-          'Facilitador',
-        ]
-      },
-      {
-        companyName: 'Firmaprofesional',
+        companyName: 'Firmaprofesional, Logalty Group',
         startDate: 'Oct 2023',
         endDate: 'Actualmente',
         position: 'Scrum Master',
@@ -247,7 +221,7 @@ export default {
       'De monolítico a microservicio',
     ],
     stack: [
-      'devicon-plain:symfony',
+      'devicon:symfony',
       'devicon-plain:php',
       'devicon-plain:java',
       'devicon-plain:mysql',
@@ -258,16 +232,30 @@ export default {
       'devicon-plain:jira',
       'devicon-plain:vuejs',
       'devicon-plain:nuxtjs',
-      'devicon-plain:tailwindcss',
+      'devicon:tailwindcss',
       'devicon-plain:javascript',
       'devicon-plain:html5',
       'devicon-plain:css3',
     ],
     education: {
       title: 'Grado en Informática, especialidad Sistemas',
-      school: 'Univeritat Autònoma de BarcelonaSchool Technical College',
+      school: 'Univeritat Autònoma de Barcelona',
       scholastic: '2005 - 2008',
     },
+    certifications: [
+      {
+        title: 'Scrum Manager - Expert Level',
+        school: 'PUE',
+        scholastic: 'Sep 2016',
+        urlDescription: 'Credencial',
+        url: 'https://scrummanager.com/website/c/profile/member.php?id=15517'
+      },
+      {
+        title: 'nCSD – Thales Certified Solution Developer',
+        school: 'Thales e-Security',
+        scholastic: 'Jan 2014'
+      }
+    ],
     languages: [
       {
         name: 'Español',

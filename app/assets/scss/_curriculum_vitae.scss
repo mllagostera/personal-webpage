@@ -18,18 +18,33 @@ html.dark {
 
 .line-1 {
   position: relative;
-  margin: 10px 0;
+  margin: 0 auto;
   border-right: 2px solid rgba(255, 255, 255, .75);
   font-size: 180%;
-  text-align: left;
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
+  max-width: 100%;
+
+  /* On small screens keep text readable & within viewport */
+  @media (max-width: 640px) {
+    font-size: 100%;
+    white-space: normal;
+    border-right: none;
+    animation: none !important;
+  }
 }
 
 /* Animation */
 .anim-typewriter {
   animation: typewriter var(--typewriter-duration, 4s) steps(var(--typewriter-steps)) 1s 1 normal both,
     blinkTextCursor 500ms steps(44) infinite normal;
+
+  @media (max-width: 640px) {
+    animation: none;
+    width: auto !important;
+    border-right: none;
+  }
 }
 
 @keyframes typewriter {
