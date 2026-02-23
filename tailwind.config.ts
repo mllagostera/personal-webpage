@@ -2,50 +2,6 @@ import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 import colors from 'tailwindcss/colors'
 
-const MyTheme = {
-  colors: {
-    green: {
-      DEFAULT: '#3BA676',
-      '50': '#B4E4CF',
-      '100': '#A5DFC5',
-      '200': '#87D4B2',
-      '300': '#69CA9E',
-      '400': '#4BBF8B',
-      '500': '#3BA676',
-      '600': '#2C7D59',
-      '700': '#1E533B',
-      '800': '#0F2A1E',
-      '900': '#000000',
-    },
-    blue: {
-      DEFAULT: '#0096FF',
-      '50': '#B8E2FF',
-      '100': '#A3D9FF',
-      '200': '#7AC8FF',
-      '300': '#52B8FF',
-      '400': '#29A7FF',
-      '500': '#0096FF',
-      '600': '#0075C7',
-      '700': '#00548F',
-      '800': '#003357',
-      '900': '#00121F',
-    },
-    red: {
-      DEFAULT: '#FF6464',
-      '50': '#FFFFFF',
-      '100': '#FFFFFF',
-      '200': '#FFDEDE',
-      '300': '#FFB6B6',
-      '400': '#FF8D8D',
-      '500': '#FF6464',
-      '600': '#FF2C2C',
-      '700': '#F30000',
-      '800': '#BB0000',
-      '900': '#830000',
-    },
-  },
-}
-
 export default <Partial<Config>>{
   darkMode: 'class',
   content: [
@@ -65,17 +21,34 @@ export default <Partial<Config>>{
         '8xl': '90rem',
       },
       colors: {
-        primary: MyTheme.colors.green,
-        // if want to change primary color to blue
-        // primary: MyTheme.colors.blue,
-        green: MyTheme.colors.green,
-        blue: MyTheme.colors.blue,
-        red: MyTheme.colors.red,
+        // Cosmic Theme Palette
+        primary: {
+          400: '#c084fc', // Purple for accents
+          500: '#a855f7',
+          600: '#9333ea',
+        },
+        secondary: {
+          400: '#22d3ee', // Cyan for accents
+          500: '#06b6d4',
+        },
+        dark: {
+          950: '#020617', // Deepest background
+          900: '#0f172a', // Card background
+          800: '#1e293b',
+        },
+        // Legacy support (optional, can be mapped to new palette)
+        green: colors.emerald,
+        blue: colors.sky,
+        red: colors.rose,
         slate: colors.slate,
         blackBlue: '#0E6CC2',
       },
       fontFamily: {
-        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+        sans: ['"Plus Jakarta Sans"', ...defaultTheme.fontFamily.sans],
+        display: ['Outfit', ...defaultTheme.fontFamily.sans],
+      },
+      backgroundImage: {
+        'cosmic-gradient': 'linear-gradient(to right bottom, #020617, #0f172a, #1e1b4b)',
       },
     },
   },

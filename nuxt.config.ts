@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   future: {
     compatibilityVersion: 4,
   },
+  compatibilityDate: '2026-02-23',
   srcDir: 'app',
   nitro: {
     preset: 'aws-amplify',
@@ -55,6 +56,9 @@ export default defineNuxtConfig({
   // module::color-mode
   colorMode: {
     classSuffix: '',
+    preference: 'dark',
+    fallback: 'dark',
+    storageKey: 'nuxt-color-mode'
   },
 
   // localization

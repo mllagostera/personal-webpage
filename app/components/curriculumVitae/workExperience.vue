@@ -20,59 +20,85 @@ const works = computed(() => {
 const url = useRequestURL()
 </script>
 <template>
-  <div class="mx-auto px-4 2xl:px-0 h-fit mt-4 border-b border-b-gray-300">
+  <div class="mx-auto px-4 2xl:px-0 h-fit mt-12 border-b border-white/10 pb-12">
     <div id="workExperience" v-if="works">
-      <div class="">
-        <h2 class="leading-normal text-[32px] title-blue">
+      <div class="flex items-center gap-3 mb-8">
+        <Icon name="heroicons:briefcase" class="w-8 h-8 text-primary-400" />
+        <h2 class="leading-normal text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
           {{ $t('workExperience') }}
         </h2>
       </div>
-      <div class="p-4 grid grid-cols-1 xl:grid-cols-2 gap-4">
+
+      <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-12">
         <div
           v-for="(item, index) in works"
           :key="index"
-          class="max-w-[600px]"
-          :class="{
-            'border-b border-b-white pb-4 xl:border-b-0':
-              index !== works.length - 1,
-          }"
+          class="relative pl-8 md:pl-12"
         >
-          <p class="font-bold text-xl xl:text-2xl">{{ item.position }}</p>
-          <p class="mb-2 font-semibold text-gray-400">
-            <span>{{ item.companyName }}</span
-            >, <span>{{ item.startDate }}</span> -
-            <span>{{ item.endDate }}</span>
-          </p>
-          <div class="font-semibold">{{ $t('description') }}:</div>
-          <ul class="pl-4">
-            <li
-              v-for="(desc, index) in item.description"
-              :key="index"
-              class="list-disc"
-            >
-              {{ desc }}
-            </li>
-          </ul>
-          <div v-if="item.projects">
-            <span class="font-semibold">{{ $t('projects') }}</span>
-            <div class="tag-container">
-              <p>
-                 <span class="tag-item" v-for="project in item.projects" :key="project">{{ project }}</span>
-              </p>
+          <!-- Timeline Dot -->
+          <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark-950 border-2 border-primary-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+
+          <div class="glass-card p-6 md:p-8 hover:border-primary-500/30 transition-colors duration-300">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
+                <div>
+                   <h3 class="font-bold text-xl md:text-2xl text-slate-100 font-display">{{ item.position }}</h3>
+                   <div class="text-secondary-400 font-semibold text-lg flex items-center gap-2">
+                     <Icon name="heroicons:building-office-2" class="w-5 h-5" />
+                     {{ item.companyName }}
+                   </div>
+                </div>
+                <div class="text-slate-400 font-mono text-sm bg-dark-800 px-3 py-1 rounded-full border border-slate-700/50 w-fit">
+                    {{ item.startDate }} - {{ item.endDate }}
+                </div>
             </div>
-          </div>
-          <div v-if="item.technologies">
-            <span class="font-semibold">{{ $t('technologies') }}</span>
-            <div class="tag-container">
-              <p>
-                 <span class="tag-item" v-for="tech in item.technologies" :key="tech">{{ tech }}</span>
-              </p>
+
+            <div class="mb-4">
+                <span class="text-primary-400 font-semibold text-sm uppercase tracking-wider mb-2 block">{{ $t('description') }}</span>
+                <ul class="space-y-2">
+                    <li
+                    v-for="(desc, dIndex) in item.description"
+                    :key="dIndex"
+                    class="flex items-start gap-3 text-slate-300 leading-relaxed"
+                    >
+                    <span class="mt-2 w-1.5 h-1.5 rounded-full bg-slate-500 flex-shrink-0"></span>
+                    {{ desc }}
+                    </li>
+                </ul>
             </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-700/30">
+                 <div v-if="item.projects && item.projects.length">
+                    <span class="text-secondary-400 font-semibold text-sm uppercase tracking-wider mb-3 block">{{ $t('projects') }}</span>
+                    <div class="flex flex-wrap gap-2">
+                        <span 
+                            class="px-3 py-1 rounded-md bg-dark-800 border border-secondary-500/20 text-secondary-200 text-sm hover:bg-secondary-500/10 transition-colors" 
+                            v-for="project in item.projects" 
+                            :key="project"
+                        >
+                            {{ project }}
+                        </span>
+                    </div>
+                 </div>
+
+                 <div v-if="item.technologies && item.technologies.length">
+                    <span class="text-primary-400 font-semibold text-sm uppercase tracking-wider mb-3 block">{{ $t('technologies') }}</span>
+                    <div class="flex flex-wrap gap-2">
+                         <span 
+                            class="px-3 py-1 rounded-md bg-dark-800 border border-primary-500/20 text-primary-200 text-sm hover:bg-primary-500/10 transition-colors" 
+                            v-for="tech in item.technologies" 
+                            :key="tech"
+                        >
+                            {{ tech }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
           </div>
         </div>
       </div>
     </div>
-    <div v-else class="font-bold text-red underline">
+    <div v-else class="font-bold text-red-500 underline text-center py-8">
       Please add work experience in app config
     </div>
   </div>
