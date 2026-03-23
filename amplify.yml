@@ -6,6 +6,7 @@ frontend:
         - npm ci --legacy-peer-deps
     build:
       commands:
+        - env | grep -e TELEGRAM_BOT_TOKEN -e TELEGRAM_CHAT_ID >> .env
         - npm run build
   artifacts:
     baseDirectory: .amplify-hosting
