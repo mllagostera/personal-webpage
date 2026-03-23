@@ -91,7 +91,7 @@ declare module '@nuxt/schema' {
 
 export default defineAppConfig({
   awesome: {
-    name: 'Home, Sweet Home',
+    name: 'Portfolio & Resume',
     description: '',
     project: {
       links: {
@@ -124,6 +124,12 @@ export default defineAppConfig({
               "type": "link",
               "title": "projects",
               "to": "#projects"
+            },
+            {
+              "type": "link",
+              "title": "githubProjects",
+              "to": "#github-collaborations",
+              "icon": "devicon:github"
             }
           ],
         },

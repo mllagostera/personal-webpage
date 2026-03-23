@@ -29,7 +29,7 @@ const url = useRequestURL()
     <div id="education" v-if="education" class="mb-12">
       <div class="flex items-center gap-3 mb-8">
         <Icon name="heroicons:academic-cap" class="w-8 h-8 text-secondary-400" />
-        <h2 class="leading-normal text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-primary-400">
+        <h2 class="leading-normal text-3xl font-display font-bold text-white">
           {{ $t('education') }}
         </h2>
       </div>
@@ -37,7 +37,7 @@ const url = useRequestURL()
       <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-8">
         <!-- Formal Education -->
         <div class="relative pl-8 md:pl-12">
-            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark-950 border-2 border-secondary-500 shadow-[0_0_10px_rgba(34,211,238,0.5)]"></div>
+            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark-950 border-2 border-secondary-500 shadow-[0_0_10px_rgba(255,255,255,0.3)]"></div>
             
             <div class="glass-card p-6 md:p-8 hover:border-secondary-500/30 transition-colors duration-300">
                 <h3 class="font-bold text-xl md:text-2xl text-slate-100 font-display mb-1">{{ education.title }}</h3>

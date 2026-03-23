@@ -24,54 +24,71 @@ const url = useRequestURL()
     <div id="workExperience" v-if="works">
       <div class="flex items-center gap-3 mb-8">
         <Icon name="heroicons:briefcase" class="w-8 h-8 text-primary-400" />
-        <h2 class="leading-normal text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
+        <h2 class="leading-normal text-3xl font-display font-bold text-white">
           {{ $t('workExperience') }}
         </h2>
       </div>
 
-      <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-12">
+      <div class="relative md:ml-40 space-y-8 md:space-y-16">
+        <!-- Vertical Line (Desktop only) -->
+        <div class="hidden md:block absolute left-[-1.5px] top-4 bottom-0 w-[3px] bg-gradient-to-b from-primary-500 via-primary-500/50 to-transparent"></div>
+
         <div
           v-for="(item, index) in works"
           :key="index"
-          class="relative pl-8 md:pl-12"
+          class="md:relative md:pl-16"
         >
-          <!-- Timeline Dot -->
-          <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark-950 border-2 border-primary-500 shadow-[0_0_10px_rgba(168,85,247,0.5)]"></div>
+          <!-- Date indicator (Desktop only: on the left) -->
+          <div class="hidden md:block absolute right-full mr-10 top-0 text-right">
+            <div class="text-white font-display font-bold text-xl leading-tight">{{ item.endDate }}</div>
+            <div class="text-slate-500 text-xs uppercase tracking-tight leading-tight">{{ item.startDate }}</div>
+          </div>
 
-          <div class="glass-card p-6 md:p-8 hover:border-primary-500/30 transition-colors duration-300">
-            <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-4 gap-2">
-                <div>
-                   <h3 class="font-bold text-xl md:text-2xl text-slate-100 font-display">{{ item.position }}</h3>
-                   <div class="text-secondary-400 font-semibold text-lg flex items-center gap-2">
-                     <Icon name="heroicons:building-office-2" class="w-5 h-5" />
-                     {{ item.companyName }}
-                   </div>
-                </div>
-                <div class="text-slate-400 font-mono text-sm bg-dark-800 px-3 py-1 rounded-full border border-slate-700/50 w-fit">
-                    {{ item.startDate }} - {{ item.endDate }}
+          <!-- Timeline Dot (Desktop only) -->
+          <div class="hidden md:block absolute md:left-[-9px] top-1.5 w-4 h-4 rounded-full bg-dark-950 border-[3px] border-primary-500 z-10 box-content">
+            <div class="absolute inset-0 rounded-full bg-primary-500 animate-ping opacity-20"></div>
+          </div>
+
+          <div class="glass-card p-6 md:p-8 hover:border-primary-500/30 transition-all duration-300 hover:translate-x-1 group">
+             <!-- Mobile Date (Integrated in card) -->
+            <div class="md:hidden flex flex-wrap items-center gap-2 mb-4 px-3 py-1.5 rounded-lg bg-primary-500/10 border border-primary-500/20 w-fit">
+                <Icon name="heroicons:calendar-days" class="w-4 h-4 text-primary-400" />
+                <span class="text-slate-100 font-bold text-sm">{{ item.endDate }}</span>
+                <span class="text-slate-500 text-xs font-medium uppercase">{{ item.startDate }}</span>
+            </div>
+            <div class="flex flex-col mb-6">
+                <h3 class="font-bold text-2xl md:text-3xl text-slate-100 font-display group-hover:text-primary-400 transition-colors">
+                  {{ item.position }}
+                </h3>
+                <div class="text-slate-400 font-semibold text-lg flex items-center gap-2 mt-1">
+                  <Icon name="heroicons:building-office-2" class="w-5 h-5 text-secondary-400" />
+                  {{ item.companyName }}
                 </div>
             </div>
 
-            <div class="mb-4">
-                <span class="text-primary-400 font-semibold text-sm uppercase tracking-wider mb-2 block">{{ $t('description') }}</span>
-                <ul class="space-y-2">
+            <div class="space-y-4">
+                <div class="flex items-center gap-2 text-primary-400 font-bold text-xs uppercase tracking-widest">
+                  <span class="w-8 h-px bg-primary-400/30"></span>
+                  {{ $t('description') }}
+                </div>
+                <ul class="space-y-3">
                     <li
                     v-for="(desc, dIndex) in item.description"
                     :key="dIndex"
-                    class="flex items-start gap-3 text-slate-300 leading-relaxed"
+                    class="flex items-start gap-3 text-slate-300 leading-relaxed text-base md:text-lg"
                     >
-                    <span class="mt-2 w-1.5 h-1.5 rounded-full bg-slate-500 flex-shrink-0"></span>
+                    <Icon name="heroicons:chevron-double-right" class="w-4 h-4 mt-1.5 text-primary-500/50 flex-shrink-0" />
                     {{ desc }}
                     </li>
                 </ul>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6 pt-6 border-t border-slate-700/30">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-6 border-t border-white/5">
                  <div v-if="item.projects && item.projects.length">
-                    <span class="text-secondary-400 font-semibold text-sm uppercase tracking-wider mb-3 block">{{ $t('projects') }}</span>
+                    <span class="text-secondary-400 font-bold text-xs uppercase tracking-widest mb-4 block">{{ $t('projects') }}</span>
                     <div class="flex flex-wrap gap-2">
                         <span 
-                            class="px-3 py-1 rounded-md bg-dark-800 border border-secondary-500/20 text-secondary-200 text-sm hover:bg-secondary-500/10 transition-colors" 
+                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-xs font-medium hover:bg-white/10 transition-all" 
                             v-for="project in item.projects" 
                             :key="project"
                         >

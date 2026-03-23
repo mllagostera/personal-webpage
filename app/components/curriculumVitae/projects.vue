@@ -26,7 +26,7 @@ const url = useRequestURL()
       <div id="projects" class="mb-8">
         <div class="flex items-center gap-3">
             <Icon name="heroicons:presentation-chart-bar" class="w-8 h-8 text-secondary-400" />
-            <h2 class="leading-normal text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-primary-400">
+            <h2 class="leading-normal text-3xl font-display font-bold text-white">
             {{ $t('projects') }}
             </h2>
         </div>
@@ -39,7 +39,7 @@ const url = useRequestURL()
           class="glass-card group relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary-500/10 border-slate-700/50"
         >
           <!-- Gradient overlay on hover -->
-          <div class="absolute inset-0 bg-gradient-to-br from-primary-500/5 to-secondary-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
           <div class="p-6 md:p-8 relative z-10 flex flex-col h-full">
               <div class="flex justify-between items-start mb-4">

@@ -22,7 +22,7 @@ const url = useRequestURL()
     <div v-if="languages" class="mb-12">
       <div class="flex items-center gap-3 mb-8">
         <Icon name="heroicons:language" class="w-8 h-8 text-primary-400" />
-        <h2 class="leading-normal text-3xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
+        <h2 class="leading-normal text-3xl font-display font-bold text-white">
           {{ $t('languages') }}
         </h2>
       </div>
@@ -55,7 +55,7 @@ const url = useRequestURL()
                  <!-- Progress Bar -->
                  <div class="h-2 w-full bg-dark-950 rounded-full overflow-hidden">
                      <div 
-                        class="h-full bg-gradient-to-r from-secondary-500 to-primary-500 rounded-full transition-all duration-1000 ease-out"
+                        class="h-full bg-primary-500 rounded-full transition-all duration-1000 ease-out"
                         :style="{ width: item.level === 'native' ? '100%' : '75%' }"
                      ></div>
                  </div>

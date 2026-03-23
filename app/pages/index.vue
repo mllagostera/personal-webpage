@@ -5,7 +5,9 @@ import HardSkills from '~/components/curriculumVitae/hardSkills.vue'
 import SoftSkills from '~/components/curriculumVitae/softSkills.vue'
 import Education from '~/components/curriculumVitae/education.vue'
 import Projects from '~/components/curriculumVitae/projects.vue'
+import GithubProjects from '~/components/curriculumVitae/githubProjects.vue'
 import Languages from '~/components/curriculumVitae/languages.vue'
+import ContactForm from '~/components/contact/contactForm.vue'
 
 const { awesome } = useAppConfig()
 const { locale } = useI18n()
@@ -48,5 +50,6 @@ useHead({
       <SoftSkills />
     </div>
     <Projects class="animate-fade-in-up delay-400" />
+    <GithubProjects class="animate-fade-in-up delay-500" />
   </div>
 </template>

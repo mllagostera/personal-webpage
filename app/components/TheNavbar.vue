@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const { awesome } = useAppConfig()
 const { t } = useI18n()
+const { openContactModal } = useContactModal()
 
 const isMenuOpen = ref(false)
 
@@ -22,7 +23,7 @@ const closeMenu = () => { isMenuOpen.value = false }
 </script>
 
 <template>
-  <header class="sticky top-0 z-50 w-full backdrop-blur-md bg-gray-950/80 border-b border-gray-50/[0.2]">
+  <header class="fixed top-0 z-50 w-full backdrop-blur-md bg-gray-950/80 border-b border-gray-50/[0.2]">
     <div class="max-w-screen-2xl mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo/Title -->
@@ -40,6 +41,15 @@ const closeMenu = () => { isMenuOpen.value = false }
           <!-- Always Visible Toggles -->
           <div class="flex items-center gap-1 sm:gap-2">
             <LanguageSelector />
+            
+            <!-- Contact Button (Desktop context) -->
+            <button 
+              @click="openContactModal"
+              class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white text-sm font-bold rounded-xl transition-all active:scale-95 shadow-lg shadow-primary-500/20"
+            >
+              <Icon name="heroicons:paper-airplane" class="w-4 h-4" />
+              <span>{{ $t('contactTitle') || 'Contact' }}</span>
+            </button>
           </div>
 
           <!-- Desktop Navigation Links -->
@@ -110,6 +120,15 @@ const closeMenu = () => { isMenuOpen.value = false }
             <span class="w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
             {{ link.title }}
           </a>
+
+          <!-- Contact Button Mobile Drawer -->
+          <button 
+            @click="() => { openContactModal(); closeMenu(); }"
+            class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold text-primary-400 bg-primary-500/10 hover:bg-primary-500/20 transition-all"
+          >
+            <Icon name="heroicons:paper-airplane" class="w-5 h-5" />
+            {{ $t('contactTitle') || 'Contact' }}
+          </button>
 
           <!-- Social Links -->
           <div v-if="socialLinks.length" class="pt-3 mt-3 border-t border-gray-800 flex items-center gap-2 flex-wrap px-2">

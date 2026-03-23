@@ -1,15 +1,15 @@
 {
-  "name": "@nuxt-awesome/theme",
-  "version": "2.0.12",
-  "description": "Nuxt4 resume",
+  "name": "personal-webpage",
+  "version": "1.0.0",
+  "description": "Miquel Llagostera's Professional Portfolio & Tech Sandbox",
   "author": "mllagostera",
-  "private": false,
+  "private": true,
   "license": "MIT",
   "type": "module",
   "main": "./nuxt.config.ts",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mllagostera/personal-webpage"
+    "url": "https://github.com/mllagostera/personal-webpage.git"
   },
   "files": [
     "app",
@@ -41,7 +41,6 @@
     "@nuxtjs/i18n": "^10.0.0",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.1",
     "@pinia/nuxt": "^0.11.0",
-    "@tailwindcss/vite": "^4.2.0",
     "@vueuse/core": "^14.0.0",
     "@vueuse/nuxt": "^14.0.0",
     "nuxt": "^4.0.0",
@@ -51,11 +50,18 @@
     "tailwindcss": "^4.2.0"
   },
   "overrides": {
-    "minimatch": "^10.2.1",
+    "minimatch": "^10.2.4",
+    "simple-git": "^3.33.0",
+    "serialize-javascript": "^7.0.4",
+    "svgo": "^4.0.1",
     "braces": "^3.0.3",
     "micromatch": "^4.0.8",
     "devalue": "^5.6.3",
-    "tar": "^6.2.1",
+    "tar": "^7.5.11",
+    "immutable": "^5.1.5",
     "postcss": "^8.4.31"
+  },
+  "devDependencies": {
+    "@types/node": "^25.4.0"
   }
 }

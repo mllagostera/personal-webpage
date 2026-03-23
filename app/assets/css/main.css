@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-    --color-primary-400: #c084fc;
-    --color-primary-500: #a855f7;
-    --color-primary-600: #9333ea;
+    --color-primary-400: #34d399;
+    --color-primary-500: #10b981;
+    --color-primary-600: #059669;
 
-    --color-secondary-400: #22d3ee;
-    --color-secondary-500: #06b6d4;
+    --color-secondary-400: #f8fafc;
+    --color-secondary-500: #e2e8f0;
 
-    --color-dark-950: #020617;
-    --color-dark-900: #0f172a;
-    --color-dark-800: #1e293b;
+    --color-dark-950: #0a0a0a;
+    --color-dark-900: #171717;
+    --color-dark-800: #262626;
 
     --color-black-blue: #0E6CC2;
 
@@ -19,19 +19,19 @@
 
     --max-width-8xl: 90rem;
 
-    --background-image-cosmic-gradient: linear-gradient(to right bottom, #020617, #0f172a, #1e1b4b);
+    --background-image-cosmic-gradient: linear-gradient(to right bottom, #0a0a0a, #171717, #0f172a);
 }
 
 @layer utilities {
 
     /* Glass Card Utility */
     .glass-card {
-        @apply bg-dark-900/40 backdrop-blur-md border border-slate-700/50 rounded-xl shadow-lg transition-all duration-300;
+        @apply bg-dark-900/40 backdrop-blur-md border border-dark-800 rounded-xl shadow-lg border-neutral-800 shadow-black/40 transition-all duration-300;
     }
 
     /* Cosmic Text Utility */
     .cosmic-text {
-        @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-400;
+        @apply text-white;
     }
 
     /* Animation Utils */
@@ -44,10 +44,10 @@
 /* Base Styles */
 @layer base {
     body {
-        @apply bg-dark-950 text-slate-200 font-sans antialiased;
+        @apply bg-dark-950 text-neutral-300 font-sans antialiased;
         background-image:
-            radial-gradient(circle at 50% 0%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-            radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
+            radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
         background-attachment: fixed;
     }
 
@@ -57,7 +57,7 @@
     h4,
     h5,
     h6 {
-        @apply font-display text-slate-50;
+        @apply font-display text-white;
     }
 }
 
@@ -92,3 +92,23 @@
 ::-webkit-scrollbar-thumb:hover {
     background: var(--color-slate-600);
 }
+
+/* Custom Symfony Icon Fix */
+.custom-icon-symfony {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 128 128'%3E%3Cpath fill='%23fff' d='M64 2.3C29.9 2.3 2.3 29.9 2.3 64s27.6 61.7 61.7 61.7s61.7-27.6 61.7-61.7S98.1 2.3 64 2.3M97.3 38c-2.9.1-4.8-1.6-4.9-4.2c0-1 .2-1.8.9-2.8c.6-1.2.8-1.4.8-1.9c-.1-1.6-2.5-1.7-3.2-1.7c-9.3.3-11.7 12.8-13.7 23l-1 5.4c5.3.8 9.1-.2 11.2-1.5c3-1.9-.8-3.9-.4-6.1c.5-2.2 2.5-3.3 4.1-3.4c2.3-.1 3.9 2.3 3.8 4.7c-.1 3.9-5.3 9.4-15.8 9.1c-1.3 0-2.4-.1-3.5-.2l-2 10.9c-1.8 8.2-4.1 19.5-12.5 29.3c-7.2 8.6-14.5 9.9-17.8 10c-6.1.2-10.2-3.1-10.3-7.4c-.1-4.2 3.6-6.5 6-6.6c3.3-.1 5.5 2.3 5.6 5.0c.1 2.3-1.1 3-1.9 3.5c-.5.4-1.3.9-1.3 1.8c0 .4.5 1.3 1.8 1.3c2.6-.1 4.3-1.4 5.5-2.2c6-5 8.3-13.7 11.3-29.4l.6-3.8c1-5.1 2.2-10.9 3.9-16.6c-4.2-3.2-6.7-7.1-12.4-8.6c-3.9-1.1-6.2-.2-7.9 1.9c-2 2.5-1.3 5.7.6 7.6l3.1 3.5c3.9 4.5 6 7.9 5.2 12.6c-1.1 7.3-10 13-20.5 9.8c-9-2.8-10.6-9.1-9.5-12.6c.9-3.1 3.4-3.7 5.8-2.9c2.6.8 3.6 3.9 2.8 6.3c-.1.3-.2.7-.5 1.2c-.3.7-.8 1.2-1.1 2c-.6 1.9 2 3.2 3.8 3.8c4 1.2 7.9-.9 8.9-4.1c.9-3-1-5.1-1.7-5.9l-3.8-4.1c-1.7-1.9-5.6-7.3-3.7-13.4c.7-2.3 2.2-4.8 4.4-6.4c4.6-3.5 9.7-4 14.5-2.6c6.2 1.8 9.2 5.9 13.1 9.1c2.2-6.3 5.2-12.6 9.7-17.8c4.1-4.8 9.5-8.2 15.8-8.5c6.3-.2 11 2.6 11.2 7.1c-.1 2-1.2 5.7-5 5.8'/%3E%3C/svg%3E");
+}
+
+/* Custom Tailwind Icon Fix */
+.custom-icon-tailwindcss {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M12.001 4.8c-3.2 0-5.2 1.6-6 4.8c1.2-1.6 2.6-2.2 4.2-1.8c.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8c-1.2 1.6-2.6 2.2-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8c1.2-1.6 2.6-2.2 4.2-1.8c.913.228 1.565.89 2.288 1.624C7.666 17.818 9.027 19 12.001 19c3.2 0 5.2-1.6 6-4.8c-1.2 1.6-2.6 2.2-4.2 1.8c-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z'/%3E%3C/svg%3E");
+}

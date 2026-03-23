@@ -3,10 +3,19 @@
     <NuxtLoadingIndicator />
     <NuxtPage />
     <BackToTop />
+    
+    <!-- Global Contact Modal -->
+    <ContactModal :is-open="isContactModalOpen" @close="isContactModalOpen = false">
+      <ContactFormContent />
+    </ContactModal>
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
+import ContactModal from '~/components/contact/ContactModal.vue'
+import ContactFormContent from '~/components/contact/ContactFormContent.vue'
+
+const { isContactModalOpen } = useContactModal()
 const { awesome } = useAppConfig()
 const { locale, t } = useI18n()
 

@@ -31,7 +31,7 @@ const scrollToTop = () => {
       <!-- Inner wrapper provides the relative context for the glow ring -->
       <div class="relative w-12 h-12">
         <!-- Glow ring -->
-        <span class="absolute inset-0 rounded-full bg-gradient-to-br from-primary-500 to-secondary-500 opacity-0 group-hover:opacity-60 blur-md transition-all duration-300 scale-125"></span>
+        <span class="absolute inset-0 rounded-full bg-primary-500 opacity-0 group-hover:opacity-40 blur-md transition-all duration-300 scale-125"></span>
         <!-- Button body -->
         <span class="relative flex items-center justify-center w-12 h-12 rounded-full
                      bg-dark-900/70 backdrop-blur-md
