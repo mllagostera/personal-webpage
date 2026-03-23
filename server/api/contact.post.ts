@@ -58,8 +58,9 @@ export default defineEventHandler(async (event) => {
   }
 
   // ── 5. Send to Telegram ─────────────────────────────────────────────────────
-  const botToken = process.env.TELEGRAM_BOT_TOKEN
-  const chatId = process.env.TELEGRAM_CHAT_ID
+  const config = useRuntimeConfig()
+  const botToken = config.telegramBotToken
+  const chatId = config.telegramChatId
 
   if (!botToken || !chatId) {
     console.error('[contact] Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID env vars')
