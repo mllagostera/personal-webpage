@@ -15,12 +15,12 @@ export default {
   viewRepository: 'View Repository',
   fork: 'Fork',
   liveDemo: 'Live site',
-  technicalSkills: 'Hard Skills',
+  technicalSkills: 'Technical Skills',
   education: 'Education',
   languages: 'Languages',
   teamSize: 'Team size',
   tools: 'Programming Languages & Tools',
-  technologies: 'Skills',
+  technologies: 'Technologies',
   achievement: 'Achievement',
   release: 'Release',
   switchLanguage: 'Switch language',
@@ -28,7 +28,7 @@ export default {
   workflow: 'Always on my mind',
   softSkills: 'Soft Skills',
   Email: 'Email',
-  SoftSkillsDescription: 'The soft skills are essential for a Scrum Master, as this role focuses on facilitating, motivating, and guiding the development team towards success. Here are some',
+  SoftSkillsDescription: 'The soft skills are essential for a Scrum Master, as this role focuses on facilitating, motivating, and guiding the development team towards success. Here are some of the skills I bring to my role.',
   contactTitle: 'Get in touch',
   contactName: 'Name',
   contactNamePlaceholder: 'Your name',
@@ -43,7 +43,7 @@ export default {
   contactSendAnother: 'Send another message',
   contactRateLimit: 'Too many requests. Please wait a minute before trying again.',
   contactErrorGeneric: 'Something went wrong. Please try again later.',
-  contactPoweredBy: 'Delivered via Telegram Bot',
+  contactPoweredBy: 'Delivered through a Telegram bot',
   contactSubtitle: "I'd love to hear from you. Send me a message and I'll get back to you as soon as possible.",
   contactBadge: 'Available for new projects',
   contactHeroTitle: 'Have an idea in mind?',
@@ -54,12 +54,12 @@ export default {
       position: 'Scrum Master │ Agile Lover │ Agile Coach │ Software Development Lover',
     },
     summary: {
-      about: 'string',
+      about: 'About me',
       summary: [
-        'Dynamic and results-driven Scrum Master with over a decade of technical development expertise, specializing in digital certification and electronic security (PKI).',
-        'Proven track record in system administration, software and mobile development, as well as DevOps',
-        'Skilled in leading diverse, cross-functional teams to successful project outcomes',
-        'Currently excelling in the role at Logalty and Firmaprofesional, as part of Logalty Group',
+        'Dynamic and results-oriented Scrum Master with over a decade of experience in technical development, specializing in digital certification and electronic security (PKI).',
+        'Proven track record in systems administration, software and mobile development, as well as DevOps.',
+        'Skilled in leading diverse, cross-functional teams toward successful project outcomes.',
+        'Currently excelling in the role of Scrum Master at Logalty and Firmaprofesional, as part of the Logalty Group.',
       ],
     },
     workExperience: [
@@ -103,7 +103,7 @@ export default {
           'Tasked with identifying and incorporating external tools such as Pipelines, Jenkins, and Sensiolabs Insight to improve code quality',
           'Leader in managing and contributing to the company\'s open source projects, promoting a culture of collaboration and innovation',
           'Implementer of DevOps practices creating a new CI/CD process, including software delivery, Docker containerization, Ansible automation, cloud services, ensuring efficient, reliable operations and reducing deployment times',
-          'Hands on when required'
+          'Hands-on when needed'
         ],
         projects: [
           'Implement Agile Development Workflow using Jira',
@@ -141,7 +141,7 @@ export default {
           'Proactive in providing technical support and development when required, ensuring milestone achievement and quality standards, as backend developer experienced in PHP, Symfony, Java, MySQL, Elasticsearch, and SQLite'
         ],
         projects: [
-          'Increase the size temas without losing quality on devlivered software',
+          'Increase the size of the development team without losing quality in the delivered software',
         ],
         technologies: [
           'Teamwork',
@@ -166,7 +166,7 @@ export default {
           'Led the design and upkeep of the PKI management platform, ensuring optimal security and performance',
           'Managed the design and maintenance of the time-stamping platform, enhancing its functionality and reliability',
           'Oversaw the design and maintenance of the MobileID platform across iOS, Android, and backend systems, ensuring seamless integration and operation',
-          'Developed backend solutions using PHP, Java, and MySQL, contributing to robust and scalable applications. Frontend interfaces using Javascript and JQuery, enhancing user experience',
+          'Developed backend solutions using PHP, Java, and MySQL, contributing to robust and scalable applications, and designed frontend interfaces with JavaScript and jQuery to enhance the user experience.',
           'Provided advanced technical support, resolving complex issues to maintain system stability and user satisfaction',
           'Starting to implement agile methodologies to streamline development workflows and improve team efficiency',
           'Managed system administration tasks including Apache, Linux, and firewall configurations to ensure secure and efficient operations'
@@ -203,7 +203,7 @@ export default {
           'Developed and managed the upkeep of the time-stamping platform to enhance functionality',
           'Provided end-user technical support for seamless system operation',
           'Developed backend applications using PHP, Java, and MySQL',
-          'Created frontend interfaces using Javascript and JQuery to improve user experience'
+          'Designed frontend interfaces using JavaScript and jQuery to improve the user experience'
         ],
         projects: '',
         technologies: [
@@ -230,17 +230,17 @@ export default {
       'Mentorship and Coaching',
       'Emotional Intelligence',
       'Teamwork',
-      'Loyal',
+      'Loyalty',
       'Integrity',
     ],
     technologies: [
-      'Code quality & continuous improvement',
-      'REST API building',
-      'Agile Development & Scrum',
-      'Team work',
-      'Design Patterns',
+      'Code quality and continuous improvement',
+      'REST API design and development',
+      'Agile development & Scrum',
+      'Teamwork',
+      'Design patterns',
       'Software architecture',
-      'Long term vision',
+      'Long-term vision',
       'From monolithic to microservices',
     ],
     stack: [
@@ -261,7 +261,7 @@ export default {
       'devicon-plain:css3',
     ],
     education: {
-      title: 'Bachelor of Information Technology',
+      title: 'Bachelor\'s Degree in Computer Science, specialization in Systems',
       school: 'Universitat Autònoma de Barcelona',
       scholastic: '2005 - 2008'
     },
@@ -298,12 +298,12 @@ export default {
     ],
     projects: [
       {
-        name: 'My personal webpage',
-        position: 'Full stack',
-        description: 'My own CV using NUXT 4',
+        name: 'My personal website',
+        position: 'Front-End Developer',
+        description: 'Create a personal website to learn how to use Nuxt 4 and Tailwind CSS',
         startDate: 'Sep 2024',
         endDate: 'Current',
-        tools: 'Sublime',
+        tools: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
         technologies: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
         release: 'Sep 2024',
       }
