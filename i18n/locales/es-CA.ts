@@ -239,7 +239,7 @@ export default {
     ],
     technologies: [
       'Millora contínua de la qualitat del codi',
-      'Construcció de REST API',
+      'Disseny i desenvolupament de APIs REST',
       'Desenvolupament àgil & Scrum',
       'Treball en equipo',
       'Patrons de disseny',

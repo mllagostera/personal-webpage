@@ -3,7 +3,7 @@ export default {
   dateOfBirth: 'Fecha de nacimiento',
   age: 'Edad',
   summary: 'Resumen',
-  about: 'Contacto',
+  about: 'Sobre mí',
   workExperience: 'Experiencia laboral',
   description: 'Descripción',
   projects: 'Proyectos',
@@ -15,12 +15,12 @@ export default {
   viewRepository: 'Ver Repositorio',
   fork: 'Fork',
   liveDemo: 'Web en vivo',
-  technicalSkills: 'Skills',
+  technicalSkills: 'Habilidades técnicas',
   education: 'Educación',
   languages: 'Idiomas',
   teamSize: 'Tamaño de equipo',
   tools: 'Lenguages de programación y herramientas',
-  technologies: 'Tecnologias',
+  technologies: 'Tecnologías',
   achievement: 'Logros',
   release: 'Versión',
   switchLanguage: 'Cambio de idioma',
@@ -28,7 +28,7 @@ export default {
   workflow: 'Always on my mind',
   softSkills: 'Soft Skills',
   Email: 'Email',
-  SoftSkillsDescription: 'Las soft skills son esenciales para un Scrum Master, ya que este rol se enfoca en facilitar, motivar y guiar al equipo de desarrollo hacia el éxito. Aquí estan algunas de las skills que poseo para desarrollar mi posición',
+  SoftSkillsDescription: 'Las soft skills son esenciales para un Scrum Master, ya que este rol se centra en facilitar, motivar y guiar al equipo de desarrollo hacia el éxito. Aquí tienes algunas de las habilidades que poseo para desempeñar mi función.',
   contactTitle: 'Contáctame',
   contactName: 'Nombre',
   contactNamePlaceholder: 'Tu nombre',
@@ -43,7 +43,7 @@ export default {
   contactSendAnother: 'Enviar otro mensaje',
   contactRateLimit: 'Demasiadas solicitudes. Espera un minuto antes de intentarlo de nuevo.',
   contactErrorGeneric: 'Algo ha ido mal. Por favor, inténtalo más tarde.',
-  contactPoweredBy: 'Entregado vía Telegram Bot',
+  contactPoweredBy: 'Entregado mediante un bot de Telegram',
   contactSubtitle: 'Me encantaría saber de ti. Envíame un mensaje y te responderé lo antes posible.',
   contactBadge: 'Disponible para nuevos proyectos',
   contactHeroTitle: '¿Tienes una idea en mente?',
@@ -54,7 +54,7 @@ export default {
       position: 'Scrum Master │ Agile Lover │ Agile Coach │ Software Development Lover',
     },
     summary: {
-      about: 'string',
+      about: 'Sobre mí',
       summary: [
         'Scrum Master dinámico y orientado a resultados con más de una década de experiencia en desarrollo técnico, especializado en certificación digital y seguridad electrónica (PKI)',
         'Historial comprobado en administración de sistemas, desarrollo de software y móvil, así como en DevOps.',
@@ -143,7 +143,7 @@ export default {
           'Responsable de buscar e incorporar las herramientas externas para mejorar la calidad del código desarrollado (Pipelines, Jenkins, Sensiolabs Insight)'
         ],
         projects: [
-          'Incrementar el tamaño del equipo de desarrollo sin perder calidad en el sofrware entregado'
+          'Incrementar el tamaño del equipo de desarrollo sin perder calidad en el software entregado'
         ],
         technologies: [
           'Trabajo en equipo',
@@ -170,7 +170,7 @@ export default {
           'Responsable del diseño y mantenimiento de la plataforma de sellado de tiempo, mejorando su funcionalidad y fiabilidad',
           'Responsable del diseño y mantenimiento de la plataforma MobileID en iOS, Android y sistemas backend, asegurando una integración y operación sin problemas',
           'Responsable del diseño y mantenimiento de la plataforma Firmamobile para iOS y Android, proporcionando una solución móvil robusta',
-          'Los desarrollos de las soluciones backend utilizando PHP, Java y MySQL, contribuyendo a aplicaciones robustas y escalables. Interfaces frontend usando Javascript y JQuery, mejorando la experiencia del usuario',
+          'Desarrollo de soluciones backend con PHP, Java y MySQL, contribuyendo a aplicaciones robustas y escalables; además, diseño interfaces frontend con JavaScript y jQuery para mejorar la experiencia del usuario.',
           'Empezando a implementar metodologías ágiles para optimizar los flujos de trabajo de desarrollo y mejorar la eficiencia del equipo',
           'Gestionar tareas de administración de sistemas, incluyendo configuraciones de Apache, Linux y firewall, para asegurar operaciones seguras y eficientes',
           'Proporcionar soporte técnico avanzado, resolviendo problemas complejos para mantener la estabilidad del sistema y la satisfacción del usuario'
@@ -239,7 +239,7 @@ export default {
     ],
     technologies: [
       'Mejora continua de la calidad del código',
-      'Contrucción de REST API',
+      'Diseño y desarrollo de APIs REST',
       'Desarrollo Agile & Scrum',
       'Trabajo en equipo',
       'Patrones de diseño',
@@ -304,12 +304,12 @@ export default {
       {
         name: 'Página web personal',
         position: 'Front-End Developer',
-        description: 'Crear una página web personal para aprender el uso de Nuxt3 y tailwindcss',
-        startDate: 'Set 2024',
+        description: 'Crear una página web personal para aprender a usar Nuxt 4 y Tailwind CSS',
+        startDate: 'Sep 2024',
         endDate: 'Actualmente',
-        tools: 'Vue 3, Nuxt 3, HTML, SCSS, Tailwind CSS',
-        technologies: 'Vue 3, Nuxt 3, HTML, SCSS, Tailwind CSS',
-        release: 'Set 2024',
+        tools: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
+        technologies: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
+        release: 'Sep 2024',
       },
     ],
   },
