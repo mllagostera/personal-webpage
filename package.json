@@ -33,7 +33,7 @@
   "dependencies": {
     "@fontsource/outfit": "^5.2.8",
     "@fontsource/plus-jakarta-sans": "^5.2.8",
-    "@iconify-json/devicon": "^1.2.59",
+    "@iconify-json/devicon": "^1.2.62",
     "@iconify-json/devicon-plain": "^1.2.54",
     "@iconify-json/heroicons": "^1.2.3",
     "@nuxt/icon": "^2.2.1",
