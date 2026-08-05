@@ -23,7 +23,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxtjs/color-mode',
     // management
-    '@pinia/nuxt',
     '@vueuse/nuxt',
     // locale
     '@nuxtjs/i18n',
@@ -38,15 +37,6 @@ export default defineNuxtConfig({
   components: [
     '~/components',
   ],
-
-  imports: {
-    dirs: ['~/stores'],
-  },
-
-  // module::pinia
-  pinia: {
-    storesDirs: ['~/stores/**', '#/stores/**', '@/stores/**'],
-  },
 
   // module::headlessui
   headlessui: {

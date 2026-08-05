@@ -1,12 +1,8 @@
-import type { RouteLocationRaw } from 'vue-router'
-import type { NuxtApp } from '#app'
 import type { AwesomeLayoutPageNavbarMenu } from '~/utils/types'
 
 export interface NuxtAwesomeAppConfig {
   /** title name */
   name?: string
-  /** description */
-  description?: string
 
   /** project config */
   project?: {
@@ -33,51 +29,15 @@ export interface NuxtAwesomeAppConfig {
         menus?: AwesomeLayoutPageNavbarMenu[]
       }
     }
-    /** footer */
-    footer?: {
-      /** footer year */
-      year?: number
-    }
-    /** welcome component page */
-    welcome?: {
-      title?: string
-      disableInfoReplaceIndexInWelcomePage?: boolean
-      primaryActionButton?: {
-        title?: string
-        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)
-      }
-      secondaryActionButton?: {
-        title?: string
-        to?: RouteLocationRaw | ((nuxt: NuxtApp) => RouteLocationRaw)
-      }
-    }
   }
 
   /** author config */
   author?: {
-    /** author name */
+    /** author name, shown as the page H1 and in twitter meta tags */
     name?: string
-    /** author dateOfBirth */
-    dateOfBirth?: string
-    /** author email */
+    /** author email, used for the mailto: contact link */
     email?: string
-    /** author phoneNumber */
-    phoneNumber?: string
-    /** author city */
-    city?: string
-    /** author links */
-    links?: {
-      /** author github link */
-      github?: string
-      /** author medium link */
-      medium?: string
-      /** author website link */
-      website?: string
-    }
   }
-
-  /** author config */
-  disableInfoReplaceIndexInWelcomePage?: boolean
 }
 
 declare module '@nuxt/schema' {
@@ -92,7 +52,6 @@ declare module '@nuxt/schema' {
 export default defineAppConfig({
   awesome: {
     name: 'Portfolio & Resume',
-    description: '',
     project: {
       links: {
         github: 'https://github.com/mllagostera',
@@ -134,38 +93,11 @@ export default defineAppConfig({
           ],
         },
       },
-      footer: {
-        year: new Date().getFullYear(),
-        isDemo: false,
-        isActive: true,
-        link: 'https://github.com/mllagostera/nuxt-3-cv',
-      },
-      welcome: {
-        title: 'Miquel Llagostera',
-        disableInfoReplaceIndexInWelcomePage: true,
-        primaryActionButton: {
-          title: 'Nuxt 3',
-          to: 'https://nuxt.com/',
-        },
-        secondaryActionButton: {
-          title: 'Github',
-          to: 'https://github.com/mllagostera/nuxt-3-cv',
-        },
-      },
     },
     author: {
       name: 'Miquel Llagostera',
       email: 'mllagosterarios@gmail.com',
-      dateOfBirth: '10/07/1984',
-      phoneNumber: '',
-      city: 'Barcelona',
-      links: {
-        github: 'https://github.com/mllagostera',
-        website: 'https://mllagostera.com',
-        linkedin: 'https://www.linkedin.com/in/mllagostera',
-      },
     },
-    disableInfoReplaceIndexInWelcomePage: false,
   } as NuxtAwesomeAppConfig,
   nuxtIcon: {
     aliases: {},
