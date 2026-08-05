@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { FetchError } from 'ofetch'
+
 const { t } = useI18n()
 
 const form = reactive({
@@ -37,13 +39,14 @@ async function submit() {
     form.email = ''
     form.message = ''
     form._timestamp = Date.now()
-  } catch (err: any) {
-    const code = err?.response?.status ?? err?.statusCode
+  } catch (err) {
+    const fetchErr = err as FetchError
+    const code = fetchErr?.response?.status ?? fetchErr?.statusCode
     if (code === 429) {
       status.value = 'ratelimit'
     } else {
       status.value = 'error'
-      errorMsg.value = err?.data?.statusMessage ?? t('contactErrorGeneric')
+      errorMsg.value = fetchErr?.data?.statusMessage ?? t('contactErrorGeneric')
     }
   }
 }
@@ -72,7 +75,7 @@ async function submit() {
     </Transition>
 
     <!-- Form -->
-    <form v-if="status !== 'success'" @submit.prevent="submit" class="space-y-6 relative z-10">
+    <form v-if="status !== 'success'" class="space-y-6 relative z-10" @submit.prevent="submit">
       <div class="mb-6">
         <h3 class="text-2xl font-display font-bold text-white mb-2">{{ $t('contactTitle') }}</h3>
         <p class="text-slate-400 text-sm italic">{{ $t('contactSubtitle', 'Me encantaría saber de ti. Envíame un mensaje y te responderé lo antes posible.') }}</p>
@@ -88,7 +91,7 @@ async function submit() {
           name="contact_hp_field" 
           autocomplete="new-password" 
           tabindex="-1" 
-        />
+        >
       </div>
 
       <!-- Name -->
@@ -108,7 +111,7 @@ async function submit() {
           :placeholder="$t('contactNamePlaceholder')"
           class="w-full bg-dark-900/60 border border-slate-700/60 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-600
                  text-sm focus:outline-none focus:border-white/40 focus:ring-1 focus:ring-white/10 transition-all"
-        />
+        >
       </div>
 
       <!-- Email -->
@@ -127,7 +130,7 @@ async function submit() {
           :placeholder="$t('contactEmailPlaceholder')"
           class="w-full bg-dark-900/60 border border-slate-700/60 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-600
                  text-sm focus:outline-none focus:border-primary-500/70 focus:ring-1 focus:ring-primary-500/30 transition-all"
-        />
+        >
       </div>
 
       <!-- Message -->

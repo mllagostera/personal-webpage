@@ -68,7 +68,7 @@ function timeAgo(dateStr: string): string {
         class="glass-card group relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary-500/10 border-slate-700/50"
       >
         <!-- Gradient overlay on hover -->
-        <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
 
         <div class="p-6 md:p-8 relative z-10 flex flex-col h-full">
 
@@ -84,11 +84,11 @@ function timeAgo(dateStr: string): string {
             </div>
             <!-- Stars + forks -->
             <div class="flex items-center gap-2 shrink-0">
-              <div class="flex items-center gap-1 text-xs font-mono text-amber-400 bg-dark-950/50 px-2 py-1 rounded border border-slate-800" v-if="repo.stargazers_count > 0">
+              <div v-if="repo.stargazers_count > 0" class="flex items-center gap-1 text-xs font-mono text-amber-400 bg-dark-950/50 px-2 py-1 rounded border border-slate-800">
                  <Icon name="heroicons:star-solid" class="w-3 h-3" />
                 {{ repo.stargazers_count }}
               </div>
-              <div class="flex items-center gap-1 text-xs font-mono text-slate-400 bg-dark-950/50 px-2 py-1 rounded border border-slate-800" v-if="repo.forks_count > 0">
+              <div v-if="repo.forks_count > 0" class="flex items-center gap-1 text-xs font-mono text-slate-400 bg-dark-950/50 px-2 py-1 rounded border border-slate-800">
                 <Icon name="heroicons:arrow-path-rounded-square" class="w-3 h-3" />
                 {{ repo.forks_count }}
               </div>
@@ -124,7 +124,7 @@ function timeAgo(dateStr: string): string {
             <div class="flex items-center justify-between flex-wrap gap-2">
               <!-- Primary language -->
               <div v-if="repo.language" class="flex items-center gap-2 text-slate-300 text-sm">
-                <span class="w-2 h-2 rounded-full bg-primary-500 shrink-0"></span>
+                <span class="w-2 h-2 rounded-full bg-primary-500 shrink-0"/>
                 <span class="text-slate-500 text-xs uppercase tracking-wider mr-1">{{ $t('primaryLanguage') }}:</span>
                 {{ repo.language }}
               </div>
@@ -147,7 +147,7 @@ function timeAgo(dateStr: string): string {
                 <Icon name="heroicons:globe-alt" class="w-3.5 h-3.5" />
                 {{ $t('liveDemo') }}
               </a>
-              <span v-else></span>
+              <span v-else/>
               <!-- View repo -->
               <a :href="repo.html_url" target="_blank" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors">
                  {{ $t('viewRepository') }} <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />

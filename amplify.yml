@@ -4,6 +4,7 @@ frontend:
     preBuild:
       commands:
         - npm ci --legacy-peer-deps
+        - npm run lint
     build:
       commands:
         - env | grep -e TELEGRAM_BOT_TOKEN -e TELEGRAM_CHAT_ID >> .env

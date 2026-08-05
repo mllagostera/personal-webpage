@@ -26,6 +26,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     // locale
     '@nuxtjs/i18n',
+    // linting
+    '@nuxt/eslint',
   ],
 
   css: [

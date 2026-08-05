@@ -23,7 +23,10 @@
     "build": "nuxt build",
     "dev": "nuxt dev --no-clear",
     "generate": "nuxt generate",
-    "preview": "nuxt preview"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "engines": {
     "node": ">=22.0.0",
@@ -47,7 +50,9 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@types/node": "^26.1.2"
+    "@nuxt/eslint": "^1.16.0",
+    "@types/node": "^26.1.2",
+    "eslint": "^10.8.0"
   },
   "overrides": {
     "immutable": "^5.1.9",

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const { tm, rt } = useI18n()
 const technologies = computed(() => {
-  const techs = tm('cv.technologies') as any
-  return Array.isArray(techs) ? techs.map((t: any) => t ? rt(t) : '') : []
+  const techs = tm('cv.technologies') as unknown as string[]
+  return Array.isArray(techs) ? techs.map((t) => t ? rt(t) : '') : []
 })
 const stack = computed(() => {
-  const stk = tm('cv.stack') as any
-  return Array.isArray(stk) ? stk.map((s: any) => s ? rt(s) : '') : []
+  const stk = tm('cv.stack') as unknown as string[]
+  return Array.isArray(stk) ? stk.map((s) => s ? rt(s) : '') : []
 })
 </script>
 <template>
@@ -23,10 +23,10 @@ const stack = computed(() => {
     <!-- Main Stack Grid -->
     <div class="glass-card p-8 md:p-10 mb-8 border border-white/5 relative overflow-hidden">
         <!-- Decoration light -->
-        <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl pointer-events-none"/>
 
         <h3 class="font-bold text-xs uppercase tracking-widest text-slate-400 mb-10 flex items-center gap-2">
-          <span class="w-8 h-px bg-primary-500/30"></span>
+          <span class="w-8 h-px bg-primary-500/30"/>
           {{ $t('tools') }}
         </h3>
         
@@ -37,8 +37,8 @@ const stack = computed(() => {
                 class="group relative flex flex-col items-center justify-center p-2"
             >
                 <div class="relative z-10 p-4 rounded-2xl bg-white/5 border border-white/5 group-hover:border-primary-500/50 group-hover:bg-primary-500/10 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_10px_30px_-10px_rgba(var(--color-primary-500),0.3)]">
-                    <div v-if="item.includes('symfony')" class="custom-icon-symfony grayscale hover:grayscale-0 contrast-125 transition-all duration-300"></div>
-                    <div v-else-if="item.includes('tailwindcss')" class="custom-icon-tailwindcss grayscale hover:grayscale-0 contrast-125 transition-all duration-300"></div>
+                    <div v-if="item.includes('symfony')" class="custom-icon-symfony grayscale hover:grayscale-0 contrast-125 transition-all duration-300"/>
+                    <div v-else-if="item.includes('tailwindcss')" class="custom-icon-tailwindcss grayscale hover:grayscale-0 contrast-125 transition-all duration-300"/>
                     <Icon 
                       v-else
                       :name="item" 

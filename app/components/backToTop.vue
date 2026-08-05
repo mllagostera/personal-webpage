@@ -23,17 +23,18 @@ const scrollToTop = () => {
   >
     <button
       v-show="isVisible"
-      @click="scrollToTop"
       aria-label="Volver arriba"
       title="Back to top"
       class="fixed bottom-6 right-6 z-50 group"
+      @click="scrollToTop"
     >
       <!-- Inner wrapper provides the relative context for the glow ring -->
       <div class="relative w-12 h-12">
         <!-- Glow ring -->
-        <span class="absolute inset-0 rounded-full bg-primary-500 opacity-0 group-hover:opacity-40 blur-md transition-all duration-300 scale-125"></span>
+        <span class="absolute inset-0 rounded-full bg-primary-500 opacity-0 group-hover:opacity-40 blur-md transition-all duration-300 scale-125"/>
         <!-- Button body -->
-        <span class="relative flex items-center justify-center w-12 h-12 rounded-full
+        <span
+class="relative flex items-center justify-center w-12 h-12 rounded-full
                      bg-dark-900/70 backdrop-blur-md
                      border border-white/10 group-hover:border-primary-500/60
                      shadow-xl transition-all duration-300 group-hover:scale-110">

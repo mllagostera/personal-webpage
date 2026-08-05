@@ -4,8 +4,8 @@ import type { Project } from '~/utils/curriculumVitae'
 
 const { tm, rt } = useI18n()
 const projects = computed(() => {
-  const projs = tm('cv.projects') as any
-  return (Array.isArray(projs) ? projs.map((item: any) => ({
+  const projs = tm('cv.projects') as unknown as Project[]
+  return (Array.isArray(projs) ? projs.map((item) => ({
     ...item,
     name: item.name ? rt(item.name) : '',
     startDate: item.startDate ? rt(item.startDate) : '',
@@ -18,7 +18,6 @@ const projects = computed(() => {
   })) : []) as Project[]
 })
 // #endregion
-const url = useRequestURL()
 </script>
 <template>
   <div class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
@@ -39,7 +38,7 @@ const url = useRequestURL()
           class="glass-card group relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary-500/10 border-slate-700/50"
         >
           <!-- Gradient overlay on hover -->
-          <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+          <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
 
           <div class="p-6 md:p-8 relative z-10 flex flex-col h-full">
               <div class="flex justify-between items-start mb-4">

@@ -5,8 +5,8 @@ import type { Language } from "~/utils/curriculumVitae";
 
 const { tm, rt } = useI18n()
 const languages = computed(() => {
-  const langs = tm('cv.languages') as any
-  return Array.isArray(langs) ? langs.map((l: any) => ({
+  const langs = tm('cv.languages') as unknown as Language[]
+  return Array.isArray(langs) ? langs.map((l) => ({
     ...l,
     name: l.name ? rt(l.name) : '',
     level: l.level ? rt(l.level) : '',
@@ -14,7 +14,6 @@ const languages = computed(() => {
   })) : []
 })
 // #endregion
-const url = useRequestURL()
 </script>
 <template>
   <div class="h-fit">
@@ -35,7 +34,7 @@ const url = useRequestURL()
           >
              <!-- Flag Circle with Pulse Effect -->
              <div class="relative flex-shrink-0">
-                 <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                 <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"/>
                  <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700/50 relative z-10 bg-dark-900 flex items-center justify-center">
                     <Icon :name="item.flag" size="64px" class="opacity-90"/> 
                  </div>
@@ -57,7 +56,7 @@ const url = useRequestURL()
                      <div 
                         class="h-full bg-primary-500 rounded-full transition-all duration-1000 ease-out"
                         :style="{ width: item.level === 'native' ? '100%' : '75%' }"
-                     ></div>
+                     />
                  </div>
                  <div class="text-right mt-1 text-xs text-slate-500 font-mono">
                      {{ item.level === 'native' ? '100%' : '75%' }} Proficiency

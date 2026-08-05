@@ -6,7 +6,7 @@ import {
   DialogPanel,
 } from '@headlessui/vue'
 
-const props = defineProps<{
+defineProps<{
   isOpen: boolean
 }>()
 
@@ -19,7 +19,7 @@ function closeModal() {
 
 <template>
   <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-[60]">
+    <Dialog as="div" class="relative z-[60]" @close="closeModal">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -51,8 +51,8 @@ function closeModal() {
               <div class="relative bg-gray-900 rounded-2xl overflow-hidden p-6 md:p-10">
                 <!-- Close button -->
                 <button 
-                  @click="closeModal"
                   class="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-full hover:bg-white/5 transition-colors z-20"
+                  @click="closeModal"
                 >
                   <Icon name="heroicons:x-mark" class="w-6 h-6" />
                 </button>

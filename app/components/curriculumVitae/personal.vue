@@ -1,11 +1,10 @@
 <script setup lang="ts">
 // #region [Data]
-import type { Personal, Summary } from '~/utils/curriculumVitae'
+import type { Personal } from '~/utils/curriculumVitae'
 
-const nuxtApp = useNuxtApp()
 const { awesome } = useAppConfig()
 const { tm, rt, locale } = useI18n()
-const personalRaw = computed(() => tm('cv.information') as any)
+const personalRaw = computed(() => tm('cv.information') as unknown as Personal)
 const personal = computed(() => ({
   fullName: personalRaw.value?.fullName ? rt(personalRaw.value.fullName) : '',
   position: personalRaw.value?.position ? rt(personalRaw.value.position) : '',
@@ -14,12 +13,8 @@ const author = computed(
   () => (awesome?.author as Personal) || ({ name: '', fullName: '', position: '' } as Personal),
 )
 const summaryDetail = computed(() => {
-  const detail = tm('cv.summary.summary') as any
-  return Array.isArray(detail) ? detail.map((s: any) => s ? rt(s) : '') : []
-})
-const softskills = computed(() => {
-  const skills = tm('cv.softSkills') as any
-  return Array.isArray(skills) ? skills.map((s: any) => rt(s)) : []
+  const detail = tm('cv.summary.summary') as unknown as string[]
+  return Array.isArray(detail) ? detail.map((s) => s ? rt(s) : '') : []
 })
 const typewriterStyle = computed(() => {
   const text = personal.value.position || ''
@@ -64,9 +59,9 @@ useSeoMeta({
 <template>
   <div class="mx-auto pb-12 px-4 2xl:px-0 h-fit border-b border-white/10 relative overflow-x-hidden">
     <!-- Subtle Background Elements (Optional extra decoration) -->
-    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10 animate-pulse"></div>
+    <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -z-10 animate-pulse"/>
 
-    <div id="about" v-if="personal" class="pt-20">
+    <div v-if="personal" id="about" class="pt-20">
       <div class="text-center mb-16 relative">
         <h1
           class="font-display font-bold uppercase text-4xl sm:text-5xl md:text-7xl xl:text-8xl mb-4 tracking-tight"
@@ -75,9 +70,9 @@ useSeoMeta({
         </h1>
         <div class="flex justify-center">
             <h2
+            :key="personal.position"
             class="leading-normal mt-0 text-xl md:text-3xl title-blue line-1 anim-typewriter font-light text-slate-300"
             :style="typewriterStyle"
-            :key="personal.position"
             >
             {{ personal.position }}
             </h2>
@@ -97,7 +92,7 @@ useSeoMeta({
               :key="index"
               class="flex items-start gap-3 text-slate-300 text-lg leading-relaxed"
             >
-              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-secondary-400 flex-shrink-0"></span>
+              <span class="mt-2 w-1.5 h-1.5 rounded-full bg-secondary-400 flex-shrink-0"/>
               {{ item }}
             </li>
           </ul>
