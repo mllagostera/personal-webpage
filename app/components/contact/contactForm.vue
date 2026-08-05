@@ -24,8 +24,8 @@ const socialLinks = computed(() => [
 
       <div class="flex flex-col gap-4 pt-2">
         <button 
-          @click="openContactModal"
           class="group relative inline-flex items-center justify-center gap-3 px-6 py-3 bg-primary-600 hover:bg-primary-500 text-white font-bold rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_-5px_rgba(var(--color-primary-500),0.5)] active:scale-95 overflow-hidden"
+          @click="openContactModal"
         >
           <span class="relative z-10 flex items-center gap-2">
             <Icon name="heroicons:paper-airplane" class="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />

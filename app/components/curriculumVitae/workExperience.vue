@@ -4,24 +4,23 @@ import type { Company } from '~/utils/curriculumVitae'
 
 const { tm, rt } = useI18n()
 const works = computed(() => {
-  const workExp = tm('cv.workExperience') as any
-  return (Array.isArray(workExp) ? workExp.map((item: any) => ({
+  const workExp = tm('cv.workExperience') as unknown as Company[]
+  return (Array.isArray(workExp) ? workExp.map((item) => ({
     ...item,
     companyName: item.companyName ? rt(item.companyName) : '',
     startDate: item.startDate ? rt(item.startDate) : '',
     endDate: item.endDate ? rt(item.endDate) : '',
     position: item.position ? rt(item.position) : '',
-    description: Array.isArray(item.description) ? item.description.map((d: any) => d ? rt(d) : '') : [],
-    projects: Array.isArray(item.projects) ? item.projects.map((p: any) => p ? rt(p) : '') : [],
-    technologies: Array.isArray(item.technologies) ? item.technologies.map((t: any) => t ? rt(t) : '') : [],
+    description: Array.isArray(item.description) ? item.description.map((d) => d ? rt(d) : '') : [],
+    projects: Array.isArray(item.projects) ? item.projects.map((p) => p ? rt(p) : '') : [],
+    technologies: Array.isArray(item.technologies) ? item.technologies.map((t) => t ? rt(t) : '') : [],
   })) : []) as Company[]
 })
 // #endregion
-const url = useRequestURL()
 </script>
 <template>
   <div class="mx-auto px-4 2xl:px-0 h-fit mt-12 border-b border-white/10 pb-12">
-    <div id="workExperience" v-if="works">
+    <div v-if="works" id="workExperience">
       <div class="flex items-center gap-3 mb-8">
         <Icon name="heroicons:briefcase" class="w-8 h-8 text-primary-400" />
         <h2 class="leading-normal text-3xl font-display font-bold text-white">
@@ -31,7 +30,7 @@ const url = useRequestURL()
 
       <div class="relative md:ml-40 space-y-8 md:space-y-16">
         <!-- Vertical Line (Desktop only) -->
-        <div class="hidden md:block absolute left-[-1.5px] top-4 bottom-0 w-[3px] bg-gradient-to-b from-primary-500 via-primary-500/50 to-transparent"></div>
+        <div class="hidden md:block absolute left-[-1.5px] top-4 bottom-0 w-[3px] bg-gradient-to-b from-primary-500 via-primary-500/50 to-transparent"/>
 
         <div
           v-for="(item, index) in works"
@@ -46,7 +45,7 @@ const url = useRequestURL()
 
           <!-- Timeline Dot (Desktop only) -->
           <div class="hidden md:block absolute md:left-[-9px] top-1.5 w-4 h-4 rounded-full bg-dark-950 border-[3px] border-primary-500 z-10 box-content">
-            <div class="absolute inset-0 rounded-full bg-primary-500 animate-ping opacity-20"></div>
+            <div class="absolute inset-0 rounded-full bg-primary-500 animate-ping opacity-20"/>
           </div>
 
           <div class="glass-card p-6 md:p-8 hover:border-primary-500/30 transition-all duration-300 hover:translate-x-1 group">
@@ -68,7 +67,7 @@ const url = useRequestURL()
 
             <div class="space-y-4">
                 <div class="flex items-center gap-2 text-primary-400 font-bold text-xs uppercase tracking-widest">
-                  <span class="w-8 h-px bg-primary-400/30"></span>
+                  <span class="w-8 h-px bg-primary-400/30"/>
                   {{ $t('description') }}
                 </div>
                 <ul class="space-y-3">
@@ -88,9 +87,9 @@ const url = useRequestURL()
                     <span class="text-secondary-400 font-bold text-xs uppercase tracking-widest mb-4 block">{{ $t('projects') }}</span>
                     <div class="flex flex-wrap gap-2">
                         <span 
-                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-xs font-medium hover:bg-white/10 transition-all" 
                             v-for="project in item.projects" 
-                            :key="project"
+                            :key="project" 
+                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-xs font-medium hover:bg-white/10 transition-all"
                         >
                             {{ project }}
                         </span>
@@ -101,9 +100,9 @@ const url = useRequestURL()
                     <span class="text-primary-400 font-semibold text-sm uppercase tracking-wider mb-3 block">{{ $t('technologies') }}</span>
                     <div class="flex flex-wrap gap-2">
                          <span 
-                            class="px-3 py-1 rounded-md bg-dark-800 border border-primary-500/20 text-primary-200 text-sm hover:bg-primary-500/10 transition-colors" 
                             v-for="tech in item.technologies" 
-                            :key="tech"
+                            :key="tech" 
+                            class="px-3 py-1 rounded-md bg-dark-800 border border-primary-500/20 text-primary-200 text-sm hover:bg-primary-500/10 transition-colors"
                         >
                             {{ tech }}
                         </span>

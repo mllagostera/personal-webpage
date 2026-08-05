@@ -1,9 +1,11 @@
 <script setup lang="ts">
 const { locale, setLocale } = useI18n()
 
+type LocaleCode = 'en' | 'es' | 'ca'
+
 interface Language {
   name: string
-  code: string
+  code: LocaleCode
   icon: string
 }
 
@@ -19,8 +21,8 @@ const currentLanguage = computed(() => {
   return (availableLanguages.find(lang => lang.code === localeCode) || availableLanguages[0]) as Language
 })
 
-const setLanguage = async (code: string) => {
-  await setLocale(code as any)
+const setLanguage = async (code: LocaleCode) => {
+  await setLocale(code)
 }
 </script>
 

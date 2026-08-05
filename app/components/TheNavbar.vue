@@ -44,8 +44,8 @@ const closeMenu = () => { isMenuOpen.value = false }
             
             <!-- Contact Button (Desktop context) -->
             <button 
-              @click="openContactModal"
               class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white text-sm font-bold rounded-xl transition-all active:scale-95 shadow-lg shadow-primary-500/20"
+              @click="openContactModal"
             >
               <Icon name="heroicons:paper-airplane" class="w-4 h-4" />
               <span>{{ $t('contactTitle') || 'Contact' }}</span>
@@ -117,14 +117,14 @@ const closeMenu = () => { isMenuOpen.value = false }
             class="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-primary-500/10 hover:text-primary-400 transition-all"
             @click="closeMenu"
           >
-            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"/>
             {{ link.title }}
           </a>
 
           <!-- Contact Button Mobile Drawer -->
           <button 
-            @click="() => { openContactModal(); closeMenu(); }"
             class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-base font-bold text-primary-400 bg-primary-500/10 hover:bg-primary-500/20 transition-all"
+            @click="() => { openContactModal(); closeMenu(); }"
           >
             <Icon name="heroicons:paper-airplane" class="w-5 h-5" />
             {{ $t('contactTitle') || 'Contact' }}
