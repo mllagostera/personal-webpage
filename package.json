@@ -47,6 +47,6 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@types/node": "^26.1.2"
+    "@types/node": "^26.2.0"
   }
 }
