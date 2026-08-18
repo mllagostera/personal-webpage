@@ -15,19 +15,27 @@ plataformas cachearon el 404 anterior durante días:
 - https://cards-dev.twitter.com/validator para X.
 - WhatsApp/Telegram cachean por su cuenta; se refrescan solos en 24-48 h.
 
-## 2. Verificar la propiedad en Google Search Console
+## 2. Propiedad en Search Console — ya verificada
 
-El token ya está cableado: si la variable existe, se renderiza
-`<meta name="google-site-verification">`; si no, no se renderiza nada.
+Nada que hacer. Se deja documentado por dos motivos.
 
-- En AWS Amplify → *Hosting* → *Environment variables*, añadir
-  `NUXT_PUBLIC_GSC_TOKEN` con el token que da Search Console.
-  (De momento funciona el `GG_SEARCH_CONSOLE` que ya está en `.env`, que se usa como valor por
-  defecto en build; `NUXT_PUBLIC_GSC_TOKEN` tiene prioridad y es la vía recomendada.)
-- Redesplegar y comprobar que el meta aparece en el HTML servido:
-  `curl -s https://mllagostera.com | grep google-site-verification`
-- En https://search.google.com/search-console → *Añadir propiedad* → **Prefijo de URL** →
-  `https://mllagostera.com` → método **Etiqueta HTML** → *Verificar*.
+**No quites el método que sostiene la verificación.** Hasta ahora el meta
+`google-site-verification` se renderizaba vacío, así que la propiedad no puede estar verificada
+por *Etiqueta HTML*: se sostiene sobre otro método (registro DNS TXT, fichero HTML, Analytics o
+el proveedor del dominio). Si se retira ese método, Google despublica la propiedad y se pierde el
+histórico. El meta nuevo es un refuerzo, no un sustituto.
+
+**El meta ahora sí se renderiza**, usando `GG_SEARCH_CONSOLE` de `.env` como valor por defecto en
+build. Comprobar tras desplegar:
+
+```sh
+curl -s https://mllagostera.com | grep google-site-verification
+```
+
+Si ese token no es el de la propiedad ya verificada, o si sale un token que no reconoces, define
+`NUXT_PUBLIC_GSC_TOKEN` en AWS Amplify → *Hosting* → *Environment variables* con el correcto
+(tiene prioridad sobre el de `.env`). Añadir la *Etiqueta HTML* como método adicional en Search
+Console es opcional, pero da una red de seguridad si algún día cambias de DNS.
 
 ## 3. Enviar el sitemap
 
