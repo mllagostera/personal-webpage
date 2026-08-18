@@ -1,5 +1,8 @@
 export default {
   summary: 'Resum',
+  navHome: 'Inici',
+  navExperience: 'Experiència',
+  navContact: 'Contacte',
   workExperience: 'Experiència laboral',
   description: 'Descripció',
   projects: 'Projectes',
@@ -35,6 +38,7 @@ export default {
   contactErrorGeneric: 'Alguna cosa ha anat malament. Si us plau, torna-ho a intentar més tard.',
   contactSubtitle: 'Em encantaria saber de tu. Envia\'m un missatge i et respondré el més aviat possible.',
   contactHeroTitle: 'Tens una idea al cap?',
+  contactDirectLabel: 'Escriu-me directament a',
   contactHeroDescription: 'Estic sempre obert a xerrar sobre nous projectes, oportunitats creatives o simplement per saludar.',
   cv: {
     information: {

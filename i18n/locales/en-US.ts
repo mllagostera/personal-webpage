@@ -1,5 +1,8 @@
 export default {
   summary: 'Summary',
+  navHome: 'Home',
+  navExperience: 'Experience',
+  navContact: 'Contact',
   workExperience: 'Work Experience',
   description: 'Description',
   projects: 'Projects',
@@ -35,6 +38,7 @@ export default {
   contactErrorGeneric: 'Something went wrong. Please try again later.',
   contactSubtitle: "I'd love to hear from you. Send me a message and I'll get back to you as soon as possible.",
   contactHeroTitle: 'Have an idea in mind?',
+  contactDirectLabel: 'Write to me directly at',
   contactHeroDescription: "I'm always open to discussing new projects, creative opportunities, or just to say hi.",
   cv: {
     information: {

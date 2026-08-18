@@ -1,31 +1,20 @@
 import {
-  SITE_DESCRIPTION,
   SITE_OG_IMAGE,
-  SITE_TITLE,
   TWITTER_HANDLE,
   absoluteUrl,
+  getSiteRoute,
 } from '~~/shared/site'
-
-export interface SiteSeoOptions {
-  /** Full <title> for this route. Defaults to the site title. */
-  title?: string
-  /** Meta description for this route. Defaults to the site description. */
-  description?: string
-  /** Site-relative path, used to build the canonical and og:url. */
-  path?: string
-}
 
 /**
  * Sets title, description, canonical and the whole Open Graph / Twitter block
- * for a route. Every social tag is derived from `title`/`description`, so there
- * is exactly one place to change per-route copy.
+ * for a route. Copy comes from `SITE_ROUTES`, so every page has unique metadata
+ * and there is exactly one place to edit it.
  */
-export const useSiteSeo = (options: SiteSeoOptions = {}) => {
+export const useSiteSeo = (path: string) => {
   const { awesome } = useAppConfig()
 
-  const title = options.title || SITE_TITLE
-  const description = options.description || SITE_DESCRIPTION
-  const canonical = absoluteUrl(options.path ?? '/')
+  const { title, description } = getSiteRoute(path)
+  const canonical = absoluteUrl(path)
   const image = absoluteUrl(SITE_OG_IMAGE)
   const author = awesome?.author?.name || ''
 

@@ -46,10 +46,18 @@ Console es opcional, pero da una red de seguridad si algún día cambias de DNS.
 
 ## 4. Solicitar indexación
 
-- Search Console → *Inspección de URLs* → pegar `https://mllagostera.com/` →
-  *Solicitar indexación*.
-- Repetir para cada ruta nueva cuando se haga la migración a rutas reales
-  (`/experiencia`, `/proyectos`, `/contacto`).
+Search Console → *Inspección de URLs* → pegar la URL → *Solicitar indexación*. Una por una,
+las cuatro:
+
+- `https://mllagostera.com/`
+- `https://mllagostera.com/experience`
+- `https://mllagostera.com/projects`
+- `https://mllagostera.com/contact`
+
+Las tres últimas son nuevas, así que Google no las conoce todavía. El sitemap ya las incluye,
+pero solicitar la indexación acelera el primer rastreo de días a horas.
+
+Y **reenvía el sitemap** (Search Console → *Sitemaps*): el que enviaste solo tenía `/`.
 
 ## 5. Comprobar los datos estructurados
 
