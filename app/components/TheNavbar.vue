@@ -29,7 +29,7 @@ const closeMenu = () => { isMenuOpen.value = false }
         <!-- Logo/Title -->
         <NuxtLink 
           to="/" 
-          class="flex items-center gap-2 font-bold text-lg text-primary-500 hover:text-primary-600 transition-colors"
+          class="flex items-center gap-2 font-bold text-lg text-primary-500 hover:text-primary-400 transition-colors"
           @click="closeMenu"
         >
           <Icon name="pixelarticons:users" class="text-xl" />
@@ -44,7 +44,7 @@ const closeMenu = () => { isMenuOpen.value = false }
             
             <!-- Contact Button (Desktop context) -->
             <button 
-              class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white text-sm font-bold rounded-xl transition-all active:scale-95 shadow-lg shadow-primary-500/20"
+              class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white text-sm font-bold rounded-xl transition-all active:scale-95 shadow-lg shadow-primary-500/20"
               @click="openContactModal"
             >
               <Icon name="heroicons:paper-airplane" class="w-4 h-4" />

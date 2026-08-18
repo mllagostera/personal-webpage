@@ -78,7 +78,7 @@ function timeAgo(dateStr: string | null): string {
                  {{ repo.description }}
              </p>
           </div>
-          <div v-else class="mb-4 flex-grow text-slate-500 italic text-sm">
+          <div v-else class="mb-4 flex-grow text-slate-400 italic text-sm">
              {{ $t('noDescription') }}
           </div>
 
@@ -101,11 +101,11 @@ function timeAgo(dateStr: string | null): string {
               <!-- Primary language -->
               <div v-if="repo.language" class="flex items-center gap-2 text-slate-300 text-sm">
                 <span class="w-2 h-2 rounded-full bg-primary-500 shrink-0"/>
-                <span class="text-slate-500 text-xs uppercase tracking-wider mr-1">{{ $t('primaryLanguage') }}:</span>
+                <span class="text-slate-400 text-xs uppercase tracking-wider mr-1">{{ $t('primaryLanguage') }}:</span>
                 {{ repo.language }}
               </div>
               <!-- Last push -->
-              <div v-if="repo.pushed_at" class="flex items-center gap-1 text-xs text-slate-500">
+              <div v-if="repo.pushed_at" class="flex items-center gap-1 text-xs text-slate-400">
                 <Icon name="heroicons:clock" class="w-3 h-3" />
                 {{ timeAgo(repo.pushed_at) }}
               </div>

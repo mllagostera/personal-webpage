@@ -10,7 +10,7 @@ defineProps<{
   isOpen: boolean
 }>()
 
-const emit = defineEmits(['close'])
+const emit = defineEmits(['close', 'closed'])
 
 function closeModal() {
   emit('close')
@@ -18,8 +18,14 @@ function closeModal() {
 </script>
 
 <template>
-  <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" class="relative z-[60]" @close="closeModal">
+  <!-- `closed` fires once the leave transition is over and Headless UI has
+       released its focus trap, which is the only safe moment to move focus
+       back to the trigger. -->
+  <TransitionRoot appear :show="isOpen" as="template" @after-leave="emit('closed')">
+    <!-- `aria-label` rather than a `DialogTitle` around the heading inside the
+         slot: that heading lives in ContactFormContent, which is also rendered
+         standalone on /contact, where there is no Dialog context to provide. -->
+    <Dialog as="div" :aria-label="$t('contactTitle')" class="relative z-[60]" @close="closeModal">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -50,7 +56,8 @@ function closeModal() {
             >
               <div class="relative bg-gray-900 rounded-2xl overflow-hidden p-6 md:p-10">
                 <!-- Close button -->
-                <button 
+                <button
+                  :aria-label="$t('close')"
                   class="absolute top-4 right-4 p-2 text-slate-400 hover:text-white rounded-full hover:bg-white/5 transition-colors z-20"
                   @click="closeModal"
                 >

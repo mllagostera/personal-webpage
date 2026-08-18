@@ -43,7 +43,7 @@ const certifications = computed(() => {
                 <div class="text-primary-400 font-semibold text-lg flex flex-wrap items-center gap-2">
                     <Icon name="heroicons:building-library" class="w-5 h-5" />
                     <span>{{ education.school }}</span>
-                    <span class="text-slate-500">•</span>
+                    <span class="text-slate-400">•</span>
                     <span class="text-slate-300">{{ education.scholastic }}</span>
                 </div>
             </div>

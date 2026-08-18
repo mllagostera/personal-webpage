@@ -58,7 +58,7 @@ const languages = computed(() => {
                         :style="{ width: item.level === 'native' ? '100%' : '75%' }"
                      />
                  </div>
-                 <div class="text-right mt-1 text-xs text-slate-500 font-mono">
+                 <div class="text-right mt-1 text-xs text-slate-400 font-mono">
                      {{ item.level === 'native' ? '100%' : '75%' }} Proficiency
                  </div>
              </div>

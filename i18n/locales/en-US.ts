@@ -40,6 +40,11 @@ export default {
   contactHeroTitle: 'Have an idea in mind?',
   contactDirectLabel: 'Write to me directly at',
   contactHeroDescription: "I'm always open to discussing new projects, creative opportunities, or just to say hi.",
+  close: 'Close',
+  skipToContent: 'Skip to content',
+  pageTitleExperience: 'Professional background and education',
+  pageTitleProjects: 'Personal and open source projects',
+  pageTitleContact: 'Get in touch with me',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',

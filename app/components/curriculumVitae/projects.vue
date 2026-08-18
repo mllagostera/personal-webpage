@@ -56,11 +56,11 @@ const projects = computed(() => {
 
             <div class="space-y-4 mt-auto">
                 <div v-if="item.tools" class="border-t border-slate-700/50 pt-4">
-                    <span class="text-slate-500 font-semibold text-xs uppercase tracking-wider mb-2 block">{{ $t('tools') }}</span>
+                    <span class="text-slate-400 font-semibold text-xs uppercase tracking-wider mb-2 block">{{ $t('tools') }}</span>
                     <span class="text-slate-400 text-sm">{{ item.tools }}</span>
                 </div>
                 <div v-if="item.technologies" class="border-t border-slate-700/50 pt-4">
-                    <span class="text-slate-500 font-semibold text-xs uppercase tracking-wider mb-2 block">{{ $t('technologies') }}</span>
+                    <span class="text-slate-400 font-semibold text-xs uppercase tracking-wider mb-2 block">{{ $t('technologies') }}</span>
                     <span class="text-slate-400 text-sm">{{ item.technologies }}</span>
                 </div>
                 

@@ -40,6 +40,11 @@ export default {
   contactHeroTitle: 'Tens una idea al cap?',
   contactDirectLabel: 'Escriu-me directament a',
   contactHeroDescription: 'Estic sempre obert a xerrar sobre nous projectes, oportunitats creatives o simplement per saludar.',
+  close: 'Tancar',
+  skipToContent: 'Salta al contingut',
+  pageTitleExperience: 'Trajectòria professional i formació',
+  pageTitleProjects: 'Projectes personals i open source',
+  pageTitleContact: 'Posa\'t en contacte amb mi',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',

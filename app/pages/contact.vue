@@ -9,6 +9,7 @@ useSiteSeo('/contact')
 
 <template>
   <div class="mx-auto w-full overflow-x-hidden pt-8 px-4 2xl:px-0">
+    <h1 class="sr-only">{{ $t('pageTitleContact') }}</h1>
     <div id="contact" class="grid grid-cols-1 xl:grid-cols-2 gap-8 animate-fade-in-up">
       <ContactDetails />
       <div class="glass-card p-8 md:p-10 border border-white/10">

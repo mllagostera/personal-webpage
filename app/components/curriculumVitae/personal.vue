@@ -25,6 +25,28 @@ const typewriterStyle = computed(() => {
     '--typewriter-duration': Math.max(2, length * 0.1) + 's'
   }
 })
+
+// The typewriter effect is progressive enhancement, not markup. Its end state
+// pins the heading to a fixed `ch` width with `nowrap` + `overflow: hidden`, so
+// whenever that width does not fit — roughly 640-1000px, or any viewport at 200%
+// text zoom — the title is silently cut off with no way to read it.
+//
+// Keeping it out of the server-rendered HTML means the title always ships
+// readable (crawlers included), the animation only runs once the client has
+// opted in, and `animationend` hands the heading back to normal text flow.
+const isTypewriterOn = ref(false)
+
+onMounted(() => {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  isTypewriterOn.value = true
+})
+
+const onTypewriterEnd = (event: AnimationEvent) => {
+  // The heading also carries the infinite cursor-blink animation, which never
+  // ends; only the width animation means the text is fully revealed.
+  if (event.animationName !== 'typewriter') return
+  isTypewriterOn.value = false
+}
 // #endregion
 </script>
 
@@ -43,8 +65,10 @@ const typewriterStyle = computed(() => {
         <div class="flex justify-center">
             <h2
             :key="personal.position"
-            class="leading-normal mt-0 text-xl md:text-3xl title-blue line-1 anim-typewriter font-light text-slate-300"
+            class="leading-normal mt-0 text-xl md:text-3xl title-blue font-light text-slate-300"
+            :class="isTypewriterOn ? 'line-1 anim-typewriter' : ''"
             :style="typewriterStyle"
+            @animationend="onTypewriterEnd"
             >
             {{ personal.position }}
             </h2>
@@ -54,10 +78,10 @@ const typewriterStyle = computed(() => {
       <div class="grid grid-cols-1 gap-8 mt-4">
         <!-- Summary Card - Takes full width since contact is now in global menu -->
         <div class="glass-card p-8 hover:bg-dark-900/60 transition-colors duration-300">
-          <div class="leading-normal text-3xl font-display text-primary-400 mb-6 flex items-center gap-3">
+          <h2 class="leading-normal text-3xl font-display text-primary-400 mb-6 flex items-center gap-3">
              <Icon name="heroicons:user" class="w-8 h-8" />
             {{ $t('summary') }}
-          </div>
+          </h2>
           <ul class="space-y-3">
             <li
               v-for="(item, index) in summaryDetail"
