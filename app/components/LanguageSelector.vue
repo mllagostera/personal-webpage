@@ -31,7 +31,8 @@ const setLanguage = async (code: LocaleCode) => {
     <div class="relative">
       <HeadlessListboxButton
         class="p-2 rounded-lg hover:bg-gray-800 transition-colors flex items-center gap-2"
-        :title="`Current language: ${currentLanguage.name}`"
+        :title="$t('currentLanguage', { language: currentLanguage.name })"
+        :aria-label="$t('currentLanguage', { language: currentLanguage.name })"
       >
         <Icon :name="currentLanguage.icon" class="text-xl" />
         <span class="text-sm font-medium text-gray-400 hidden sm:inline">

@@ -65,8 +65,9 @@ const projects = computed(() => {
                 </div>
                 
                  <div v-if="item.url" class="flex flex-wrap gap-4 pt-4 mt-2">
-                      <a :href="item.url" target="_blank" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors ml-auto">
-                         View Project <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
+                      <a :href="item.url" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors ml-auto">
+                         {{ $t('viewProject') }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
+                         <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
                      </a>
                  </div>
             </div>

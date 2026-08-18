@@ -45,6 +45,15 @@ export default {
   pageTitleExperience: 'Professional background and education',
   pageTitleProjects: 'Personal and open source projects',
   pageTitleContact: 'Get in touch with me',
+  backToTop: 'Back to top',
+  openMenu: 'Open menu',
+  closeMenu: 'Close menu',
+  mainNavigation: 'Main navigation',
+  currentLanguage: 'Current language: {language}',
+  opensInNewWindow: 'opens in a new window',
+  viewProject: 'View project',
+  proficiency: 'proficiency',
+  contactMessageHint: 'Minimum 10 characters, maximum 2000.',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',
@@ -279,16 +288,22 @@ export default {
       {
         name: 'Spanish',
         level: 'native',
+        levelLabel: 'C2 (Native)',
+        proficiency: 100,
         flag: 'flag:es-4x3',
       },
       {
         name: 'Catalan',
         level: 'native',
+        levelLabel: 'C2 (Native)',
+        proficiency: 100,
         flag: 'flag:es-ct-4x3',
       },
       {
         name: 'English',
         level: 'advanced',
+        levelLabel: 'B2',
+        proficiency: 75,
         flag: 'flag:sh-4x3',
       },
     ],

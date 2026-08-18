@@ -59,8 +59,9 @@ const certifications = computed(() => {
            <div class="glass-card p-5 md:p-6 border-slate-800/50 hover:border-secondary-500/20 transition-colors duration-300">
               <h3 class="font-bold text-lg text-slate-200 font-display flex items-center justify-between">
                   {{ item.title }}
-                  <a v-if="item.url" :href="rt(item.url)" target="_blank" class="text-xs font-mono text-secondary-400 border border-secondary-500/30 px-2 py-1 rounded hover:bg-secondary-500/10 transition-colors flex items-center gap-1">
-                      {{ item.urlDescription }} <Icon name="heroicons:arrow-top-right-on-square" class="w-3 h-3" />
+                  <a v-if="item.url" :href="rt(item.url)" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-secondary-400 border border-secondary-500/30 px-2 py-1 rounded hover:bg-secondary-500/10 transition-colors flex items-center gap-1">
+                      {{ item.urlDescription }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
+                      <Icon name="heroicons:arrow-top-right-on-square" class="w-3 h-3" />
                   </a>
               </h3>
               <div class="text-slate-400 font-medium text-sm mt-1 flex flex-wrap items-center gap-2">

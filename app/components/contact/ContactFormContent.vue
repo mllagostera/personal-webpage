@@ -10,6 +10,8 @@ const uid = useId()
 const nameId = `${uid}-name`
 const emailId = `${uid}-email`
 const messageId = `${uid}-message`
+const messageHintId = `${uid}-message-hint`
+const messageCounterId = `${uid}-message-counter`
 const honeypotId = `${uid}-hp`
 
 const form = reactive({
@@ -168,6 +170,7 @@ async function submit() {
         <textarea
           :id="messageId"
           v-model="form.message"
+          :aria-describedby="`${messageHintId} ${messageCounterId}`"
           name="message"
           required
           minlength="10"
@@ -178,7 +181,11 @@ async function submit() {
                  text-sm focus:border-primary-500/70 transition-all resize-none
                  focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
         />
-        <p class="text-right text-xs text-slate-400">{{ form.message.length }} / 2000</p>
+        <!-- Announced when the field takes focus. The bounds are spelled out for
+             anyone who cannot see the counter; the browser otherwise only
+             mentions them once it has already rejected the submission. -->
+        <p :id="messageHintId" class="sr-only">{{ $t('contactMessageHint') }}</p>
+        <p :id="messageCounterId" class="text-right text-xs text-slate-400">{{ form.message.length }} / 2000</p>
       </div>
 
       <!-- Rate limit / error feedback -->

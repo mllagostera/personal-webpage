@@ -45,6 +45,15 @@ export default {
   pageTitleExperience: 'Trayectoria profesional y formación',
   pageTitleProjects: 'Proyectos personales y open source',
   pageTitleContact: 'Ponte en contacto conmigo',
+  backToTop: 'Volver arriba',
+  openMenu: 'Abrir menú',
+  closeMenu: 'Cerrar menú',
+  mainNavigation: 'Navegación principal',
+  currentLanguage: 'Idioma actual: {language}',
+  opensInNewWindow: 'se abre en una ventana nueva',
+  viewProject: 'Ver proyecto',
+  proficiency: 'de dominio',
+  contactMessageHint: 'Mínimo 10 caracteres, máximo 2000.',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',
@@ -283,16 +292,22 @@ export default {
       {
         name: 'Español',
         level: 'native',
+        levelLabel: 'C2 (Nativo)',
+        proficiency: 100,
         flag: 'flag:es-4x3',
       },
       {
         name: 'Catalán',
         level: 'native',
+        levelLabel: 'C2 (Nativo)',
+        proficiency: 100,
         flag: 'flag:es-ct-4x3',
       },
       {
         name: 'Inglés',
         level: 'advanced',
+        levelLabel: 'B2',
+        proficiency: 75,
         flag: 'flag:sh-4x3',
       },
     ],
