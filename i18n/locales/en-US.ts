@@ -1,5 +1,8 @@
 export default {
   summary: 'Summary',
+  navHome: 'Home',
+  navExperience: 'Experience',
+  navContact: 'Contact',
   workExperience: 'Work Experience',
   description: 'Description',
   projects: 'Projects',
@@ -16,7 +19,6 @@ export default {
   languages: 'Languages',
   tools: 'Programming Languages & Tools',
   technologies: 'Technologies',
-  release: 'Release',
   workflow: 'Always on my mind',
   softSkills: 'Soft Skills',
   SoftSkillsDescription: 'The soft skills are essential for a Scrum Master, as this role focuses on facilitating, motivating, and guiding the development team towards success. Here are some of the skills I bring to my role.',
@@ -36,6 +38,7 @@ export default {
   contactErrorGeneric: 'Something went wrong. Please try again later.',
   contactSubtitle: "I'd love to hear from you. Send me a message and I'll get back to you as soon as possible.",
   contactHeroTitle: 'Have an idea in mind?',
+  contactDirectLabel: 'Write to me directly at',
   contactHeroDescription: "I'm always open to discussing new projects, creative opportunities, or just to say hi.",
   cv: {
     information: {
@@ -291,9 +294,8 @@ export default {
         description: 'Create a personal website to learn how to use Nuxt 4 and Tailwind CSS',
         startDate: 'Sep 2024',
         endDate: 'Current',
-        tools: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
-        technologies: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
-        release: 'Sep 2024',
+        tools: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
+        technologies: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
       }
     ],
   },

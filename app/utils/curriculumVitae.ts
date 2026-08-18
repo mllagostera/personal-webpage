@@ -59,6 +59,5 @@ export interface Project {
   developmentMethodologies?: string[] | string
   tools?: string[] | string
   technologies: string[] | string
-  release: string[] | string
   url?: string
 }

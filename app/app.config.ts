@@ -66,29 +66,23 @@ export default defineAppConfig({
           menus: [
             {
               "type": "link",
-              "title": "workExperience",
-              "to": "#workExperience"
+              "title": "navHome",
+              "to": "/"
             },
             {
               "type": "link",
-              "title": "education",
-              "to": "#education"
-            },
-            {
-              "type": "link",
-              "title": "technicalSkills",
-              "to": "#technologies"
+              "title": "navExperience",
+              "to": "/experience"
             },
             {
               "type": "link",
               "title": "projects",
-              "to": "#projects"
+              "to": "/projects"
             },
             {
               "type": "link",
-              "title": "githubProjects",
-              "to": "#github-collaborations",
-              "icon": "devicon:github"
+              "title": "navContact",
+              "to": "/contact"
             }
           ],
         },

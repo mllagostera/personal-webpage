@@ -54,14 +54,15 @@ const closeMenu = () => { isMenuOpen.value = false }
 
           <!-- Desktop Navigation Links -->
           <nav class="hidden md:flex items-center gap-1 ml-4 border-l border-gray-700 pl-4">
-            <a
+            <NuxtLink
               v-for="link in navLinks"
               :key="String(link.to)"
-              :href="String(link.to)"
+              :to="link.to"
               class="px-3 py-2 text-sm font-medium text-gray-300 hover:text-primary-400 transition-colors"
+              active-class="text-primary-400"
             >
               {{ link.title }}
-            </a>
+            </NuxtLink>
             
             <!-- Social Links (Desktop) -->
             <div class="flex items-center gap-1 ml-2">
@@ -105,21 +106,22 @@ const closeMenu = () => { isMenuOpen.value = false }
       leave-to-class="-translate-y-4 opacity-0"
     >
       <div
-        v-show="isMenuOpen"
+        v-if="isMenuOpen"
         class="md:hidden border-t border-gray-50/[0.1] bg-gray-950/95 backdrop-blur-md"
       >
         <div class="max-w-screen-2xl mx-auto px-4 py-4 space-y-1">
           <!-- Nav Links -->
-          <a
+          <NuxtLink
             v-for="link in navLinks"
             :key="String(link.to)"
-            :href="String(link.to)"
+            :to="link.to"
             class="flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium text-gray-300 hover:bg-primary-500/10 hover:text-primary-400 transition-all"
+            active-class="text-primary-400 bg-primary-500/10"
             @click="closeMenu"
           >
             <span class="w-1.5 h-1.5 rounded-full bg-primary-400 flex-shrink-0"/>
             {{ link.title }}
-          </a>
+          </NuxtLink>
 
           <!-- Contact Button Mobile Drawer -->
           <button 

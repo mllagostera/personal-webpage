@@ -3,7 +3,7 @@
     <NuxtLoadingIndicator />
     <NuxtPage />
     <BackToTop />
-    
+
     <!-- Global Contact Modal -->
     <ContactModal :is-open="isContactModalOpen" @close="isContactModalOpen = false">
       <ContactFormContent />
@@ -16,16 +16,19 @@ import ContactModal from '~/components/contact/ContactModal.vue'
 import ContactFormContent from '~/components/contact/ContactFormContent.vue'
 
 const { isContactModalOpen } = useContactModal()
-const { awesome } = useAppConfig()
 const { locale, t } = useI18n()
+const { gscToken } = useRuntimeConfig().public
 
-// Seo & Metadata
+// Site-wide head. Per-route title/description/canonical live in `useSiteSeo`.
 useHead({
-  title: awesome.name,
-  titleTemplate: `%s - ${awesome.name}`,
   htmlAttrs: {
-    lang: locale
-  }
+    lang: locale,
+  },
+  meta: [
+    { name: 'theme-color', content: '#020617' },
+    // Only rendered when the token is configured — never an empty meta tag.
+    ...(gscToken ? [{ name: 'google-site-verification', content: gscToken }] : []),
+  ],
 })
 
 // Dev logs

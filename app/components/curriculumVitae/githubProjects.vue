@@ -1,32 +1,17 @@
 <script setup lang="ts">
-import { useIntersectionObserver } from '@vueuse/core'
+import type { PublicRepo } from '~~/server/api/github/repos.get'
 
-const githubUsername = 'mllagostera'
-const target = ref(null)
-const hasIntersected = ref(false)
-
-// We only fetch when the component becomes visible
-const { data: githubRepos, pending, error, execute } = useFetch(
-  `https://api.github.com/users/${githubUsername}/repos?sort=updated&per_page=6`,
-  {
-    immediate: false, // Don't fetch on load
-    server: false     // Only client-side for "lazy" behavior
-  }
+// Fetched on the server so the section is present in the served HTML.
+// The endpoint caches the GitHub response for an hour and returns [] on failure.
+const { data: githubRepos } = await useAsyncData<PublicRepo[]>(
+  'github-repos',
+  () => $fetch('/api/github/repos'),
+  { default: () => [] },
 )
 
-useIntersectionObserver(
-  target,
-  (entries) => {
-    const entry = entries[0]
-    if (entry?.isIntersecting && !hasIntersected.value) {
-      hasIntersected.value = true
-      execute()
-    }
-  },
-  { threshold: 0.1 }
-)
+const hasRepos = computed(() => (githubRepos.value?.length ?? 0) > 0)
 
-function timeAgo(dateStr: string): string {
+function timeAgo(dateStr: string | null): string {
   if (!dateStr) return ''
   const diff = Date.now() - new Date(dateStr).getTime()
   const days = Math.floor(diff / 86400000)
@@ -42,7 +27,7 @@ function timeAgo(dateStr: string): string {
 </script>
 
 <template>
-  <div ref="target" class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
+  <div v-if="hasRepos" class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
     <div id="github-collaborations" class="mb-8">
       <div class="flex items-center gap-3">
           <Icon name="simple-icons:github" class="w-8 h-8 text-slate-100" />
@@ -52,16 +37,7 @@ function timeAgo(dateStr: string): string {
       </div>
     </div>
 
-    <!-- Loading and Error States -->
-    <div v-if="pending" class="text-slate-400 mb-8 flex items-center gap-2">
-       <Icon name="heroicons:arrow-path" class="w-5 h-5 animate-spin" />
-       {{ $t('fetchingRepos') }}
-    </div>
-    <div v-else-if="error" class="text-red-400 mb-8 border border-red-500/30 p-4 rounded-lg bg-dark-900/50">
-      {{ $t('repoError') }} {{ error.message }}
-    </div>
-
-    <div v-else-if="githubRepos && Array.isArray(githubRepos)" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div
         v-for="repo in githubRepos"
         :key="repo.id"

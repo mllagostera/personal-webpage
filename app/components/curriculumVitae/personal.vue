@@ -3,7 +3,7 @@
 import type { Personal } from '~/utils/curriculumVitae'
 
 const { awesome } = useAppConfig()
-const { tm, rt, locale } = useI18n()
+const { tm, rt } = useI18n()
 const personalRaw = computed(() => tm('cv.information') as unknown as Personal)
 const personal = computed(() => ({
   fullName: personalRaw.value?.fullName ? rt(personalRaw.value.fullName) : '',
@@ -26,34 +26,6 @@ const typewriterStyle = computed(() => {
   }
 })
 // #endregion
-const url = useRequestURL()
-useHead({
-  htmlAttrs: {
-    lang: locale.value,
-  },
-  meta: [
-    { name: 'theme-color', content: '#020617' }
-  ]
-})
-useSeoMeta({
-  robots: { index: true, follow: true },
-  googleSiteVerification: '',
-  title: personal.value.fullName || 'CV',
-  description: summaryDetail.value.join(' '),
-  ogType: 'website',
-  ogImage: '/thumbnail.png',
-  ogSiteName: personal.value.fullName,
-  ogTitle: personal.value.fullName || 'CV',
-  ogDescription: summaryDetail.value.join(' '),
-  ogUrl: url.href,
-  twitterTitle: personal.value.fullName || 'CV',
-  twitterDescription: summaryDetail.value.join(' '),
-  twitterCreator: awesome?.author?.name,
-  twitterImage: '/thumbnail.png',
-  twitterImageAlt: awesome?.author?.name,
-  twitterSite: url.host,
-  twitterCard: 'summary_large_image',
-})
 </script>
 
 <template>

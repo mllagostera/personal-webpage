@@ -1,6 +1,9 @@
 export default {
   summary: 'Resum',
-  workExperience: 'Experiencia laboral',
+  navHome: 'Inici',
+  navExperience: 'Experiència',
+  navContact: 'Contacte',
+  workExperience: 'Experiència laboral',
   description: 'Descripció',
   projects: 'Projectes',
   githubProjects: 'Open Source & Col·laboracions',
@@ -16,10 +19,9 @@ export default {
   languages: 'Idiomes',
   tools: 'Llenguatges de programació i eines',
   technologies: 'Tecnologies',
-  release: 'Versió',
   workflow: 'Always on my mind',
   softSkills: 'Soft Skills',
-  SoftSkillsDescription: 'Les soft skills són essencials per a un Scrum Master, ja que aquest rol se centra a facilitar, motivar i guiar l\'equip de desenvolupament cap a l\'èxit. Aquí estan algunes de las skills que tinc per desenvolupar la meva posició',
+  SoftSkillsDescription: 'Les soft skills són essencials per a un Scrum Master, ja que aquest rol se centra a facilitar, motivar i guiar l\'equip de desenvolupament cap a l\'èxit. Aquí estan algunes de les skills que tinc per desenvolupar la meva posició',
   contactTitle: 'Contacta amb mi',
   contactName: 'Nom',
   contactNamePlaceholder: 'El teu nom',
@@ -36,6 +38,7 @@ export default {
   contactErrorGeneric: 'Alguna cosa ha anat malament. Si us plau, torna-ho a intentar més tard.',
   contactSubtitle: 'Em encantaria saber de tu. Envia\'m un missatge i et respondré el més aviat possible.',
   contactHeroTitle: 'Tens una idea al cap?',
+  contactDirectLabel: 'Escriu-me directament a',
   contactHeroDescription: 'Estic sempre obert a xerrar sobre nous projectes, oportunitats creatives o simplement per saludar.',
   cv: {
     information: {
@@ -64,7 +67,7 @@ export default {
         ],
         projects:
           [
-            'Implementar el fluxe de desenvolupament àgil fent servir Jira'
+            'Implementar el flux de desenvolupament àgil fent servir Jira'
           ],
         technologies: [
           'Scrum',
@@ -72,7 +75,7 @@ export default {
           'Treball en equip',
           'Gestió de desenvolupament',
           'Metodologies àgils',
-          'Metodologias de desenvolupament àgils',
+          'Metodologies de desenvolupament àgils',
           'Solució de problemes',
           'Facilitador',
         ]
@@ -90,7 +93,7 @@ export default {
           'Mentor de nous desenvolupadors i líders d\'equip, fomentant el creixement professional i les habilitats de lideratge, i coach de Product Owners i Product Managers, assegurant l\'alineació amb els objectius del projecte i el lliurament reeixit del producte',
           'Encarregat d\'identificar i incorporar eines externes com Pipelines, Jenkins i Sensiolabs Insight per a millorar la qualitat del codi',
           'Líder en la gestió i contribució als projectes de codi obert de l\'empresa, promovent una cultura de col·laboració i innovació',
-          'Implementador de pràctiques DevOps creant un nou procés de CI/CD, incloent-hi el lliurament de programari, la contenedorización amb Docker, l\'automatització amb Ansible i els serveis en el núvol, assegurant operacions eficients i fiables i reduint els temps de desplegament',
+          'Implementador de pràctiques DevOps creant un nou procés de CI/CD, incloent-hi el lliurament de programari, la contenidorització amb Docker, l\'automatització amb Ansible i els serveis en el núvol, assegurant operacions eficients i fiables i reduint els temps de desplegament',
           'Proactiu a proporcionar suport tècnic i desenvolupament quan és necessari, assegurant el compliment de fites i estàndards de qualitat, com a desenvolupador backend amb experiència en PHP, Symfony, Java, MySQL, Elasticsearch i SQLite'
         ],
         projects: [
@@ -104,10 +107,10 @@ export default {
           'Treball en equip',
           'Metodologies àgils',
           'Metodologies de desenvolupament àgils',
-          'Solucion de problemes',
+          'Solució de problemes',
           'Facilitador',
           'Ansible',
-          'Gestón d\'equips',
+          'Gestió d\'equips',
           'Desenvolupament',
           'Symfony',
           'DevOps',
@@ -138,9 +141,9 @@ export default {
           'Gestió de desenvolupament',
           'Metodologies àgils',
           'Metodologies de desenvolupament àgils',
-          'Solucion de problemes',
+          'Solució de problemes',
           'Ansible',
-          'Gestón d\'equips',
+          'Gestió d\'equips',
           'Desenvolupament',
           'Symfony',
           'DevOps',
@@ -193,7 +196,7 @@ export default {
         description: [
           'Desenvolupar i mantenir la plataforma de gestió de PKI per a assegurar un rendiment òptim',
           'Desenvolupar i gestionar el manteniment de la plataforma de segellament de temps per a millorar la funcionalitat',
-          'Va proporcionar suport tècnic als usuaris finals per a una operació del sistema sense problemes',
+          'Proporcionar suport tècnic als usuaris finals per a una operació del sistema sense problemes',
           'Desenvolupament d\'aplicacions backend utilitzant PHP, Java i MySQL',
           'Desenvolupament d\'interfícies frontend usant JavaScript i JQuery per a millorar l\'experiència de l\'usuari'
         ],
@@ -229,7 +232,7 @@ export default {
       'Millora contínua de la qualitat del codi',
       'Disseny i desenvolupament de APIs REST',
       'Desenvolupament àgil & Scrum',
-      'Treball en equipo',
+      'Treball en equip',
       'Patrons de disseny',
       'Arquitectura de programari',
       'Visió a llarg termini',
@@ -254,21 +257,21 @@ export default {
     ],
     education: {
       title: 'Grau en Informàtica, especialitat Sistemes',
-      school: 'Univeritat Autònoma de Barcelona',
+      school: 'Universitat Autònoma de Barcelona',
       scholastic: '2005 - 2008',
     },
     certifications: [
       {
         title: 'Scrum Manager - Expert Level',
         school: 'PUE',
-        scholastic: 'Sep 2016',
+        scholastic: 'Set 2016',
         urlDescription: 'Credencials',
         url: 'https://scrummanager.com/website/c/profile/member.php?id=15517'
       },
       {
         title: 'nCSD – Thales Certified Solution Developer',
         school: 'Thales e-Security',
-        scholastic: 'Jan 2014'
+        scholastic: 'Gen 2014'
       }
     ],
     languages: [
@@ -297,7 +300,6 @@ export default {
         endDate: 'Actualment',
         tools: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
         technologies: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
-        release: 'Set 2024',
       },
     ],
   },

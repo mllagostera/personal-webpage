@@ -10,9 +10,26 @@ export default defineNuxtConfig({
     preset: 'aws-amplify',
   },
 
+  // Permanent redirects for the section ids that used to be anchors, in case
+  // anyone linked them as paths. The `#anchor` form cannot be redirected here:
+  // a fragment never reaches the server (see app/plugins/legacy-hash.client.ts).
+  routeRules: {
+    '/about': { redirect: { to: '/', statusCode: 301 } },
+    '/technologies': { redirect: { to: '/', statusCode: 301 } },
+    '/softskills': { redirect: { to: '/', statusCode: 301 } },
+    '/workExperience': { redirect: { to: '/experience', statusCode: 301 } },
+    '/education': { redirect: { to: '/experience', statusCode: 301 } },
+    '/github-collaborations': { redirect: { to: '/projects', statusCode: 301 } },
+  },
+
   runtimeConfig: {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN,
-    telegramChatId: process.env.TELEGRAM_CHAT_ID
+    telegramChatId: process.env.TELEGRAM_CHAT_ID,
+    public: {
+      // Google Search Console ownership token. Overridable at runtime with
+      // NUXT_PUBLIC_GSC_TOKEN; when empty the meta tag is not rendered at all.
+      gscToken: process.env.NUXT_PUBLIC_GSC_TOKEN || process.env.GG_SEARCH_CONSOLE || '',
+    },
   },
 
   // modules
