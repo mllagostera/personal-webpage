@@ -4,17 +4,16 @@
     <NuxtPage />
     <BackToTop />
 
-    <!-- Global Contact Modal -->
-    <ContactModal :is-open="isContactModalOpen" @close="isContactModalOpen = false">
-      <ContactFormContent />
-    </ContactModal>
+    <!-- Global Contact Modal. Lazy so its chunk (headlessui + form) and CSS
+         don't block the initial render of every page — it only loads once
+         the user actually opens it. -->
+    <LazyContactModal :is-open="isContactModalOpen" @close="isContactModalOpen = false">
+      <LazyContactFormContent />
+    </LazyContactModal>
   </NuxtLayout>
 </template>
 
 <script lang="ts" setup>
-import ContactModal from '~/components/contact/ContactModal.vue'
-import ContactFormContent from '~/components/contact/ContactFormContent.vue'
-
 const { isContactModalOpen } = useContactModal()
 const { locale, t } = useI18n()
 const { gscToken } = useRuntimeConfig().public
