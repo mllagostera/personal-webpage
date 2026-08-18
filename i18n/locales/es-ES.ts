@@ -14,9 +14,8 @@ export default {
   technicalSkills: 'Habilidades técnicas',
   education: 'Educación',
   languages: 'Idiomas',
-  tools: 'Lenguages de programación y herramientas',
+  tools: 'Lenguajes de programación y herramientas',
   technologies: 'Tecnologías',
-  release: 'Versión',
   workflow: 'Always on my mind',
   softSkills: 'Soft Skills',
   SoftSkillsDescription: 'Las soft skills son esenciales para un Scrum Master, ya que este rol se centra en facilitar, motivar y guiar al equipo de desarrollo hacia el éxito. Aquí tienes algunas de las habilidades que poseo para desempeñar mi función.',
@@ -47,7 +46,7 @@ export default {
         'Scrum Master dinámico y orientado a resultados con más de una década de experiencia en desarrollo técnico, especializado en certificación digital y seguridad electrónica (PKI)',
         'Historial comprobado en administración de sistemas, desarrollo de software y móvil, así como en DevOps.',
         'Hábil en liderar equipos diversos y multifuncionales hacia resultados exitosos en proyectos',
-        'Actualmente destacando en el rol de Scrum Master en Logalty y Firmaprofesional, como parte del Grupo Logalty.',
+        'Actualmente ejerzo como Scrum Master en Logalty y Firmaprofesional, como parte del Grupo Logalty.',
       ],
     },
     workExperience: [
@@ -73,13 +72,13 @@ export default {
           'Gestión de desarrollo',
           'Metodologías ágiles',
           'Metodologías de desarrollo ágiles',
-          'Solucion de problemas',
+          'Solución de problemas',
           'Facilitador',
         ]
       },
       {
         companyName: 'Firmaprofesional',
-        startDate: 'En 2022',
+        startDate: 'Ene 2022',
         endDate: 'Oct 2023',
         position: 'Scrum Master & Software Development Manager',
         description: [
@@ -104,10 +103,10 @@ export default {
           'Trabajo en equipo',
           'Metodologías ágiles',
           'Metodologías de desarrollo ágiles',
-          'Solucion de problemas',
+          'Solución de problemas',
           'Facilitador',
           'Ansible',
-          'Gestón de equipos',
+          'Gestión de equipos',
           'Desarrollo',
           'Symfony',
           'DevOps',
@@ -118,7 +117,7 @@ export default {
       {
         companyName: 'Firmaprofesional',
         startDate: 'Nov 2016',
-        endDate: 'Jan 2022',
+        endDate: 'Ene 2022',
         position: 'Software Development Manager',
         description: [
           'Team Lead de un equipo internacional deslocalizado formado por 7 personas',
@@ -138,9 +137,9 @@ export default {
           'Gestión de desarrollo',
           'Metodologías ágiles',
           'Metodologías de desarrollo ágiles',
-          'Solucion de problemas',
+          'Solución de problemas',
           'Ansible',
-          'Gestón de equipos',
+          'Gestión de equipos',
           'Desarrollo',
           'Symfony',
           'DevOps',
@@ -187,13 +186,13 @@ export default {
       },
       {
         companyName: 'Firmaprofesional',
-        startDate: 'Apr 2008',
+        startDate: 'Abr 2008',
         endDate: 'Feb 2011',
         position: 'Junior Software Developer',
         description: [
           'Desarrollar y mantener la plataforma de gestión de PKI para asegurar un rendimiento óptimo',
           'Desarrollar y gestionar el mantenimiento de la plataforma de sellado de tiempo para mejorar la funcionalidad',
-          'Proporcionó soporte técnico a los usuarios finales para una operación del sistema sin problemas',
+          'Proporcionar soporte técnico a los usuarios finales para una operación del sistema sin problemas',
           'Desarrollo de aplicaciones backend utilizando PHP, Java y MySQL',
           'Desarrollo de interfaces frontend usando Javascript y JQuery para mejorar la experiencia del usuario'
         ],
@@ -254,7 +253,7 @@ export default {
     ],
     education: {
       title: 'Grado en Informática, especialidad Sistemas',
-      school: 'Univeritat Autònoma de Barcelona',
+      school: 'Universitat Autònoma de Barcelona',
       scholastic: '2005 - 2008',
     },
     certifications: [
@@ -268,7 +267,7 @@ export default {
       {
         title: 'nCSD – Thales Certified Solution Developer',
         school: 'Thales e-Security',
-        scholastic: 'Jan 2014'
+        scholastic: 'Ene 2014'
       }
     ],
     languages: [
@@ -295,9 +294,8 @@ export default {
         description: 'Crear una página web personal para aprender a usar Nuxt 4 y Tailwind CSS',
         startDate: 'Sep 2024',
         endDate: 'Actualmente',
-        tools: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
-        technologies: 'Vue 4, Nuxt 4, HTML, SCSS, Tailwind CSS',
-        release: 'Sep 2024',
+        tools: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
+        technologies: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
       },
     ],
   },

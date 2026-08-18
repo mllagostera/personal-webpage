@@ -8,32 +8,17 @@ import Projects from '~/components/curriculumVitae/projects.vue'
 import GithubProjects from '~/components/curriculumVitae/githubProjects.vue'
 import Languages from '~/components/curriculumVitae/languages.vue'
 
-const { awesome } = useAppConfig()
-const { locale } = useI18n()
 definePageMeta({ layout: 'page' })
-const html = {
-  lang: locale.value,
-}
-const linkData = [
-  {
-    rel: 'canonical',
-    href: `https://mllagostera.com/`,
-  },
-  {
-    rel: 'icon',
-    type: 'image/ico',
-    href: '/favicon.ico',
-  },
-  {
-    rel: 'image_src',
-    href: '/thumbnail.png',
-  },
-]
+
 useHead({
-  title: awesome?.name || 'Nuxt 3 Awesome Starter',
-  htmlAttrs: html,
-  link: linkData,
-})           
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+  ],
+})
+
+// Title, description, canonical, Open Graph and Twitter Cards for this route.
+useSiteSeo({ path: '/' })
+useProfileJsonLd('/')
 </script>
 
 <template>

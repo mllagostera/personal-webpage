@@ -12,7 +12,12 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN,
-    telegramChatId: process.env.TELEGRAM_CHAT_ID
+    telegramChatId: process.env.TELEGRAM_CHAT_ID,
+    public: {
+      // Google Search Console ownership token. Overridable at runtime with
+      // NUXT_PUBLIC_GSC_TOKEN; when empty the meta tag is not rendered at all.
+      gscToken: process.env.NUXT_PUBLIC_GSC_TOKEN || process.env.GG_SEARCH_CONSOLE || '',
+    },
   },
 
   // modules

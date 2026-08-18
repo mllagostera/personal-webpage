@@ -13,7 +13,6 @@ const projects = computed(() => {
     description: item.description ? rt(item.description) : '',
     tools: item.tools ? rt(item.tools) : '',
     technologies: item.technologies ? rt(item.technologies) : '',
-    release: item.release ? rt(item.release) : '',
     url: item.url ? rt(item.url) : '',
   })) : []) as Project[]
 })
@@ -65,12 +64,8 @@ const projects = computed(() => {
                     <span class="text-slate-400 text-sm">{{ item.technologies }}</span>
                 </div>
                 
-                 <div v-if="item.release || item.url" class="flex flex-wrap gap-4 pt-4 mt-2">
-                     <div v-if="item.release">
-                         <span class="text-primary-400 font-bold text-sm">{{ $t('release') }}:</span>
-                         <span class="text-slate-200 text-sm ml-2">{{ item.release }}</span>
-                     </div>
-                      <a v-if="item.url" :href="item.url" target="_blank" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors ml-auto">
+                 <div v-if="item.url" class="flex flex-wrap gap-4 pt-4 mt-2">
+                      <a :href="item.url" target="_blank" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors ml-auto">
                          View Project <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
                      </a>
                  </div>
