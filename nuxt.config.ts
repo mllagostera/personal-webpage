@@ -1,3 +1,4 @@
+import { trimmedIconCollections } from './icon-collections.config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -60,6 +61,17 @@ export default defineNuxtConfig({
   // module::headlessui
   headlessui: {
     prefix: 'Headless',
+  },
+
+  // module::icon — bundle everything locally so icon SVGs never require a
+  // request to the public api.iconify.design at runtime. devicon /
+  // devicon-plain / heroicons are used widely and bundled in full; the rest
+  // are trimmed to the handful of icons this app actually uses (see
+  // icon-collections.config.ts).
+  icon: {
+    serverBundle: {
+      collections: ['devicon', 'devicon-plain', 'heroicons', ...trimmedIconCollections],
+    },
   },
 
   app: {
