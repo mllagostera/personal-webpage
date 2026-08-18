@@ -2,16 +2,18 @@
 
 Lo que el código ya no puede hacer por sí solo. En orden.
 
-## 1. Subir `thumbnail.png`
+## 1. Refrescar la caché social de `thumbnail.png`
 
-**Bloqueante para las tarjetas sociales.** `public/thumbnail.png` **no existe** en el repo, pero
-`og:image` y `twitter:image` apuntan a él. Ahora mismo LinkedIn, X y WhatsApp muestran la web sin
-imagen.
+La imagen ya está en `public/thumbnail.png` (1734 × 907, ratio 1.91:1) y `og:image` /
+`twitter:image` apuntan a ella con URL absoluta. No hay nada que subir.
 
-- Crear la imagen a **1200 × 630 px** (< 5 MB, PNG o JPG).
-- Guardarla en `public/thumbnail.png` y desplegar.
-- Comprobar en https://cards-dev.twitter.com/validator y https://www.linkedin.com/post-inspector/
-  (el Post Inspector de LinkedIn además fuerza el refresco de su caché).
+Lo único pendiente es forzar el refresco de caché **después de desplegar**, porque las
+plataformas cachearon el 404 anterior durante días:
+
+- https://www.linkedin.com/post-inspector/ → pegar `https://mllagostera.com` → *Inspect*
+  (esto además invalida su caché).
+- https://cards-dev.twitter.com/validator para X.
+- WhatsApp/Telegram cachean por su cuenta; se refrescan solos en 24-48 h.
 
 ## 2. Verificar la propiedad en Google Search Console
 
