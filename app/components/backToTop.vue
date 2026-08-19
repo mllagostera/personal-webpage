@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { useWindowScroll } from '@vueuse/core'
 
 const { y } = useWindowScroll()
@@ -8,6 +8,17 @@ const scrollToTop = () => {
   window.scrollTo({
     top: 0,
     behavior: 'smooth'
+  })
+
+  // Move focus along with the viewport. Without this the button scrolls the page
+  // and then hides itself, dropping focus to <body> and sending the next Tab
+  // back to wherever the reader already was.
+  //
+  // Deferred a frame because the click re-focuses the button after the handler
+  // returns, which would undo it. `preventScroll` leaves the smooth scroll above
+  // to do the moving.
+  requestAnimationFrame(() => {
+    document.querySelector<HTMLElement>('main')?.focus({ preventScroll: true })
   })
 }
 </script>
@@ -23,8 +34,7 @@ const scrollToTop = () => {
   >
     <button
       v-show="isVisible"
-      aria-label="Volver arriba"
-      title="Back to top"
+      :aria-label="$t('backToTop')"
       class="fixed bottom-6 right-6 z-50 group"
       @click="scrollToTop"
     >

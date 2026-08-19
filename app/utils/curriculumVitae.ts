@@ -32,6 +32,10 @@ export interface Skill {
 export interface Language {
   name: string
   level: string
+  /** CEFR label as shown, e.g. "C2 (Nativo)". Localised, so it lives in the locale. */
+  levelLabel: string
+  /** Percentage the progress bar fills to. */
+  proficiency: number
   flag: string
 }
 

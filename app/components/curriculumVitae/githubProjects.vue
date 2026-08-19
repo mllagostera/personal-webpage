@@ -11,18 +11,21 @@ const { data: githubRepos } = await useAsyncData<PublicRepo[]>(
 
 const hasRepos = computed(() => (githubRepos.value?.length ?? 0) > 0)
 
+const { locale } = useI18n()
+
+// Intl does the pluralisation and the wording in whatever locale is active, so
+// these strings no longer have to be hand-written — and no longer come out in
+// English on a page served as `lang="es"` or `lang="ca"`.
 function timeAgo(dateStr: string | null): string {
   if (!dateStr) return ''
-  const diff = Date.now() - new Date(dateStr).getTime()
-  const days = Math.floor(diff / 86400000)
-  if (days === 0) return 'today'
-  if (days === 1) return '1 day ago'
-  if (days < 30) return `${days} days ago`
+
+  const rtf = new Intl.RelativeTimeFormat(locale.value, { numeric: 'auto' })
+  const days = Math.floor((Date.now() - new Date(dateStr).getTime()) / 86400000)
+
+  if (days < 30) return rtf.format(-days, 'day')
   const months = Math.floor(days / 30)
-  if (months === 1) return '1 month ago'
-  if (months < 12) return `${months} months ago`
-  const years = Math.floor(months / 12)
-  return years === 1 ? '1 year ago' : `${years} years ago`
+  if (months < 12) return rtf.format(-months, 'month')
+  return rtf.format(-Math.floor(months / 12), 'year')
 }
 </script>
 
@@ -78,7 +81,7 @@ function timeAgo(dateStr: string | null): string {
                  {{ repo.description }}
              </p>
           </div>
-          <div v-else class="mb-4 flex-grow text-slate-500 italic text-sm">
+          <div v-else class="mb-4 flex-grow text-slate-400 italic text-sm">
              {{ $t('noDescription') }}
           </div>
 
@@ -101,11 +104,11 @@ function timeAgo(dateStr: string | null): string {
               <!-- Primary language -->
               <div v-if="repo.language" class="flex items-center gap-2 text-slate-300 text-sm">
                 <span class="w-2 h-2 rounded-full bg-primary-500 shrink-0"/>
-                <span class="text-slate-500 text-xs uppercase tracking-wider mr-1">{{ $t('primaryLanguage') }}:</span>
+                <span class="text-slate-400 text-xs uppercase tracking-wider mr-1">{{ $t('primaryLanguage') }}:</span>
                 {{ repo.language }}
               </div>
               <!-- Last push -->
-              <div v-if="repo.pushed_at" class="flex items-center gap-1 text-xs text-slate-500">
+              <div v-if="repo.pushed_at" class="flex items-center gap-1 text-xs text-slate-400">
                 <Icon name="heroicons:clock" class="w-3 h-3" />
                 {{ timeAgo(repo.pushed_at) }}
               </div>
@@ -118,15 +121,17 @@ function timeAgo(dateStr: string | null): string {
                 v-if="repo.homepage"
                 :href="repo.homepage"
                 target="_blank"
+                rel="noopener noreferrer"
                 class="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
               >
                 <Icon name="heroicons:globe-alt" class="w-3.5 h-3.5" />
-                {{ $t('liveDemo') }}
+                {{ $t('liveDemo') }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
               </a>
               <span v-else/>
               <!-- View repo -->
-              <a :href="repo.html_url" target="_blank" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors">
-                 {{ $t('viewRepository') }} <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
+              <a :href="repo.html_url" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors">
+                 {{ $t('viewRepository') }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
+                 <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
               </a>
             </div>
           </div>

@@ -20,16 +20,29 @@ const socialLinks = computed(() => [
 ].filter(link => link.href))
 
 const closeMenu = () => { isMenuOpen.value = false }
+
+const menuButton = useTemplateRef<HTMLButtonElement>('menuButton')
+
+// Escape closes the drawer and hands focus back to the button that opened it,
+// which is otherwise left behind wherever the user happened to be.
+const onMenuEscape = () => {
+  if (!isMenuOpen.value) return
+  closeMenu()
+  nextTick(() => menuButton.value?.focus())
+}
 </script>
 
 <template>
-  <header class="fixed top-0 z-50 w-full backdrop-blur-md bg-gray-950/80 border-b border-gray-50/[0.2]">
+  <header
+    class="fixed top-0 z-50 w-full backdrop-blur-md bg-gray-950/80 border-b border-gray-50/[0.2]"
+    @keydown.esc="onMenuEscape"
+  >
     <div class="max-w-screen-2xl mx-auto px-4 py-4">
       <div class="flex items-center justify-between">
         <!-- Logo/Title -->
         <NuxtLink 
           to="/" 
-          class="flex items-center gap-2 font-bold text-lg text-primary-500 hover:text-primary-600 transition-colors"
+          class="flex items-center gap-2 font-bold text-lg text-primary-500 hover:text-primary-400 transition-colors"
           @click="closeMenu"
         >
           <Icon name="pixelarticons:users" class="text-xl" />
@@ -44,7 +57,7 @@ const closeMenu = () => { isMenuOpen.value = false }
             
             <!-- Contact Button (Desktop context) -->
             <button 
-              class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary-600 hover:bg-primary-500 text-white text-sm font-bold rounded-xl transition-all active:scale-95 shadow-lg shadow-primary-500/20"
+              class="hidden sm:flex items-center gap-2 px-4 py-2 bg-primary-700 hover:bg-primary-600 text-white text-sm font-bold rounded-xl transition-all active:scale-95 shadow-lg shadow-primary-500/20"
               @click="openContactModal"
             >
               <Icon name="heroicons:paper-airplane" class="w-4 h-4" />
@@ -53,7 +66,7 @@ const closeMenu = () => { isMenuOpen.value = false }
           </div>
 
           <!-- Desktop Navigation Links -->
-          <nav class="hidden md:flex items-center gap-1 ml-4 border-l border-gray-700 pl-4">
+          <nav :aria-label="$t('mainNavigation')" class="hidden md:flex items-center gap-1 ml-4 border-l border-gray-700 pl-4">
             <NuxtLink
               v-for="link in navLinks"
               :key="String(link.to)"
@@ -66,11 +79,14 @@ const closeMenu = () => { isMenuOpen.value = false }
             
             <!-- Social Links (Desktop) -->
             <div class="flex items-center gap-1 ml-2">
+              <!-- Icon only, so the accessible name has to be spelled out:
+                   `title` alone never surfaces on keyboard or touch. -->
               <a
                 v-for="social in socialLinks"
                 :key="social.href"
                 :href="social.href"
                 :title="social.title"
+                :aria-label="`${social.title} (${$t('opensInNewWindow')})`"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="p-2 text-gray-400 hover:text-primary-400 transition-colors"
@@ -81,9 +97,12 @@ const closeMenu = () => { isMenuOpen.value = false }
           </nav>
 
           <!-- Mobile Menu Toggle -->
-          <button 
+          <button
+            ref="menuButton"
             class="md:hidden p-2 text-gray-400 ml-2 rounded-lg hover:bg-gray-800 transition-colors"
-            :aria-label="isMenuOpen ? 'Cerrar menú' : 'Abrir menú'"
+            :aria-label="isMenuOpen ? $t('closeMenu') : $t('openMenu')"
+            :aria-expanded="isMenuOpen"
+            aria-controls="mobile-menu"
             @click="isMenuOpen = !isMenuOpen"
           >
             <Icon 
@@ -105,8 +124,12 @@ const closeMenu = () => { isMenuOpen.value = false }
       leave-from-class="translate-y-0 opacity-100"
       leave-to-class="-translate-y-4 opacity-0"
     >
-      <div
+      <!-- A real nav landmark: the desktop one is display:none at this width,
+           so without this the drawer's links sit outside any landmark. -->
+      <nav
         v-if="isMenuOpen"
+        id="mobile-menu"
+        :aria-label="$t('mainNavigation')"
         class="md:hidden border-t border-gray-50/[0.1] bg-gray-950/95 backdrop-blur-md"
       >
         <div class="max-w-screen-2xl mx-auto px-4 py-4 space-y-1">
@@ -146,10 +169,11 @@ const closeMenu = () => { isMenuOpen.value = false }
             >
               <Icon :name="social.icon" class="text-xl" />
               <span>{{ social.title }}</span>
+              <span class="sr-only">({{ $t('opensInNewWindow') }})</span>
             </a>
           </div>
         </div>
-      </div>
+      </nav>
     </Transition>
   </header>
 </template>

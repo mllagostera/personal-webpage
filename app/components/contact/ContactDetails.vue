@@ -51,6 +51,7 @@ const socialLinks = computed(() =>
         >
           <Icon :name="social.icon" class="text-xl" />
           <span>{{ social.label }}</span>
+          <span class="sr-only">({{ $t('opensInNewWindow') }})</span>
         </a>
       </div>
     </div>

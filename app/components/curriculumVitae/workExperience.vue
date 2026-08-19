@@ -40,7 +40,7 @@ const works = computed(() => {
           <!-- Date indicator (Desktop only: on the left) -->
           <div class="hidden md:block absolute right-full mr-10 top-0 text-right">
             <div class="text-white font-display font-bold text-xl leading-tight">{{ item.endDate }}</div>
-            <div class="text-slate-500 text-xs uppercase tracking-tight leading-tight">{{ item.startDate }}</div>
+            <div class="text-slate-400 text-xs uppercase tracking-tight leading-tight">{{ item.startDate }}</div>
           </div>
 
           <!-- Timeline Dot (Desktop only) -->
@@ -53,7 +53,7 @@ const works = computed(() => {
             <div class="md:hidden flex flex-wrap items-center gap-2 mb-4 px-3 py-1.5 rounded-lg bg-primary-500/10 border border-primary-500/20 w-fit">
                 <Icon name="heroicons:calendar-days" class="w-4 h-4 text-primary-400" />
                 <span class="text-slate-100 font-bold text-sm">{{ item.endDate }}</span>
-                <span class="text-slate-500 text-xs font-medium uppercase">{{ item.startDate }}</span>
+                <span class="text-slate-400 text-xs font-medium uppercase">{{ item.startDate }}</span>
             </div>
             <div class="flex flex-col mb-6">
                 <h3 class="font-bold text-2xl md:text-3xl text-slate-100 font-display group-hover:text-primary-400 transition-colors">

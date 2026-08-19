@@ -48,7 +48,10 @@ const stack = computed(() => {
                 </div>
                 
                 <!-- Label on hover -->
-                <span class="absolute -bottom-6 text-[10px] font-bold uppercase tracking-tighter text-slate-500 opacity-0 group-hover:opacity-100 group-hover:text-primary-400 transition-all duration-300">
+                <!-- Revealed on hover, which touch devices do not have; there
+                     the label is simply always on, since these are bare logos
+                     with no visible name otherwise. -->
+                <span class="absolute -bottom-6 text-[10px] font-bold uppercase tracking-tighter text-slate-400 opacity-0 [@media(hover:none)]:opacity-100 group-hover:opacity-100 group-hover:text-primary-400 transition-all duration-300">
                   {{ item.split(':').pop()?.replace('-plain', '') }}
                 </span>
             </div>

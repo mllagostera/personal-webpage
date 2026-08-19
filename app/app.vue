@@ -7,7 +7,11 @@
     <!-- Global Contact Modal. Lazy so its chunk (headlessui + form) and CSS
          don't block the initial render of every page — it only loads once
          the user actually opens it. -->
-    <LazyContactModal :is-open="isContactModalOpen" @close="isContactModalOpen = false">
+    <LazyContactModal
+      :is-open="isContactModalOpen"
+      @close="closeContactModal"
+      @closed="restoreContactModalFocus"
+    >
       <LazyContactFormContent />
     </LazyContactModal>
   </NuxtLayout>
@@ -21,7 +25,7 @@
 import outfitFontUrl from '@fontsource/outfit/files/outfit-latin-400-normal.woff2?url'
 import plusJakartaSansFontUrl from '@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-400-normal.woff2?url'
 
-const { isContactModalOpen } = useContactModal()
+const { isContactModalOpen, closeContactModal, restoreContactModalFocus } = useContactModal()
 const { locale, t } = useI18n()
 const { gscToken } = useRuntimeConfig().public
 

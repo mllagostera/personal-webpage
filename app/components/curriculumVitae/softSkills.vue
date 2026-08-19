@@ -37,7 +37,7 @@ const softskills = computed(() => {
                     <!-- Optional: Source/Role indicator if needed, for now just a subtle finisher -->
                     <div class="flex items-center gap-2 pt-2">
                         <div class="w-4 h-px bg-primary-500/30"/>
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-primary-500/60 font-bold">Philosophy & Mindset</span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-primary-500 font-bold">Philosophy & Mindset</span>
                     </div>
                 </div>
             </div>

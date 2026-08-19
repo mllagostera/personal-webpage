@@ -10,6 +10,9 @@ const languages = computed(() => {
     ...l,
     name: l.name ? rt(l.name) : '',
     level: l.level ? rt(l.level) : '',
+    levelLabel: l.levelLabel ? rt(l.levelLabel) : '',
+    // A plain number in the locale, so it comes back without `rt()`.
+    proficiency: Number(l.proficiency) || 0,
     flag: l.flag ? rt(l.flag) : '',
   })) : []
 })
@@ -43,23 +46,24 @@ const languages = computed(() => {
              <div class="flex-grow">
                  <div class="flex justify-between items-center mb-2">
                      <h3 class="font-bold text-xl text-slate-100 font-display">{{ item.name }}</h3>
-                     <span 
+                     <span
                         class="text-xs font-bold px-2 py-1 rounded bg-dark-950/50 border border-slate-700 text-secondary-400"
                         :class="{ 'text-primary-400 border-primary-500/30': item.level === 'native' }"
                      >
-                        {{ item.level === 'native' ? 'C2 (Native)' : 'B2' }}
+                        {{ item.levelLabel }}
                      </span>
                  </div>
-                 
-                 <!-- Progress Bar -->
+
+                 <!-- Progress Bar. Decorative: the same figure is written out as
+                      text underneath, so there is nothing for a meter to add. -->
                  <div class="h-2 w-full bg-dark-950 rounded-full overflow-hidden">
-                     <div 
+                     <div
                         class="h-full bg-primary-500 rounded-full transition-all duration-1000 ease-out"
-                        :style="{ width: item.level === 'native' ? '100%' : '75%' }"
+                        :style="{ width: `${item.proficiency}%` }"
                      />
                  </div>
-                 <div class="text-right mt-1 text-xs text-slate-500 font-mono">
-                     {{ item.level === 'native' ? '100%' : '75%' }} Proficiency
+                 <div class="text-right mt-1 text-xs text-slate-400 font-mono">
+                     {{ item.proficiency }}% {{ $t('proficiency') }}
                  </div>
              </div>
           </div>
