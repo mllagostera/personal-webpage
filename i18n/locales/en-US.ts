@@ -56,7 +56,7 @@ export default {
   contactMessageHint: 'Minimum 10 characters, maximum 2000.',
   errorEyebrow: 'Error {code} · unknown sector',
   errorQuote: "These aren't the droids you're looking for.",
-  errorQuoteAttribution: 'Obi-Wan Kenobi · roughly here',
+  errorQuoteAttribution: 'Obi-Wan Kenobi',
   errorNotFoundDescription: "This route doesn't exist in this galaxy. The link may be out of date, or the page jumped to hyperspace.",
   errorGenericTitle: 'Something went wrong',
   errorGenericDescription: 'An unexpected error occurred while loading this page. Please try again in a moment.',
