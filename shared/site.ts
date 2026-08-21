@@ -20,6 +20,15 @@ export const TWITTER_HANDLE = '@vansid'
 /** Turns a site-relative path into an absolute URL on the canonical domain. */
 export const absoluteUrl = (path: string = '/'): string => new URL(path, SITE_URL).href
 
+/**
+ * Titles for the error page. Deliberately outside `SITE_ROUTES`: the error page
+ * is `noindex` and must never reach the sitemap, but its <title> still belongs
+ * with the rest of the SEO copy instead of being written inside a component.
+ */
+export const ERROR_404_TITLE = 'Página no encontrada | Miquel Llagostera'
+
+export const ERROR_GENERIC_TITLE = 'Error inesperado | Miquel Llagostera'
+
 export interface SiteRoute {
   path: string
   /** Unique <title> for the route. Never repeated across pages. */
