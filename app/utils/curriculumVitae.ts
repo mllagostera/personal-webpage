@@ -29,13 +29,31 @@ export interface Skill {
   title: string
 }
 
+/** CEFR band, or `native` for a mother tongue — which CEFR does not describe. */
+export type LanguageLevel = 'native' | 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
+
+export interface LanguageCertification {
+  /** Official name of the certificate, kept in the language that issued it. */
+  title: string
+  issuer: string
+  /** Optional: left out while the awarding year is unverified. */
+  year?: number
+  /** Public verification URL, when the issuer publishes one. */
+  url?: string
+}
+
 export interface Language {
   name: string
-  level: string
-  /** CEFR label as shown, e.g. "C2 (Nativo)". Localised, so it lives in the locale. */
-  levelLabel: string
-  /** Percentage the progress bar fills to. */
-  proficiency: number
+  /** BCP-47 tag. Feeds `alternateName` in the schema.org Language object. */
+  bcp47: string
+  level: LanguageLevel
+  /** How the language is used at work, e.g. "professional, daily". */
+  usage?: string
+  /** One concrete situation that evidences the level. */
+  evidence?: string
+  /** Where the level stops being comfortable. Stated, not implied. */
+  note?: string
+  certification?: LanguageCertification
   flag: string
 }
 
