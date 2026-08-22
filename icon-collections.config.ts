@@ -35,7 +35,7 @@ function pick(collection: IconifyJSON, names: string[]): IconifyJSON {
 export const trimmedIconCollections = [
   pick(mdi as IconifyJSON, ['github', 'github-face', 'linkedin', 'stack-exchange', 'twitter']),
   pick(pixelarticons as IconifyJSON, ['users']),
-  pick(flag as IconifyJSON, ['es-4x3', 'es-ct-4x3', 'gb-eng-4x3']),
+  pick(flag as IconifyJSON, ['es-4x3', 'es-ct-4x3', 'gb-4x3']),
   pick(simpleIcons as IconifyJSON, ['github']),
   pick(tabler as IconifyJSON, ['quote']),
 ]
