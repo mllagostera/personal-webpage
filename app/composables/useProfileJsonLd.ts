@@ -1,4 +1,4 @@
-import type { Company, Education, Personal } from '~/utils/curriculumVitae'
+import type { Company, Education, Language, Personal } from '~/utils/curriculumVitae'
 import { SITE_OG_IMAGE, absoluteUrl } from '~~/shared/site'
 
 /**
@@ -9,7 +9,7 @@ import { SITE_OG_IMAGE, absoluteUrl } from '~~/shared/site'
  */
 export const useProfileJsonLd = (path: string = '/') => {
   const { awesome } = useAppConfig()
-  const { tm, rt } = useI18n()
+  const { t, tm, rt } = useI18n()
 
   const jsonLd = computed(() => {
     const information = tm('cv.information') as unknown as Personal
@@ -17,6 +17,7 @@ export const useProfileJsonLd = (path: string = '/') => {
     const experience = tm('cv.workExperience') as unknown as Company[]
     const summary = tm('cv.summary.summary') as unknown as string[]
     const technologies = tm('cv.technologies') as unknown as string[]
+    const languages = tm('cv.languages') as unknown as Language[]
 
     const currentRole = Array.isArray(experience) ? experience[0] : undefined
     const links = awesome?.project?.links || {}
@@ -28,6 +29,30 @@ export const useProfileJsonLd = (path: string = '/') => {
     const knowsAbout = Array.isArray(technologies) ? technologies.map((t) => (t ? rt(t) : '')).filter(Boolean) : []
     const description = Array.isArray(summary) ? summary.map((s) => (s ? rt(s) : '')).filter(Boolean).join(' ') : ''
     const sameAs = [links.linkedin, links.github, links.x, links.stackshare].filter(Boolean)
+
+    // schema.org has no CEFR property, so the level rides in `description` —
+    // the one Thing property that is valid on Language — while `alternateName`
+    // carries the BCP-47 tag a sourcing tool can match on.
+    const knowsLanguage = (Array.isArray(languages) ? languages : [])
+      .map((language) => {
+        const languageName = language?.name ? rt(language.name) : ''
+        const bcp47 = language?.bcp47 ? rt(language.bcp47) : ''
+        const level = language?.level ? rt(language.level) : ''
+        if (!languageName || !bcp47) return null
+
+        const entry: Record<string, unknown> = {
+          '@type': 'Language',
+          name: languageName,
+          alternateName: bcp47,
+        }
+        if (level) {
+          entry.description = level === 'native'
+            ? t('languageLevelNative')
+            : `${t('languageCefr')} ${level}`
+        }
+        return entry
+      })
+      .filter(Boolean)
 
     const person: Record<string, unknown> = {
       '@type': 'Person',
@@ -42,6 +67,7 @@ export const useProfileJsonLd = (path: string = '/') => {
     if (employer) person.worksFor = { '@type': 'Organization', name: employer }
     if (school) person.alumniOf = { '@type': 'CollegeOrUniversity', name: school }
     if (knowsAbout.length) person.knowsAbout = knowsAbout
+    if (knowsLanguage.length) person.knowsLanguage = knowsLanguage
     if (sameAs.length) person.sameAs = sameAs
 
     return {
