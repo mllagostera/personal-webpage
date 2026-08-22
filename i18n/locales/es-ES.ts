@@ -54,6 +54,14 @@ export default {
   viewProject: 'Ver proyecto',
   proficiency: 'de dominio',
   contactMessageHint: 'Mínimo 10 caracteres, máximo 2000.',
+  errorEyebrow: 'Error {code} · sector desconocido',
+  errorQuote: 'Estos no son los droides que buscas.',
+  errorQuoteAttribution: 'Obi-Wan Kenobi',
+  errorNotFoundDescription: 'Esta ruta no existe en esta galaxia. Puede que el enlace esté desactualizado o que la página haya saltado al hiperespacio.',
+  errorGenericTitle: 'Algo ha fallado',
+  errorGenericDescription: 'Ha ocurrido un error inesperado al cargar esta página. Vuelve a intentarlo en un momento.',
+  errorRequestedPath: 'ruta solicitada:',
+  errorBackHome: 'Volver a la base',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',
