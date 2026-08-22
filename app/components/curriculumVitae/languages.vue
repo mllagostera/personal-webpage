@@ -39,7 +39,13 @@ const languages = computed(() => {
              <div class="relative flex-shrink-0">
                  <div class="absolute inset-0 bg-primary-500/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity"/>
                  <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-700/50 relative z-10 bg-dark-900 flex items-center justify-center">
-                    <Icon :name="item.flag" size="64px" class="opacity-90"/> 
+                    <!-- Every flag is 4:3, so an icon squared off at 64px is
+                         letterboxed: the flag only covers the middle 64x48 and
+                         the card background shows through top and bottom of the
+                         circle. Scaling by 4/3 makes the short side match the
+                         circle; the sides overflow and are cropped by the
+                         parent, so the flag covers the whole disc. -->
+                    <Icon :name="item.flag" size="64px" class="opacity-90 shrink-0 scale-[1.3334]"/>
                  </div>
              </div>
 
