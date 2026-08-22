@@ -51,13 +51,13 @@
     "@vueuse/nuxt": "^14.4.0",
     "nuxt": "^4.5.2",
     "nuxt-headlessui": "^1.2.2",
-    "sass": "^1.102.0",
+    "sass": "^1.103.1",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.17.0",
     "@types/node": "^26.2.0",
-    "eslint": "^10.8.1"
+    "eslint": "^10.9.0"
   },
   "overrides": {
     "immutable": "^5.1.9",
