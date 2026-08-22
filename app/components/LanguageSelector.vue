@@ -10,7 +10,7 @@ interface Language {
 }
 
 const availableLanguages: Language[] = [
-  { name: 'English', code: 'en', icon: 'flag:sh-4x3' },
+  { name: 'English', code: 'en', icon: 'flag:gb-4x3' },
   { name: 'Español', code: 'es', icon: 'flag:es-4x3' },
   { name: 'Català', code: 'ca', icon: 'flag:es-ct-4x3' },
 ]
