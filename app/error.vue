@@ -124,9 +124,6 @@ useHead({
   meta: [
     { name: 'theme-color', content: '#020617' },
   ],
-  link: [
-    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-  ],
 })
 
 // An error page must never be indexed, whatever status brought the reader here.

@@ -6,12 +6,6 @@ import Languages from '~/components/curriculumVitae/languages.vue'
 
 definePageMeta({ layout: 'page' })
 
-useHead({
-  link: [
-    { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-  ],
-})
-
 useSiteSeo('/')
 // The profile schema belongs to the landing page, which is the profile itself.
 useProfileJsonLd('/')

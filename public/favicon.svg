@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Miquel Llagostera">
+  <rect width="64" height="64" rx="14" fill="#10b981"/>
+  <g fill="none" stroke="#0a0a0a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9.5 46.5V19L21 33l11.5-14v27.5"/>
+    <path d="M43 19v27.5h13"/>
+  </g>
+</svg>
