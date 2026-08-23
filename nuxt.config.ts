@@ -79,6 +79,18 @@ export default defineNuxtConfig({
       htmlAttrs: {
         class: 'dark',
       },
+      // Declared here rather than in app.vue so the error page gets them too:
+      // app.vue does not render on an error, and a page that already lost its
+      // way should not also lose its identity in the tab.
+      //
+      // Order is the negotiation: browsers take the last `icon` they can use,
+      // so the .ico fallback comes first and the SVG — which stays sharp at any
+      // size — wins wherever it is supported.
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: '16x16 32x32 48x48' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      ],
     },
   },
 
