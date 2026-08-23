@@ -139,6 +139,11 @@ useSeoMeta({
 
 <template>
   <NuxtLayout name="page">
+    <!-- `app.vue` does not render on an error, so the navigation feedback it
+         provides has to be repeated here: leaving this page is a real
+         navigation, and it can land on a cold Lambda like any other. -->
+    <TheRouteLoader />
+
     <div class="relative isolate mx-auto w-full overflow-x-hidden px-4 2xl:px-0">
       <canvas ref="starfield" class="starfield" aria-hidden="true" />
       <div class="saber-glow" aria-hidden="true" />

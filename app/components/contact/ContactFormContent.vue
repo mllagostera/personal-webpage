@@ -29,6 +29,21 @@ onMounted(() => {
 const status = ref<'idle' | 'sending' | 'success' | 'error' | 'ratelimit'>('idle')
 const errorMsg = ref('')
 
+// `/api/contact` runs on Amplify compute, so the first submission after a quiet
+// spell waits on a cold Lambda. The spinner alone doesn't say whether anything
+// is happening; past this the wait gets an explanation instead.
+const SLOW_SUBMIT_AFTER = 2500
+const isSlowSubmit = ref(false)
+let slowSubmitTimer: ReturnType<typeof setTimeout> | undefined
+
+const clearSlowSubmit = () => {
+  clearTimeout(slowSubmitTimer)
+  slowSubmitTimer = undefined
+  isSlowSubmit.value = false
+}
+
+onBeforeUnmount(clearSlowSubmit)
+
 // On success the whole form — including the button that had focus — is removed
 // from the DOM, which drops focus back to <body>. Move it to the confirmation
 // heading instead, so the outcome is both announced and reachable.
@@ -44,6 +59,8 @@ async function submit() {
   if (status.value === 'sending') return
   status.value = 'sending'
   errorMsg.value = ''
+  clearSlowSubmit()
+  slowSubmitTimer = setTimeout(() => { isSlowSubmit.value = true }, SLOW_SUBMIT_AFTER)
 
   try {
     await $fetch('/api/contact', {
@@ -70,6 +87,8 @@ async function submit() {
       status.value = 'error'
       errorMsg.value = fetchErr?.data?.statusMessage ?? t('contactErrorGeneric')
     }
+  } finally {
+    clearSlowSubmit()
   }
 }
 </script>
@@ -206,6 +225,20 @@ async function submit() {
           <Icon name="heroicons:exclamation-circle" class="w-4 h-4 shrink-0" />
           {{ errorMsg || $t('contactErrorGeneric') }}
         </div>
+      </Transition>
+
+      <!-- Cold-start hint. Only after the wait is long enough to worry about:
+           a warm submission never gets far enough to show it. -->
+      <Transition name="fade">
+        <p
+          v-if="status === 'sending' && isSlowSubmit"
+          class="flex items-center gap-2 text-xs text-gray-400"
+          role="status"
+          aria-live="polite"
+        >
+          <Icon name="heroicons:signal" class="w-3.5 h-3.5 shrink-0" />
+          {{ $t('contactSendingSlow') }}
+        </p>
       </Transition>
 
       <!-- Submit -->

@@ -3,13 +3,24 @@ import type { PublicRepo } from '~~/server/api/github/repos.get'
 
 // Fetched on the server so the section is present in the served HTML.
 // The endpoint caches the GitHub response for an hour and returns [] on failure.
-const { data: githubRepos } = await useAsyncData<PublicRepo[]>(
+//
+// `lazy` changes nothing on the server — SSR still awaits it through
+// `onServerPrefetch` — but it stops a client-side navigation to /projects from
+// blocking on the request. That matters on Amplify compute: a cold Lambda can
+// take seconds to answer `/api/github/repos`, and without this the whole page
+// waits on it. Now the page renders at once and this section shows skeletons.
+const { data: githubRepos, status } = useAsyncData<PublicRepo[]>(
   'github-repos',
   () => $fetch('/api/github/repos'),
-  { default: () => [] },
+  { default: () => [], lazy: true },
 )
 
+const isLoading = computed(() => status.value === 'pending')
 const hasRepos = computed(() => (githubRepos.value?.length ?? 0) > 0)
+
+// How many placeholder cards to draw: the endpoint asks GitHub for six, and the
+// grid is two columns wide, so four fills the fold without overshooting.
+const SKELETON_COUNT = 4
 
 const { locale } = useI18n()
 
@@ -30,7 +41,7 @@ function timeAgo(dateStr: string | null): string {
 </script>
 
 <template>
-  <div v-if="hasRepos" class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
+  <div v-if="hasRepos || isLoading" class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
     <div id="github-collaborations" class="mb-8">
       <div class="flex items-center gap-3">
           <Icon name="simple-icons:github" class="w-8 h-8 text-slate-100" />
@@ -40,7 +51,41 @@ function timeAgo(dateStr: string | null): string {
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Placeholders while the request is in flight, so the section keeps its
+         space instead of popping in and shoving the footer down. -->
+    <div v-if="isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-6" role="status" aria-live="polite">
+      <span class="sr-only">{{ $t('loading') }}</span>
+      <div
+        v-for="index in SKELETON_COUNT"
+        :key="index"
+        class="glass-card border-slate-700/50 p-6 md:p-8"
+        aria-hidden="true"
+      >
+        <div class="animate-pulse space-y-4">
+          <div class="flex items-center justify-between gap-2">
+            <div class="h-6 w-1/2 rounded bg-slate-700/50" />
+            <div class="h-5 w-12 rounded bg-slate-800/70" />
+          </div>
+          <div class="space-y-2">
+            <div class="h-3 w-full rounded bg-slate-800/70" />
+            <div class="h-3 w-4/5 rounded bg-slate-800/70" />
+          </div>
+          <div class="flex gap-1.5">
+            <div class="h-4 w-16 rounded-full bg-slate-800/70" />
+            <div class="h-4 w-20 rounded-full bg-slate-800/70" />
+            <div class="h-4 w-12 rounded-full bg-slate-800/70" />
+          </div>
+          <div class="border-t border-slate-700/50 pt-4">
+            <div class="flex items-center justify-between">
+              <div class="h-3 w-28 rounded bg-slate-800/70" />
+              <div class="h-3 w-20 rounded bg-slate-800/70" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <div
         v-for="repo in githubRepos"
         :key="repo.id"
