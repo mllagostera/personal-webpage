@@ -1,6 +1,6 @@
 <template>
   <NuxtLayout>
-    <NuxtLoadingIndicator />
+    <TheRouteLoader />
     <NuxtPage />
     <BackToTop />
 
