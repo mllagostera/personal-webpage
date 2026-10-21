@@ -6,10 +6,10 @@
 
 export const SITE_URL = 'https://mllagostera.com'
 
-export const SITE_TITLE = 'Miquel Llagostera | Scrum Master y Agile Coach — PKI y firma electrónica'
+export const SITE_TITLE = 'Miquel Llagostera | DevOps — PKI y firma electrónica'
 
 export const SITE_DESCRIPTION =
-  'Scrum Master con raíces técnicas: PKI y firma electrónica en Barcelona. Del código al equipo ágil, esta es mi trayectoria.'
+  'DevOps en Barcelona: CI/CD, AWS y Kubernetes. 18 años en PKI y firma electrónica, del código al equipo y a la plataforma.'
 
 /** Social preview image, relative to `public/`. Must be ~1200x630. */
 export const SITE_OG_IMAGE = '/thumbnail.png'
@@ -55,7 +55,7 @@ export const SITE_ROUTES: SiteRoute[] = [
     path: '/experience',
     title: 'Experiencia y formación | Miquel Llagostera',
     description:
-      'Trayectoria como Scrum Master y Software Development Manager en Firmaprofesional y Logalty: PKI, firma electrónica y equipos ágiles.',
+      'Trayectoria en Firmaprofesional y Logalty: de desarrollador PKI a Software Development Manager, Scrum Master y DevOps.',
     changefreq: 'monthly',
     priority: 0.9,
   },
