@@ -36,6 +36,6 @@ export const trimmedIconCollections = [
   pick(mdi as IconifyJSON, ['github', 'github-face', 'linkedin', 'stack-exchange', 'twitter']),
   pick(pixelarticons as IconifyJSON, ['users']),
   pick(flag as IconifyJSON, ['es-4x3', 'es-ct-4x3', 'gb-4x3']),
-  pick(simpleIcons as IconifyJSON, ['github']),
+  pick(simpleIcons as IconifyJSON, ['github', 'claude']),
   pick(tabler as IconifyJSON, ['quote']),
 ]

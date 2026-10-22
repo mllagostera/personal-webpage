@@ -21,7 +21,7 @@ export default {
   technologies: 'Tecnologías',
   workflow: 'Always on my mind',
   softSkills: 'Soft Skills',
-  SoftSkillsDescription: 'Las soft skills son esenciales para un Scrum Master, ya que este rol se centra en facilitar, motivar y guiar al equipo de desarrollo hacia el éxito. Aquí tienes algunas de las habilidades que poseo para desempeñar mi función.',
+  SoftSkillsDescription: 'Mis años como responsable de equipo y Scrum Master me dejaron habilidades que hoy aplico en DevOps: facilitar, comunicar y ayudar a los equipos a entregar mejor.',
   contactTitle: 'Contáctame',
   contactName: 'Nombre',
   contactNamePlaceholder: 'Tu nombre',
@@ -77,21 +77,44 @@ export default {
   cv: {
     information: {
       fullName: 'Miquel Llagostera',
-      position: 'Scrum Master │ Agile Lover │ Agile Coach │ Software Development Lover',
+      position: 'DevOps │ CI/CD │ AWS & Kubernetes │ PKI y firma electrónica',
     },
     summary: {
       summary: [
-        'Scrum Master dinámico y orientado a resultados con más de una década de experiencia en desarrollo técnico, especializado en certificación digital y seguridad electrónica (PKI)',
-        'Historial comprobado en administración de sistemas, desarrollo de software y móvil, así como en DevOps.',
-        'Hábil en liderar equipos diversos y multifuncionales hacia resultados exitosos en proyectos',
-        'Actualmente ejerzo como Scrum Master en Logalty y Firmaprofesional, como parte del Grupo Logalty.',
+        'DevOps con 18 años en certificación digital y seguridad electrónica (PKI).',
+        'Actualmente DevOps en Firmaprofesional (Grupo Logalty): CI/CD con Bitbucket Pipelines e infraestructura sobre AWS y Kubernetes.',
+        'Antes, desarrollador backend y móvil, Software Development Manager y Scrum Master en la misma compañía.',
+        'Integro la IA, con Claude, en el día a día de desarrollo y operaciones.',
       ],
     },
     workExperience: [
       {
         companyName: 'Firmaprofesional, Logalty Group',
-        startDate: 'Oct 2023',
+        startDate: 'Jul 2026',
         endDate: 'Actualmente',
+        position: 'DevOps',
+        description: [
+          'Cobertura de CI/CD con Bitbucket Pipelines del 6 % al 75 % de los repositorios: de 40 a 300 repositorios con pipeline',
+          'Poda de 300 repositorios inactivos, de 700 a 400',
+          'Infraestructura y despliegues sobre AWS y Kubernetes',
+          'Uso de Claude para acelerar tareas de desarrollo y operaciones',
+        ],
+        projects: [
+          'Llevar CI/CD a toda la base de repositorios de la compañía',
+        ],
+        technologies: [
+          'DevOps',
+          'AWS',
+          'Kubernetes',
+          'Bitbucket Pipelines',
+          'CI/CD',
+          'Claude',
+        ]
+      },
+      {
+        companyName: 'Firmaprofesional, Logalty Group',
+        startDate: 'Oct 2023',
+        endDate: 'Jul 2026',
         position: 'Scrum Master',
         description: [
           'Facilitar reuniones diarias, planificación de sprints y retrospectivas para asegurar la alineación del equipo y la mejora continua',
@@ -263,16 +286,22 @@ export default {
       'Integridad',
     ],
     technologies: [
+      'CI/CD y automatización de pipelines',
+      'Infraestructura en la nube y contenedores (AWS, Kubernetes)',
       'Mejora continua de la calidad del código',
       'Diseño y desarrollo de APIs REST',
-      'Desarrollo Agile & Scrum',
-      'Trabajo en equipo',
-      'Patrones de diseño',
       'Arquitectura de software',
-      'Visión a largo plazo',
       'De monolítico a microservicio',
+      'Patrones de diseño',
+      'Visión a largo plazo',
+      'Trabajo en equipo',
+      'Desarrollo Agile & Scrum',
     ],
     stack: [
+      'devicon-plain:amazonwebservices',
+      'devicon-plain:kubernetes',
+      'devicon:bitbucket',
+      'simple-icons:claude',
       'devicon:symfony',
       'devicon-plain:php',
       'devicon-plain:java',
