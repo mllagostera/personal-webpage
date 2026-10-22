@@ -12,3 +12,21 @@ updates:
     labels:
       - "dependencies"
       - "automated"
+    # Every update touches package-lock.json, so separate PRs conflict with
+    # each other as soon as one is merged. Majors stay out of the groups:
+    # each one is its own change, proposed before it is applied.
+    groups:
+      npm-minor-and-patch:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+      npm-security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
