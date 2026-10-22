@@ -26,6 +26,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN,
     telegramChatId: process.env.TELEGRAM_CHAT_ID,
+    // Read by /api/health to tell which build is live. Written to .env by the
+    // Amplify build (see amplify.yml) and baked in here at build time, since
+    // the compute runtime never sees build variables. Local builds report
+    // "unknown".
+    buildCommit: process.env.BUILD_COMMIT || 'unknown',
+    buildTime: new Date().toISOString(),
     public: {
       // Google Search Console ownership token. Overridable at runtime with
       // NUXT_PUBLIC_GSC_TOKEN; when empty the meta tag is not rendered at all.
