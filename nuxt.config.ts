@@ -1,19 +1,4 @@
-import { execSync } from 'node:child_process'
 import { trimmedIconCollections } from './icon-collections.config'
-
-// The commit this build was made from, baked in at build time: Amplify does not
-// pass build variables to the compute runtime, and there is no .git there.
-// Amplify sets AWS_COMMIT_ID, but to "HEAD" on a manual rebuild, so git itself
-// is asked first.
-const resolveBuildCommit = (): string => {
-  try {
-    return execSync('git rev-parse HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim()
-  }
-  catch {
-    const amplifyCommit = process.env.AWS_COMMIT_ID
-    return amplifyCommit && amplifyCommit !== 'HEAD' ? amplifyCommit : 'unknown'
-  }
-}
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -41,8 +26,11 @@ export default defineNuxtConfig({
   runtimeConfig: {
     telegramBotToken: process.env.TELEGRAM_BOT_TOKEN,
     telegramChatId: process.env.TELEGRAM_CHAT_ID,
-    // Read by /api/health to tell which build is live.
-    buildCommit: resolveBuildCommit(),
+    // Read by /api/health to tell which build is live. Written to .env by the
+    // Amplify build (see amplify.yml) and baked in here at build time, since
+    // the compute runtime never sees build variables. Local builds report
+    // "unknown".
+    buildCommit: process.env.BUILD_COMMIT || 'unknown',
     buildTime: new Date().toISOString(),
     public: {
       // Google Search Console ownership token. Overridable at runtime with

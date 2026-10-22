@@ -123,7 +123,7 @@ Only 404 carries the Star Wars line; every other status renders the same layout 
 | `server/routes/sitemap.xml.ts` | Sitemap generated from `SITE_ROUTES` |
 | `server/api/github/repos.get.ts` | Public repos, cached 1 h; returns `[]` on failure so the section hides |
 | `server/api/contact.post.ts` | Contact form → Telegram, with honeypot, timing check and rate limiting |
-| `server/api/health.get.ts` | Liveness plus the commit and build time baked in by `nuxt.config.ts`; `no-store` |
+| `server/api/health.get.ts` | Liveness plus the commit (written to `.env` by `amplify.yml`) and build time, baked in at build; `no-store` |
 | `server/middleware/noindex-non-production.ts` | `X-Robots-Tag: noindex` on preview and local hosts |
 
 The noindex middleware matches non-production hosts **explicitly** rather than negating production. Keep it that way: a detection slip should leave a preview indexable, never de-index the live site.

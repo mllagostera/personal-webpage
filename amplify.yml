@@ -9,6 +9,8 @@ frontend:
     build:
       commands:
         - env | grep -e TELEGRAM_BOT_TOKEN -e TELEGRAM_CHAT_ID >> .env
+        # git first: Amplify sets AWS_COMMIT_ID to "HEAD" on a manual rebuild.
+        - echo "BUILD_COMMIT=$(git rev-parse HEAD 2>/dev/null || echo "$AWS_COMMIT_ID")" >> .env
         - npm run build
   artifacts:
     baseDirectory: .amplify-hosting
