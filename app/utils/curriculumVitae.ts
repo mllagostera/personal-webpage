@@ -29,6 +29,12 @@ export interface Skill {
   title: string
 }
 
+/** One entry of the tools grid: an Iconify name and the label shown under it. */
+export interface StackItem {
+  icon: string
+  name: string
+}
+
 /** CEFR band, or `native` for a mother tongue — which CEFR does not describe. */
 export type LanguageLevel = 'native' | 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 
@@ -47,14 +53,9 @@ export interface Language {
   /** BCP-47 tag. Feeds `alternateName` in the schema.org Language object. */
   bcp47: string
   level: LanguageLevel
-  /** How the language is used at work, e.g. "professional, daily". */
+  /** One line on how the language is used at work: what it is used for, not how well. */
   usage?: string
-  /** One concrete situation that evidences the level. */
-  evidence?: string
-  /** Where the level stops being comfortable. Stated, not implied. */
-  note?: string
   certification?: LanguageCertification
-  flag: string
 }
 
 export interface Education {
