@@ -8,12 +8,7 @@ const softskills = computed(() => {
 <template>
   <div class="h-fit w-full">
     <div id="softskills" class="mb-8">
-       <div class="flex items-center gap-3">
-        <Icon name="heroicons:sparkles" class="w-8 h-8 text-white/80" />
-        <h2 class="leading-normal text-3xl font-display font-bold text-white">
-          {{ $t('softSkills') }}
-        </h2>
-      </div>
+       <SectionHeading icon="heroicons:sparkles">{{ $t('softSkills') }}</SectionHeading>
     </div>
 
     <!-- Description Quote -->
@@ -37,7 +32,7 @@ const softskills = computed(() => {
                     <!-- Optional: Source/Role indicator if needed, for now just a subtle finisher -->
                     <div class="flex items-center gap-2 pt-2">
                         <div class="w-4 h-px bg-primary-500/30"/>
-                        <span class="text-[10px] uppercase tracking-[0.2em] text-primary-500 font-bold">Philosophy & Mindset</span>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-primary-500 font-bold">{{ $t('softSkillsEyebrow') }}</span>
                     </div>
                 </div>
             </div>

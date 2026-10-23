@@ -9,7 +9,8 @@ const socialLinks = computed(() =>
   [
     { href: awesome?.project?.links?.linkedin, icon: 'mdi:linkedin', label: 'LinkedIn' },
     { href: awesome?.project?.links?.github, icon: 'mdi:github-face', label: 'GitHub' },
-    { href: awesome?.project?.links?.x, icon: 'mdi:twitter', label: 'X' },
+    // Drawn a step smaller: the X logo fills its box, the mdi glyphs do not.
+    { href: awesome?.project?.links?.x, icon: 'simple-icons:x', label: 'X', small: true },
     { href: awesome?.project?.links?.stackshare, icon: 'mdi:stack-exchange', label: 'StackShare' },
   ].filter((link) => link.href),
 )
@@ -49,7 +50,7 @@ const socialLinks = computed(() =>
           rel="noopener noreferrer"
           class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-400 hover:text-primary-400 hover:bg-primary-500/10 transition-all"
         >
-          <Icon :name="social.icon" class="text-xl" />
+          <Icon :name="social.icon" :class="social.small ? 'text-base' : 'text-xl'" />
           <span>{{ social.label }}</span>
           <span class="sr-only">({{ $t('opensInNewWindow') }})</span>
         </a>

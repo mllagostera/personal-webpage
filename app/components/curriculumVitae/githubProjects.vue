@@ -43,12 +43,7 @@ function timeAgo(dateStr: string | null): string {
 <template>
   <div v-if="hasRepos || isLoading" class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
     <div id="github-collaborations" class="mb-8">
-      <div class="flex items-center gap-3">
-          <Icon name="simple-icons:github" class="w-8 h-8 text-slate-100" />
-          <h2 class="leading-normal text-3xl font-display font-bold text-white">
-            {{ $t('githubProjects') || 'Open Source & Collaborations' }}
-          </h2>
-      </div>
+      <SectionHeading icon="simple-icons:github">{{ $t('githubProjects') || 'Open Source & Collaborations' }}</SectionHeading>
     </div>
 
     <!-- Placeholders while the request is in flight, so the section keeps its
@@ -131,16 +126,8 @@ function timeAgo(dateStr: string | null): string {
           </div>
 
           <!-- Topics chips -->
-          <div v-if="repo.topics && repo.topics.length > 0" class="flex flex-wrap gap-1.5 mb-4">
-            <span
-              v-for="topic in repo.topics"
-              :key="topic"
-              class="text-xs font-mono px-2 py-0.5 rounded-full border transition-colors
-                     text-primary-300 bg-primary-950/40 border-primary-700/30
-                     hover:bg-primary-900/40 hover:border-primary-500/50"
-            >
-              {{ topic }}
-            </span>
+          <div v-if="repo.topics && repo.topics.length > 0" class="flex flex-wrap gap-2 mb-4">
+            <TechTag v-for="topic in repo.topics" :key="topic">{{ topic }}</TechTag>
           </div>
 
           <!-- Footer: language + last push + links -->

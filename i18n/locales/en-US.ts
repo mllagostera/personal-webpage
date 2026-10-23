@@ -74,6 +74,10 @@ export default {
   errorGenericDescription: 'An unexpected error occurred while loading this page. Please try again in a moment.',
   errorRequestedPath: 'requested path:',
   errorBackHome: 'Back to base',
+  softSkillsEyebrow: 'Philosophy & mindset',
+  heroCtaExperience: 'View experience',
+  heroCtaContact: 'Get in touch',
+  allRightsReserved: 'All rights reserved.',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',
@@ -366,7 +370,7 @@ export default {
         position: 'Front-End Developer',
         description: 'Create a personal website to learn how to use Nuxt 4 and Tailwind CSS',
         startDate: 'Sep 2024',
-        endDate: 'Current',
+        endDate: 'Present',
         tools: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
         technologies: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
       }

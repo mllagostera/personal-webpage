@@ -21,12 +21,7 @@ const works = computed(() => {
 <template>
   <div class="mx-auto px-4 2xl:px-0 h-fit mt-12 border-b border-white/10 pb-12">
     <div v-if="works" id="workExperience">
-      <div class="flex items-center gap-3 mb-8">
-        <Icon name="heroicons:briefcase" class="w-8 h-8 text-primary-400" />
-        <h2 class="leading-normal text-3xl font-display font-bold text-white">
-          {{ $t('workExperience') }}
-        </h2>
-      </div>
+      <SectionHeading icon="heroicons:briefcase" class="mb-8">{{ $t('workExperience') }}</SectionHeading>
 
       <div class="relative md:ml-40 space-y-8 md:space-y-16">
         <!-- Vertical Line (Desktop only) -->
@@ -37,10 +32,11 @@ const works = computed(() => {
           :key="index"
           class="md:relative md:pl-16"
         >
-          <!-- Date indicator (Desktop only: on the left) -->
-          <div class="hidden md:block absolute right-full mr-10 top-0 text-right">
-            <div class="text-white font-display font-bold text-xl leading-tight">{{ item.endDate }}</div>
-            <div class="text-slate-400 text-xs uppercase tracking-tight leading-tight">{{ item.startDate }}</div>
+          <!-- Date indicator (Desktop only: on the left). Start first, so the
+               range reads in order; each date stays on one line when it wraps. -->
+          <div class="hidden md:block absolute right-full mr-10 top-0 text-right text-white font-display font-bold text-lg leading-snug">
+            <span class="whitespace-nowrap">{{ item.startDate }} –</span>
+            <span class="whitespace-nowrap">{{ item.endDate }}</span>
           </div>
 
           <!-- Timeline Dot (Desktop only) -->
@@ -52,8 +48,7 @@ const works = computed(() => {
              <!-- Mobile Date (Integrated in card) -->
             <div class="md:hidden flex flex-wrap items-center gap-2 mb-4 px-3 py-1.5 rounded-lg bg-primary-500/10 border border-primary-500/20 w-fit">
                 <Icon name="heroicons:calendar-days" class="w-4 h-4 text-primary-400" />
-                <span class="text-slate-100 font-bold text-sm">{{ item.endDate }}</span>
-                <span class="text-slate-400 text-xs font-medium uppercase">{{ item.startDate }}</span>
+                <span class="text-slate-100 font-bold text-sm">{{ item.startDate }} – {{ item.endDate }}</span>
             </div>
             <div class="flex flex-col mb-6">
                 <h3 class="font-bold text-2xl md:text-3xl text-slate-100 font-display group-hover:text-primary-400 transition-colors">
@@ -84,28 +79,16 @@ const works = computed(() => {
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-6 border-t border-white/5">
                  <div v-if="item.projects && item.projects.length">
-                    <span class="text-secondary-400 font-bold text-xs uppercase tracking-widest mb-4 block">{{ $t('projects') }}</span>
+                    <span class="text-secondary-400 font-semibold text-xs uppercase tracking-wider mb-3 block">{{ $t('projects') }}</span>
                     <div class="flex flex-wrap gap-2">
-                        <span 
-                            v-for="project in item.projects" 
-                            :key="project" 
-                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-xs font-medium hover:bg-white/10 transition-all"
-                        >
-                            {{ project }}
-                        </span>
+                        <TechTag v-for="project in item.projects" :key="project" variant="neutral">{{ project }}</TechTag>
                     </div>
                  </div>
 
                  <div v-if="item.technologies && item.technologies.length">
-                    <span class="text-primary-400 font-semibold text-sm uppercase tracking-wider mb-3 block">{{ $t('technologies') }}</span>
+                    <span class="text-secondary-400 font-semibold text-xs uppercase tracking-wider mb-3 block">{{ $t('technologies') }}</span>
                     <div class="flex flex-wrap gap-2">
-                         <span 
-                            v-for="tech in item.technologies" 
-                            :key="tech" 
-                            class="px-3 py-1 rounded-md bg-dark-800 border border-primary-500/20 text-primary-200 text-sm hover:bg-primary-500/10 transition-colors"
-                        >
-                            {{ tech }}
-                        </span>
+                        <TechTag v-for="tech in item.technologies" :key="tech">{{ tech }}</TechTag>
                     </div>
                 </div>
             </div>
