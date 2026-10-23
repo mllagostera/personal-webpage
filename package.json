@@ -47,7 +47,7 @@
     "@nuxtjs/i18n": "^10.6.0",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.1",
     "@vueuse/core": "^14.4.0",
-    "@vueuse/nuxt": "^14.4.0",
+    "@vueuse/nuxt": "^15.0.0",
     "nuxt": "^4.6.2",
     "nuxt-headlessui": "^1.2.2",
     "sass": "^1.106.1",
