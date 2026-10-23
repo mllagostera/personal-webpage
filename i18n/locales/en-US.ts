@@ -369,7 +369,7 @@ export default {
         position: 'Front-End Developer',
         description: 'Create a personal website to learn how to use Nuxt 4 and Tailwind CSS',
         startDate: 'Sep 2024',
-        endDate: 'Current',
+        endDate: 'Present',
         tools: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
         technologies: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
       }

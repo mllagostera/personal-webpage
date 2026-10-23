@@ -94,7 +94,7 @@ export default {
       {
         companyName: 'Firmaprofesional, Logalty Group',
         startDate: 'Jul 2026',
-        endDate: 'Actualment',
+        endDate: 'Actualitat',
         position: 'DevOps',
         description: [
           'Cobertura de CI/CD amb Bitbucket Pipelines del 6 % al 75 % dels repositoris: de 40 a 300 repositoris amb pipeline',
@@ -373,7 +373,7 @@ export default {
         position: 'Front-End Developer',
         description: 'Crear una pàgina web personal per aprendre l\'ús de Nuxt',
         startDate: 'Set 2024',
-        endDate: 'Actualment',
+        endDate: 'Actualitat',
         tools: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
         technologies: 'Vue 3, Nuxt 4, HTML, SCSS, Tailwind CSS',
       },

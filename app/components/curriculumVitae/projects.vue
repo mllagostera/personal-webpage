@@ -43,7 +43,7 @@ const projects = computed(() => {
               <div class="flex justify-between items-start mb-4">
                   <h3 class="font-bold text-xl md:text-2xl text-slate-100 font-display group-hover:text-primary-300 transition-colors">{{ item.name }}</h3>
                   <div class="text-xs font-mono text-slate-400 bg-dark-950/50 px-2 py-1 rounded border border-slate-800">
-                    {{ item.startDate }} - {{ item.endDate }}
+                    {{ item.startDate }} – {{ item.endDate }}
                   </div>
               </div>
 
