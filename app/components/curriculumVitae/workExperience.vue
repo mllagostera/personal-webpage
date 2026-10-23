@@ -33,8 +33,12 @@ const works = computed(() => {
           class="md:relative md:pl-16"
         >
           <!-- Date indicator (Desktop only: on the left). Start first, so the
-               range reads in order; each date stays on one line when it wraps. -->
-          <div class="hidden md:block absolute right-full mr-10 top-0 text-right text-white font-display font-bold text-lg leading-snug">
+               range reads in order; each date stays on one line when it wraps.
+               The explicit width matters: without one an absolutely positioned
+               box is shrink-to-fit, and some engines lay the range out on a
+               single line that runs off the left edge. w-28 fits the 120px left
+               by md:ml-40 minus mr-10. -->
+          <div class="hidden md:block absolute right-full mr-10 top-0 w-28 text-right text-white font-display font-bold text-lg leading-snug">
             <span class="whitespace-nowrap">{{ item.startDate }} –</span>
             <span class="whitespace-nowrap">{{ item.endDate }}</span>
           </div>
