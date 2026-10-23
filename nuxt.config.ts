@@ -9,6 +9,12 @@ export default defineNuxtConfig({
   srcDir: 'app',
   nitro: {
     preset: 'aws-amplify',
+    // The preset defaults the compute runtime to nodejs20.x, which is end of
+    // life and no longer receives security fixes. Keep it on the same major
+    // the app is built with (see `engines` in package.json).
+    awsAmplify: {
+      runtime: 'nodejs22.x',
+    },
   },
 
   // Permanent redirects for the section ids that used to be anchors, in case
