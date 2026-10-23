@@ -44,12 +44,7 @@ const hasDetails = (item: LanguageEntry) =>
   <div class="h-fit">
     <!-- Main Languages Block -->
     <div v-if="languages.length" class="mb-12">
-      <div class="flex items-center gap-3 mb-8">
-        <Icon name="heroicons:language" class="w-8 h-8 text-primary-400" />
-        <h2 id="languages-heading" class="leading-normal text-3xl font-display font-bold text-white">
-          {{ $t('languages') }}
-        </h2>
-      </div>
+      <SectionHeading icon="heroicons:language" heading-id="languages-heading" class="mb-8">{{ $t('languages') }}</SectionHeading>
 
       <!-- A list of languages, each described by a definition list: the level,
            the usage and the evidence are named values, not free prose. -->

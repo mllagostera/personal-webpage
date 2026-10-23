@@ -12,12 +12,7 @@ const stack = computed(() => {
 <template>
   <div class="h-fit w-full">
     <div id="technologies" class="mb-8">
-      <div class="flex items-center gap-3">
-         <Icon name="heroicons:cpu-chip" class="w-8 h-8 text-white/80" />
-         <h2 class="leading-normal text-3xl font-display font-bold text-white">
-          {{ $t('technicalSkills') }}
-        </h2>
-      </div>
+      <SectionHeading icon="heroicons:cpu-chip">{{ $t('technicalSkills') }}</SectionHeading>
     </div>
 
     <!-- Main Stack Grid -->

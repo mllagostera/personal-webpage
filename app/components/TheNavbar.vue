@@ -15,7 +15,9 @@ const navLinks = computed(() =>
 const socialLinks = computed(() => [
   { href: awesome?.project?.links?.github, icon: 'mdi:github-face', title: 'GitHub' },
   { href: awesome?.project?.links?.linkedin, icon: 'mdi:linkedin', title: 'LinkedIn' },
-  { href: awesome?.project?.links?.x, icon: 'mdi:twitter', title: 'Twitter' },
+  // The X logo fills its whole box while the mdi glyphs leave a margin, so it
+  // is drawn a step smaller to match their visual weight.
+  { href: awesome?.project?.links?.x, icon: 'simple-icons:x', title: 'X', small: true },
   { href: awesome?.project?.links?.stackshare, icon: 'mdi:stack-exchange', title: 'StackShare' },
 ].filter(link => link.href))
 
@@ -94,7 +96,7 @@ const onMenuEscape = () => {
                 rel="noopener noreferrer"
                 class="p-2 text-gray-400 hover:text-primary-400 transition-colors"
               >
-                <Icon :name="social.icon" class="text-xl" />
+                <Icon :name="social.icon" :class="social.small ? 'text-base' : 'text-xl'" />
               </a>
             </div>
           </nav>
@@ -170,7 +172,7 @@ const onMenuEscape = () => {
               class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-400 hover:text-primary-400 hover:bg-primary-500/10 transition-all"
               @click="closeMenu"
             >
-              <Icon :name="social.icon" class="text-xl" />
+              <Icon :name="social.icon" :class="social.small ? 'text-base' : 'text-xl'" />
               <span>{{ social.title }}</span>
               <span class="sr-only">({{ $t('opensInNewWindow') }})</span>
             </a>

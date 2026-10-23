@@ -16,18 +16,15 @@ const projects = computed(() => {
     url: item.url ? rt(item.url) : '',
   })) : []) as Project[]
 })
+// The locale files keep tools and technologies as one comma-separated string.
+const splitList = (value: string) => value.split(',').map((v) => v.trim()).filter(Boolean)
 // #endregion
 </script>
 <template>
   <div class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
     <div v-if="projects">
       <div id="projects" class="mb-8">
-        <div class="flex items-center gap-3">
-            <Icon name="heroicons:presentation-chart-bar" class="w-8 h-8 text-secondary-400" />
-            <h2 class="leading-normal text-3xl font-display font-bold text-white">
-            {{ $t('projects') }}
-            </h2>
-        </div>
+        <SectionHeading icon="heroicons:presentation-chart-bar">{{ $t('projects') }}</SectionHeading>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -56,12 +53,16 @@ const projects = computed(() => {
 
             <div class="space-y-4 mt-auto">
                 <div v-if="item.tools" class="border-t border-slate-700/50 pt-4">
-                    <span class="text-slate-400 font-semibold text-xs uppercase tracking-wider mb-2 block">{{ $t('tools') }}</span>
-                    <span class="text-slate-400 text-sm">{{ item.tools }}</span>
+                    <span class="text-secondary-400 font-semibold text-xs uppercase tracking-wider mb-3 block">{{ $t('tools') }}</span>
+                    <div class="flex flex-wrap gap-2">
+                        <TechTag v-for="tool in splitList(item.tools)" :key="tool">{{ tool }}</TechTag>
+                    </div>
                 </div>
                 <div v-if="item.technologies" class="border-t border-slate-700/50 pt-4">
-                    <span class="text-slate-400 font-semibold text-xs uppercase tracking-wider mb-2 block">{{ $t('technologies') }}</span>
-                    <span class="text-slate-400 text-sm">{{ item.technologies }}</span>
+                    <span class="text-secondary-400 font-semibold text-xs uppercase tracking-wider mb-3 block">{{ $t('technologies') }}</span>
+                    <div class="flex flex-wrap gap-2">
+                        <TechTag v-for="tech in splitList(item.technologies)" :key="tech">{{ tech }}</TechTag>
+                    </div>
                 </div>
                 
                  <div v-if="item.url" class="flex flex-wrap gap-4 pt-4 mt-2">

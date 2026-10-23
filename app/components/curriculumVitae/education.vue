@@ -26,12 +26,7 @@ const certifications = computed(() => {
   <div class="h-fit">
     <!-- Main Education Block -->
     <div v-if="education" id="education" class="mb-12">
-      <div class="flex items-center gap-3 mb-8">
-        <Icon name="heroicons:academic-cap" class="w-8 h-8 text-secondary-400" />
-        <h2 class="leading-normal text-3xl font-display font-bold text-white">
-          {{ $t('education') }}
-        </h2>
-      </div>
+      <SectionHeading icon="heroicons:academic-cap" class="mb-8">{{ $t('education') }}</SectionHeading>
 
       <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-8">
         <!-- Formal Education -->

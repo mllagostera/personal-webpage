@@ -74,6 +74,7 @@ export default {
   errorGenericDescription: 'An unexpected error occurred while loading this page. Please try again in a moment.',
   errorRequestedPath: 'requested path:',
   errorBackHome: 'Back to base',
+  softSkillsEyebrow: 'Philosophy & mindset',
   heroCtaExperience: 'View experience',
   heroCtaContact: 'Get in touch',
   allRightsReserved: 'All rights reserved.',

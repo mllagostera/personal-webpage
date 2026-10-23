@@ -21,12 +21,7 @@ const works = computed(() => {
 <template>
   <div class="mx-auto px-4 2xl:px-0 h-fit mt-12 border-b border-white/10 pb-12">
     <div v-if="works" id="workExperience">
-      <div class="flex items-center gap-3 mb-8">
-        <Icon name="heroicons:briefcase" class="w-8 h-8 text-primary-400" />
-        <h2 class="leading-normal text-3xl font-display font-bold text-white">
-          {{ $t('workExperience') }}
-        </h2>
-      </div>
+      <SectionHeading icon="heroicons:briefcase" class="mb-8">{{ $t('workExperience') }}</SectionHeading>
 
       <div class="relative md:ml-40 space-y-8 md:space-y-16">
         <!-- Vertical Line (Desktop only) -->
@@ -84,28 +79,16 @@ const works = computed(() => {
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 pt-6 border-t border-white/5">
                  <div v-if="item.projects && item.projects.length">
-                    <span class="text-secondary-400 font-bold text-xs uppercase tracking-widest mb-4 block">{{ $t('projects') }}</span>
+                    <span class="text-secondary-400 font-semibold text-xs uppercase tracking-wider mb-3 block">{{ $t('projects') }}</span>
                     <div class="flex flex-wrap gap-2">
-                        <span 
-                            v-for="project in item.projects" 
-                            :key="project" 
-                            class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-xs font-medium hover:bg-white/10 transition-all"
-                        >
-                            {{ project }}
-                        </span>
+                        <TechTag v-for="project in item.projects" :key="project" variant="neutral">{{ project }}</TechTag>
                     </div>
                  </div>
 
                  <div v-if="item.technologies && item.technologies.length">
-                    <span class="text-primary-400 font-semibold text-sm uppercase tracking-wider mb-3 block">{{ $t('technologies') }}</span>
+                    <span class="text-secondary-400 font-semibold text-xs uppercase tracking-wider mb-3 block">{{ $t('technologies') }}</span>
                     <div class="flex flex-wrap gap-2">
-                         <span 
-                            v-for="tech in item.technologies" 
-                            :key="tech" 
-                            class="px-3 py-1 rounded-md bg-dark-800 border border-primary-500/20 text-primary-200 text-sm hover:bg-primary-500/10 transition-colors"
-                        >
-                            {{ tech }}
-                        </span>
+                        <TechTag v-for="tech in item.technologies" :key="tech">{{ tech }}</TechTag>
                     </div>
                 </div>
             </div>
