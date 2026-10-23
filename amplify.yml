@@ -3,11 +3,11 @@ frontend:
   phases:
     preBuild:
       commands:
-        # The build image ships an older Node 22 than nuxt's engines allow
-        # (^22.19.0). Take the latest 22.x, the same major as the runtime,
-        # without the image's default global packages (Amplify CLI, Cypress,
-        # ...), which the build never uses.
-        - nvm install 22 --skip-default-packages
+        # The build image defaults to Node 22. Take the latest 24.x, the same
+        # major as the compute runtime (see nuxt.config.ts), without the
+        # image's default global packages (Amplify CLI, Cypress, ...), which
+        # the build never uses.
+        - nvm install 24 --skip-default-packages
         - node -v
         - npm install -g npm@11.8.0
         - npm ci --legacy-peer-deps
