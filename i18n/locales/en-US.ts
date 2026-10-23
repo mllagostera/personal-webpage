@@ -59,10 +59,6 @@ export default {
   languageCefr: 'CEFR',
   languageLevelNativeAria: 'Mother tongue',
   languageLevelCefrAria: 'Level {level} of the Common European Framework of Reference for Languages',
-  languageFlagLabel: '{language}, language code {code}',
-  languageUsageLabel: 'Usage',
-  languageEvidenceLabel: 'Where it is used',
-  languageNoteLabel: 'Current reach',
   languageCertificationLabel: 'Certification',
   languageVerifyCertification: 'Verify',
   contactMessageHint: 'Minimum 10 characters, maximum 2000.',
@@ -342,13 +338,11 @@ export default {
         name: 'Spanish',
         bcp47: 'es',
         level: 'native',
-        flag: 'flag:es-4x3',
       },
       {
         name: 'Catalan',
         bcp47: 'ca',
         level: 'native',
-        flag: 'flag:es-ct-4x3',
         certification: {
           title: 'Certificat de nivell C1 de català',
           issuer: 'Generalitat de Catalunya',
@@ -361,7 +355,6 @@ export default {
         usage: 'Professional, daily',
         evidence: 'International team of 7: ceremonies, documentation and PKI specifications in English.',
         note: 'Comfortable in technical meetings and writing; developing for high-level negotiation.',
-        flag: 'flag:gb-4x3',
       },
     ],
     projects: [

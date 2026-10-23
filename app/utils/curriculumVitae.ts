@@ -54,7 +54,6 @@ export interface Language {
   /** Where the level stops being comfortable. Stated, not implied. */
   note?: string
   certification?: LanguageCertification
-  flag: string
 }
 
 export interface Education {
