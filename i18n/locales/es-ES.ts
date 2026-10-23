@@ -356,9 +356,7 @@ export default {
         name: 'Inglés',
         bcp47: 'en',
         level: 'B2',
-        usage: 'Profesional, habitual',
-        evidence: 'Equipo internacional de 7 personas: ceremonias, documentación y especificaciones de PKI en inglés.',
-        note: 'Cómodo en reuniones técnicas y escritura; en desarrollo para negociación a alto nivel.',
+        usage: 'Idioma de trabajo diario en un equipo internacional: reuniones técnicas, documentación y especificaciones.',
       },
     ],
     projects: [

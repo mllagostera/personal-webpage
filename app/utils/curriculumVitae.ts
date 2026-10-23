@@ -47,12 +47,8 @@ export interface Language {
   /** BCP-47 tag. Feeds `alternateName` in the schema.org Language object. */
   bcp47: string
   level: LanguageLevel
-  /** How the language is used at work, e.g. "professional, daily". */
+  /** One line on how the language is used at work: what it is used for, not how well. */
   usage?: string
-  /** One concrete situation that evidences the level. */
-  evidence?: string
-  /** Where the level stops being comfortable. Stated, not implied. */
-  note?: string
   certification?: LanguageCertification
 }
 

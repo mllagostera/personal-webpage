@@ -35,8 +35,6 @@ const languages = computed(() => {
       // A mother tongue sits past the top of the scale, so it fills it.
       filled: isNative ? CEFR_BANDS.length : CEFR_BANDS.indexOf(level as typeof CEFR_BANDS[number]) + 1,
       usage: text(l.usage),
-      evidence: text(l.evidence),
-      note: text(l.note),
       certification,
     }
   }) : []
@@ -99,13 +97,10 @@ const languages = computed(() => {
           </div>
 
           <div
-            v-if="item.usage || item.evidence || item.note || item.certification"
+            v-if="item.usage || item.certification"
             class="col-span-2 md:col-span-1 space-y-2 text-sm leading-relaxed max-w-prose"
           >
-            <p v-if="item.usage" class="text-slate-200 font-medium">{{ item.usage }}</p>
-            <p v-if="item.evidence || item.note" class="text-slate-400">
-              {{ item.evidence }} {{ item.note }}
-            </p>
+            <p v-if="item.usage" class="text-slate-300">{{ item.usage }}</p>
 
             <!-- Title on its own line, issuer and year beneath: run inline,
                  a separator dot ends up orphaned at the start of a line on
