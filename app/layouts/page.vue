@@ -18,7 +18,7 @@
     </main>
     <footer class="py-6 border-t border-gray-50/[0.2] text-center text-sm text-gray-400">
       <div class="max-w-screen-2xl mx-auto px-4">
-        &copy; {{ new Date().getFullYear() }} {{ awesome.name }}. All rights reserved.
+        &copy; {{ new Date().getFullYear() }} {{ awesome.name }}. {{ $t('allRightsReserved') }}
       </div>
     </footer>
   </div>

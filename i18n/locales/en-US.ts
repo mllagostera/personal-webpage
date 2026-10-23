@@ -74,6 +74,9 @@ export default {
   errorGenericDescription: 'An unexpected error occurred while loading this page. Please try again in a moment.',
   errorRequestedPath: 'requested path:',
   errorBackHome: 'Back to base',
+  heroCtaExperience: 'View experience',
+  heroCtaContact: 'Get in touch',
+  allRightsReserved: 'All rights reserved.',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',

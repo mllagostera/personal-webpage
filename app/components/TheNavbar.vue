@@ -45,8 +45,11 @@ const onMenuEscape = () => {
           class="flex items-center gap-2 font-bold text-lg text-primary-500 hover:text-primary-400 transition-colors"
           @click="closeMenu"
         >
-          <Icon name="pixelarticons:users" class="text-xl" />
-          <span class="capitalize">{{ awesome.name }}</span>
+          <span
+            class="grid place-items-center w-8 h-8 rounded-lg border border-primary-500/40 bg-primary-500/10 font-display text-sm"
+            aria-hidden="true"
+          >ML</span>
+          <span>{{ awesome.name }}</span>
         </NuxtLink>
 
         <!-- Right Side: Controls & Navigation -->

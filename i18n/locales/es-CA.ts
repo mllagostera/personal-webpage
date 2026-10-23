@@ -74,6 +74,9 @@ export default {
   errorGenericDescription: 'Hi ha hagut un error inesperat en carregar aquesta pàgina. Torna-ho a provar d\'aquí a un moment.',
   errorRequestedPath: 'ruta sol·licitada:',
   errorBackHome: 'Tornar a la base',
+  heroCtaExperience: 'Veure experiència',
+  heroCtaContact: 'Contactar',
+  allRightsReserved: 'Tots els drets reservats.',
   cv: {
     information: {
       fullName: 'Miquel Llagostera',

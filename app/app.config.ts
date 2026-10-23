@@ -51,7 +51,7 @@ declare module '@nuxt/schema' {
 
 export default defineAppConfig({
   awesome: {
-    name: 'Portfolio & Resume',
+    name: 'Miquel Llagostera',
     project: {
       links: {
         github: 'https://github.com/mllagostera',
