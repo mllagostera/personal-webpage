@@ -1,72 +1,61 @@
 <script setup lang="ts">
+import type { StackItem } from '~/utils/curriculumVitae'
+
 const { tm, rt } = useI18n()
 const technologies = computed(() => {
   const techs = tm('cv.technologies') as unknown as string[]
   return Array.isArray(techs) ? techs.map((t) => t ? rt(t) : '') : []
 })
 const stack = computed(() => {
-  const stk = tm('cv.stack') as unknown as string[]
-  return Array.isArray(stk) ? stk.map((s) => s ? rt(s) : '') : []
+  const stk = tm('cv.stack') as unknown as StackItem[]
+  return Array.isArray(stk) ? stk.map((s) => ({ icon: rt(s.icon), name: rt(s.name) })) : []
 })
 </script>
 <template>
-  <div class="h-fit w-full">
-    <div id="technologies" class="mb-8">
-      <SectionHeading icon="heroicons:cpu-chip">{{ $t('technicalSkills') }}</SectionHeading>
-    </div>
+  <section id="technologies" aria-labelledby="technologies-heading">
+    <SectionHeading icon="heroicons:cpu-chip" heading-id="technologies-heading" class="mb-8">{{ $t('technicalSkills') }}</SectionHeading>
 
-    <!-- Main Stack Grid -->
-    <div class="glass-card p-8 md:p-10 mb-8 border border-white/5 relative overflow-hidden">
-        <!-- Decoration light -->
-        <div class="absolute -top-20 -right-20 w-40 h-40 bg-primary-500/10 rounded-full blur-3xl pointer-events-none"/>
+    <!-- One card, two columns. The column split is the same as in the soft
+         skills card below, so the divider lines up from one section to the
+         next. -->
+    <div class="glass-card p-6 md:p-8 grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-8 lg:gap-0">
+      <div class="lg:pr-10">
+        <h3 class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-6">{{ $t('tools') }}</h3>
 
-        <h3 class="font-bold text-xs uppercase tracking-widest text-slate-400 mb-10 flex items-center gap-2">
-          <span class="w-8 h-px bg-primary-500/30"/>
-          {{ $t('tools') }}
-        </h3>
-        
-        <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-8 gap-x-4 gap-y-10">
-            <div 
-                v-for="(item, index) in stack" 
-                :key="index"
-                class="group relative flex flex-col items-center justify-center p-2"
-            >
-                <div class="relative z-10 p-4 rounded-2xl bg-white/5 border border-white/5 group-hover:border-primary-500/50 group-hover:bg-primary-500/10 transition-all duration-500 group-hover:-translate-y-2 group-hover:shadow-[0_10px_30px_-10px_rgba(var(--color-primary-500),0.3)]">
-                    <div v-if="item.includes('symfony')" class="custom-icon-symfony grayscale hover:grayscale-0 contrast-125 transition-all duration-300"/>
-                    <div v-else-if="item.includes('tailwindcss')" class="custom-icon-tailwindcss grayscale hover:grayscale-0 contrast-125 transition-all duration-300"/>
-                    <Icon 
-                      v-else
-                      :name="item" 
-                      size="36px" 
-                      class="text-white brightness-200 contrast-125 grayscale hover:grayscale-0 transition-all duration-300" 
-                    />
-                </div>
-                
-                <!-- Label on hover -->
-                <!-- Revealed on hover, which touch devices do not have; there
-                     the label is simply always on, since these are bare logos
-                     with no visible name otherwise. -->
-                <span class="absolute -bottom-6 text-[10px] font-bold uppercase tracking-tighter text-slate-400 opacity-0 [@media(hover:none)]:opacity-100 group-hover:opacity-100 group-hover:text-primary-400 transition-all duration-300">
-                  {{ item.split(':').pop()?.replace('-plain', '') }}
-                </span>
+        <!-- Every logo carries its name: several (Bitbucket, Claude, Symfony,
+             Ansible) are not recognisable on their own, and a hover-only label
+             never shows on touch screens. -->
+        <ul class="grid grid-cols-[repeat(auto-fill,minmax(5rem,1fr))] gap-x-3 gap-y-6 list-none">
+          <li
+            v-for="item in stack"
+            :key="item.icon"
+            class="group flex flex-col items-center gap-2 text-center"
+          >
+            <div class="p-3 rounded-xl bg-white/5 border border-white/5 group-hover:border-primary-500/40 group-hover:bg-primary-500/10 transition-colors">
+              <div v-if="item.icon.includes('symfony')" class="custom-icon-symfony grayscale group-hover:grayscale-0 contrast-125 transition-all" aria-hidden="true"/>
+              <div v-else-if="item.icon.includes('tailwindcss')" class="custom-icon-tailwindcss grayscale group-hover:grayscale-0 contrast-125 transition-all" aria-hidden="true"/>
+              <Icon
+                v-else
+                :name="item.icon"
+                size="36px"
+                aria-hidden="true"
+                class="text-white brightness-200 contrast-125 grayscale group-hover:grayscale-0 transition-all"
+              />
             </div>
-        </div>
-    </div>
+            <span class="text-xs text-slate-400 group-hover:text-slate-200 transition-colors">{{ item.name }}</span>
+          </li>
+        </ul>
+      </div>
 
-    <div class="grid grid-cols-1 gap-8">
-        <!-- Workflow -->
-         <div class="glass-card p-8 border border-white/5 relative overflow-hidden group">
-            <h3 class="font-bold text-xs uppercase tracking-widest text-slate-400 mb-6 flex items-center gap-2">
-                 <Icon name="heroicons:arrow-path" class="w-4 h-4 text-white/40" />
-                {{ $t('workflow') }}
-            </h3>
-             <ul class="grid grid-cols-1 gap-3">
-                <li v-for="(item, index) in technologies" :key="index + 'flow'" class="flex items-center gap-3 text-slate-400 group-hover:text-slate-200 transition-colors duration-300" >
-                  <Icon name="heroicons:check-circle" class="w-5 h-5 text-white/20 group-hover:text-primary-500/50 transition-colors" />
-                   <span class="text-sm font-medium">{{ item }}</span>
-                </li>
-            </ul>
-        </div>
+      <div class="lg:pl-10 lg:border-l border-white/5">
+        <h3 class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-6">{{ $t('workflow') }}</h3>
+        <ul class="space-y-3 list-none">
+          <li v-for="(item, index) in technologies" :key="index" class="flex items-start gap-3 text-sm text-slate-300">
+            <Icon name="heroicons:check-circle" class="text-lg text-primary-500/70 shrink-0" aria-hidden="true" />
+            {{ item }}
+          </li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
 </template>

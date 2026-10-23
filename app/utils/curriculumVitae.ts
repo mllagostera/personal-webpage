@@ -29,6 +29,12 @@ export interface Skill {
   title: string
 }
 
+/** One entry of the tools grid: an Iconify name and the label shown under it. */
+export interface StackItem {
+  icon: string
+  name: string
+}
+
 /** CEFR band, or `native` for a mother tongue — which CEFR does not describe. */
 export type LanguageLevel = 'native' | 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'
 

@@ -42,8 +42,8 @@ const languages = computed(() => {
 // #endregion
 </script>
 <template>
-  <div class="h-fit">
-    <div v-if="languages.length" class="mb-12">
+  <section>
+    <div v-if="languages.length">
       <SectionHeading icon="heroicons:language" heading-id="languages-heading" class="mb-8">{{ $t('languages') }}</SectionHeading>
 
       <!-- One row per language rather than one card each: the entries carry
@@ -139,5 +139,5 @@ const languages = computed(() => {
     <div v-else class="font-bold text-red-500 underline text-center">
       Please add language in app config
     </div>
-  </div>
+  </section>
 </template>
