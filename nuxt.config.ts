@@ -22,8 +22,8 @@ export default defineNuxtConfig({
   // a fragment never reaches the server (see app/plugins/legacy-hash.client.ts).
   routeRules: {
     '/about': { redirect: { to: '/', statusCode: 301 } },
-    '/technologies': { redirect: { to: '/', statusCode: 301 } },
-    '/softskills': { redirect: { to: '/', statusCode: 301 } },
+    '/technologies': { redirect: { to: '/experience', statusCode: 301 } },
+    '/softskills': { redirect: { to: '/experience', statusCode: 301 } },
     '/workExperience': { redirect: { to: '/experience', statusCode: 301 } },
     '/education': { redirect: { to: '/experience', statusCode: 301 } },
     '/github-collaborations': { redirect: { to: '/projects', statusCode: 301 } },

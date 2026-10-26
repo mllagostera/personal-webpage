@@ -14,6 +14,8 @@ export interface Summary {
 }
 export interface Company {
   position: string
+  /** Short label for the stage in the home page pipeline. Falls back to `position`. */
+  stage?: string
   companyName: string
   startDate: string
   endDate?: string
@@ -73,14 +75,39 @@ export interface Certification {
 export interface WorkCertification {
   certifications?: Certification[] | null
 }
-export interface Project {
-  name: string
-  startDate: string
-  endDate?: string
-  description?: string
-  position: string
-  developmentMethodologies?: string[] | string
-  tools?: string[] | string
-  technologies: string[] | string
-  url?: string
+/** One line of the home page `impacto.log`: a snake_case key and its result. */
+export interface ImpactMetric {
+  key: string
+  value: string
+}
+
+export interface CaseStudyFact {
+  label: string
+  value: string
+}
+
+/**
+ * A case study: problem, decision and measured result. Each one is a page at
+ * `/projects/<slug>`, so the slug is identical in every locale and must also be
+ * listed in `SITE_ROUTES`.
+ */
+export interface CaseStudy {
+  slug: string
+  years: string
+  /** The headline number on the cards, e.g. `2h → 5′`. */
+  metric: string
+  title: string
+  /** One sentence for the cards. */
+  summary: string
+  /** The opening paragraph of the case study page. */
+  lead: string
+  facts: CaseStudyFact[]
+  before: string
+  after: string
+  /** What `before` and `after` measure. */
+  unit: string
+  steps: string[]
+  /** The stages of the pipeline the case built, drawn as a flow. */
+  flow: string[]
+  technologies: string[]
 }

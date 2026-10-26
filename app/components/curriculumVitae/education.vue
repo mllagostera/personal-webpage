@@ -13,64 +13,60 @@ const education = computed(() => ({
 const certifications = computed(() => {
   const certs = tm('cv.certifications') as unknown as Certification[]
   return Array.isArray(certs) ? certs.map((c) => ({
-    ...c,
     title: c.title ? rt(c.title) : '',
     school: c.school ? rt(c.school) : '',
     scholastic: c.scholastic ? rt(c.scholastic) : '',
     urlDescription: c.urlDescription ? rt(c.urlDescription) : '',
+    url: c.url ? rt(c.url) : '',
   })) : []
 })
 // #endregion
 </script>
 <template>
-  <div class="h-fit">
-    <!-- Main Education Block -->
-    <div v-if="education" id="education" class="mb-12">
-      <SectionHeading icon="heroicons:academic-cap" class="mb-8">{{ $t('education') }}</SectionHeading>
-
-      <div class="relative border-l-2 border-slate-700 ml-3 md:ml-6 space-y-8">
-        <!-- Formal Education -->
-        <div class="relative pl-8 md:pl-12">
-            <div class="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-dark-950 border-2 border-secondary-500 shadow-[0_0_10px_rgba(255,255,255,0.3)]"/>
-            
-            <div class="glass-card p-6 md:p-8 hover:border-secondary-500/30 transition-colors duration-300">
-                <h3 class="font-bold text-xl md:text-2xl text-slate-100 font-display mb-1">{{ education.title }}</h3>
-                <div class="text-primary-400 font-semibold text-lg flex flex-wrap items-center gap-2">
-                    <Icon name="heroicons:building-library" class="w-5 h-5" />
-                    <span>{{ education.school }}</span>
-                    <span class="text-slate-400">•</span>
-                    <span class="text-slate-300">{{ education.scholastic }}</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Certifications -->
-        <div
-          v-for="(item, index) in certifications"
-          :key="index"
-          class="relative pl-8 md:pl-12"
-        >
-          <div class="absolute -left-[5px] top-2 w-2 h-2 rounded-full bg-slate-500"/>
-           <div class="glass-card p-5 md:p-6 border-slate-800/50 hover:border-secondary-500/20 transition-colors duration-300">
-              <h3 class="font-bold text-lg text-slate-200 font-display flex items-center justify-between">
-                  {{ item.title }}
-                  <a v-if="item.url" :href="rt(item.url)" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-secondary-400 border border-secondary-500/30 px-2 py-1 rounded hover:bg-secondary-500/10 transition-colors flex items-center gap-1">
-                      {{ item.urlDescription }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
-                      <Icon name="heroicons:arrow-top-right-on-square" class="w-3 h-3" />
-                  </a>
-              </h3>
-              <div class="text-slate-400 font-medium text-sm mt-1 flex flex-wrap items-center gap-2">
-                <span>{{ item.school }}</span>
-                <span class="w-1 h-1 rounded-full bg-slate-600"/>
-                <span>{{ item.scholastic }}</span>
-              </div>
-          </div>
-        </div>
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(min(320px,100%),1fr))] gap-4">
+    <section
+      id="education"
+      class="px-6 sm:px-7 py-6 flex flex-col gap-4 rounded-[10px] border border-line"
+      aria-labelledby="education-heading"
+    >
+      <h2 id="education-heading" class="font-mono font-normal text-[13px] text-muted">
+        <span aria-hidden="true"># build-deps · </span><span class="lowercase">{{ $t('education') }}</span>
+      </h2>
+      <div class="flex flex-col gap-1">
+        <h3 class="font-display font-bold text-xl leading-[1.3] text-white">{{ education.title }}</h3>
+        <p class="font-sans text-sm text-slate-400">{{ education.school }} · {{ education.scholastic }}</p>
       </div>
-    </div>
-    
-    <div v-else class="font-bold text-red-500 underline text-center">
-      Please add education in app config
-    </div>
+    </section>
+
+    <section
+      v-if="certifications.length"
+      class="px-6 sm:px-7 py-6 flex flex-col gap-3.5 rounded-[10px] border border-line"
+      aria-labelledby="certifications-heading"
+    >
+      <h2 id="certifications-heading" class="font-mono font-normal text-[13px] text-muted">
+        <span aria-hidden="true"># signatures · </span><span class="lowercase">{{ $t('certifications') }}</span>
+      </h2>
+      <ul class="flex flex-col divide-y divide-line">
+        <li
+          v-for="item in certifications"
+          :key="item.title"
+          class="flex justify-between items-baseline gap-4 py-3.5 first:pt-0 last:pb-0"
+        >
+          <div class="flex flex-col gap-0.5">
+            <h3 class="font-display font-bold text-base text-white">{{ item.title }}</h3>
+            <p class="font-sans text-[13px] text-slate-400">{{ item.school }} · {{ item.scholastic }}</p>
+          </div>
+          <a
+            v-if="item.url"
+            :href="item.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="shrink-0 text-xs text-primary-400 hover:text-primary-300 transition-colors"
+          >
+            {{ item.urlDescription }} ↗<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
+          </a>
+        </li>
+      </ul>
+    </section>
   </div>
 </template>

@@ -18,15 +18,16 @@ const { data: githubRepos, status } = useAsyncData<PublicRepo[]>(
 const isLoading = computed(() => status.value === 'pending')
 const hasRepos = computed(() => (githubRepos.value?.length ?? 0) > 0)
 
-// How many placeholder cards to draw: the endpoint asks GitHub for six, and the
-// grid is two columns wide, so four fills the fold without overshooting.
-const SKELETON_COUNT = 4
+// How many placeholder rows to draw while the request is in flight.
+const SKELETON_COUNT = 3
+
+const { awesome } = useAppConfig()
+const githubUser = computed(() => awesome?.project?.links?.github?.split('/').pop() || '')
 
 const { locale } = useI18n()
 
 // Intl does the pluralisation and the wording in whatever locale is active, so
-// these strings no longer have to be hand-written — and no longer come out in
-// English on a page served as `lang="es"` or `lang="ca"`.
+// these strings never have to be hand-written per language.
 function timeAgo(dateStr: string | null): string {
   if (!dateStr) return ''
 
@@ -38,137 +39,63 @@ function timeAgo(dateStr: string | null): string {
   if (months < 12) return rtf.format(-months, 'month')
   return rtf.format(-Math.floor(months / 12), 'year')
 }
+
+const repoMeta = (repo: PublicRepo) =>
+  [repo.language, repo.stargazers_count > 0 ? `★ ${repo.stargazers_count}` : '', timeAgo(repo.pushed_at)]
+    .filter(Boolean)
+    .join(' · ')
 </script>
 
 <template>
-  <div v-if="hasRepos || isLoading" class="mx-auto px-4 2xl:px-0 h-fit mt-12 mb-24">
-    <div id="github-collaborations" class="mb-8">
-      <SectionHeading icon="simple-icons:github">{{ $t('githubProjects') || 'Open Source & Collaborations' }}</SectionHeading>
+  <section
+    v-if="hasRepos || isLoading"
+    id="github-collaborations"
+    class="px-4 sm:px-8 pb-14 flex flex-col gap-4"
+    aria-labelledby="github-heading"
+  >
+    <div class="flex flex-wrap justify-between gap-3 text-sm text-muted">
+      <h2 id="github-heading" class="font-mono font-normal text-sm text-muted">
+        <span aria-hidden="true">$ gh repo list {{ githubUser }} --public</span>
+        <span class="sr-only">{{ $t('githubProjects') }}</span>
+      </h2>
+      <span><span class="text-primary-400" aria-hidden="true">●</span> {{ $t('githubLive') }}</span>
     </div>
 
     <!-- Placeholders while the request is in flight, so the section keeps its
          space instead of popping in and shoving the footer down. -->
-    <div v-if="isLoading" class="grid grid-cols-1 md:grid-cols-2 gap-6" role="status" aria-live="polite">
+    <div v-if="isLoading" class="flex flex-col gap-3" role="status" aria-live="polite">
       <span class="sr-only">{{ $t('loading') }}</span>
       <div
         v-for="index in SKELETON_COUNT"
         :key="index"
-        class="glass-card border-slate-700/50 p-6 md:p-8"
+        class="px-6 py-[18px] rounded-[10px] border border-line animate-pulse grid grid-cols-[repeat(auto-fit,minmax(min(200px,100%),1fr))] gap-3"
         aria-hidden="true"
       >
-        <div class="animate-pulse space-y-4">
-          <div class="flex items-center justify-between gap-2">
-            <div class="h-6 w-1/2 rounded bg-slate-700/50" />
-            <div class="h-5 w-12 rounded bg-slate-800/70" />
-          </div>
-          <div class="space-y-2">
-            <div class="h-3 w-full rounded bg-slate-800/70" />
-            <div class="h-3 w-4/5 rounded bg-slate-800/70" />
-          </div>
-          <div class="flex gap-1.5">
-            <div class="h-4 w-16 rounded-full bg-slate-800/70" />
-            <div class="h-4 w-20 rounded-full bg-slate-800/70" />
-            <div class="h-4 w-12 rounded-full bg-slate-800/70" />
-          </div>
-          <div class="border-t border-slate-700/50 pt-4">
-            <div class="flex items-center justify-between">
-              <div class="h-3 w-28 rounded bg-slate-800/70" />
-              <div class="h-3 w-20 rounded bg-slate-800/70" />
-            </div>
-          </div>
-        </div>
+        <div class="h-4 w-2/3 rounded bg-slate-800" />
+        <div class="h-4 w-full rounded bg-slate-800/70" />
+        <div class="h-4 w-1/2 rounded bg-slate-800/70" />
       </div>
     </div>
 
-    <div v-else class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div
-        v-for="repo in githubRepos"
-        :key="repo.id"
-        class="glass-card group relative overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary-500/10 border-slate-700/50"
-      >
-        <!-- Gradient overlay on hover -->
-        <div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
-
-        <div class="p-6 md:p-8 relative z-10 flex flex-col h-full">
-
-          <!-- Header: name + badges -->
-          <div class="flex justify-between items-start mb-4 gap-2">
-            <div class="flex items-center gap-2 flex-wrap">
-              <h3 class="font-bold text-xl md:text-2xl text-slate-100 font-display group-hover:text-primary-300 transition-colors">{{ repo.name }}</h3>
-              <!-- Fork badge -->
-              <span v-if="repo.fork" class="flex items-center gap-1 text-xs font-mono text-sky-400 bg-sky-950/60 px-2 py-0.5 rounded border border-sky-700/40">
-                <Icon name="heroicons:arrow-path-rounded-square" class="w-3 h-3" />
-                {{ $t('fork') }}
-              </span>
-            </div>
-            <!-- Stars + forks -->
-            <div class="flex items-center gap-2 shrink-0">
-              <div v-if="repo.stargazers_count > 0" class="flex items-center gap-1 text-xs font-mono text-amber-400 bg-dark-950/50 px-2 py-1 rounded border border-slate-800">
-                 <Icon name="heroicons:star-solid" class="w-3 h-3" />
-                {{ repo.stargazers_count }}
-              </div>
-              <div v-if="repo.forks_count > 0" class="flex items-center gap-1 text-xs font-mono text-slate-400 bg-dark-950/50 px-2 py-1 rounded border border-slate-800">
-                <Icon name="heroicons:arrow-path-rounded-square" class="w-3 h-3" />
-                {{ repo.forks_count }}
-              </div>
-            </div>
-          </div>
-
-          <!-- Description -->
-          <div v-if="repo.description" class="mb-4 flex-grow">
-             <span class="text-secondary-400 font-semibold text-xs uppercase tracking-wider mb-2 block">{{ $t('description') }}</span>
-             <p class="text-slate-300 text-sm leading-relaxed">
-                 {{ repo.description }}
-             </p>
-          </div>
-          <div v-else class="mb-4 flex-grow text-slate-400 italic text-sm">
-             {{ $t('noDescription') }}
-          </div>
-
-          <!-- Topics chips -->
-          <div v-if="repo.topics && repo.topics.length > 0" class="flex flex-wrap gap-2 mb-4">
-            <TechTag v-for="topic in repo.topics" :key="topic">{{ topic }}</TechTag>
-          </div>
-
-          <!-- Footer: language + last push + links -->
-          <div class="space-y-3 mt-auto border-t border-slate-700/50 pt-4">
-            <div class="flex items-center justify-between flex-wrap gap-2">
-              <!-- Primary language -->
-              <div v-if="repo.language" class="flex items-center gap-2 text-slate-300 text-sm">
-                <span class="w-2 h-2 rounded-full bg-primary-500 shrink-0"/>
-                <span class="text-slate-400 text-xs uppercase tracking-wider mr-1">{{ $t('primaryLanguage') }}:</span>
-                {{ repo.language }}
-              </div>
-              <!-- Last push -->
-              <div v-if="repo.pushed_at" class="flex items-center gap-1 text-xs text-slate-400">
-                <Icon name="heroicons:clock" class="w-3 h-3" />
-                {{ timeAgo(repo.pushed_at) }}
-              </div>
-            </div>
-
-            <!-- Action links -->
-            <div class="flex items-center justify-between gap-3 pt-1">
-              <!-- Live site -->
-              <a
-                v-if="repo.homepage"
-                :href="repo.homepage"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center gap-1.5 text-xs font-semibold text-emerald-400 hover:text-emerald-300 transition-colors"
-              >
-                <Icon name="heroicons:globe-alt" class="w-3.5 h-3.5" />
-                {{ $t('liveDemo') }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
-              </a>
-              <span v-else/>
-              <!-- View repo -->
-              <a :href="repo.html_url" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-sm font-bold text-secondary-400 hover:text-secondary-300 transition-colors">
-                 {{ $t('viewRepository') }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
-                 <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <ul v-else class="flex flex-col gap-3">
+      <li v-for="repo in githubRepos" :key="repo.id">
+        <a
+          :href="repo.html_url"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-6 py-[18px] grid grid-cols-[repeat(auto-fit,minmax(min(200px,100%),1fr))] items-center gap-3
+                 rounded-[10px] border border-line text-sm text-slate-300 hover:border-primary-500 transition-colors"
+        >
+          <span class="flex flex-wrap items-center gap-2">
+            <span class="font-bold text-white">{{ repo.name }}</span>
+            <span v-if="repo.fork" class="px-1.5 py-0.5 rounded border border-line text-[11px] text-muted">{{ $t('fork') }}</span>
+          </span>
+          <span class="font-sans text-slate-400">{{ repo.description || $t('noDescription') }}</span>
+          <span class="text-primary-400">
+            {{ repoMeta(repo) }}<template v-if="repoMeta(repo)"> · </template>repo ↗<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </section>
 </template>

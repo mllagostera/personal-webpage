@@ -4,10 +4,9 @@ import { ERROR_404_TITLE, ERROR_GENERIC_TITLE } from '~~/shared/site'
 
 // Nuxt renders this component instead of `app.vue` for every unhandled error,
 // on the server and on the client, so anything app.vue provides has to be
-// repeated here — hence the contact modal below, which the navbar button opens.
+// repeated here — the route loader and the head below.
 const props = defineProps<{ error: NuxtError }>()
 
-const { isContactModalOpen, closeContactModal, restoreContactModalFocus } = useContactModal()
 const { locale } = useI18n()
 
 const statusCode = computed(() => props.error?.statusCode || 500)
@@ -122,7 +121,7 @@ useHead({
     lang: locale,
   },
   meta: [
-    { name: 'theme-color', content: '#020617' },
+    { name: 'theme-color', content: '#030712' },
   ],
 })
 
@@ -211,16 +210,6 @@ useSeoMeta({
         </a>
       </div>
     </div>
-
-    <!-- Same global contact modal as app.vue: the navbar button in the layout
-         opens it, and app.vue is not rendered on the error page. -->
-    <LazyContactModal
-      :is-open="isContactModalOpen"
-      @close="closeContactModal"
-      @closed="restoreContactModalFocus"
-    >
-      <LazyContactFormContent />
-    </LazyContactModal>
   </NuxtLayout>
 </template>
 

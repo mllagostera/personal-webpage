@@ -8,13 +8,8 @@ useSiteSeo('/contact')
 </script>
 
 <template>
-  <div class="mx-auto w-full overflow-x-hidden pt-8 px-4 2xl:px-0">
-    <h1 class="sr-only">{{ $t('pageTitleContact') }}</h1>
-    <div id="contact" class="grid grid-cols-1 xl:grid-cols-2 gap-8 animate-fade-in-up">
-      <ContactDetails />
-      <div class="glass-card p-8 md:p-10 border border-white/10">
-        <ContactFormContent />
-      </div>
-    </div>
+  <div id="contact" class="px-4 sm:px-8 py-14 sm:py-16 grid grid-cols-[repeat(auto-fit,minmax(min(340px,100%),1fr))] gap-12">
+    <ContactDetails />
+    <ContactFormContent />
   </div>
 </template>
