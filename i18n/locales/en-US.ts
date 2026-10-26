@@ -260,7 +260,7 @@ export default {
       { icon: 'devicon-plain:amazonwebservices', name: 'AWS' },
       { icon: 'devicon-plain:kubernetes', name: 'Kubernetes' },
       { icon: 'devicon-plain:docker', name: 'Docker' },
-      { icon: 'devicon:bitbucket', name: 'Bitbucket' },
+      { icon: 'simple-icons:bitbucket', name: 'Bitbucket' },
       { icon: 'devicon-plain:jenkins', name: 'Jenkins' },
       { icon: 'devicon-plain:ansible', name: 'Ansible' },
       { icon: 'simple-icons:claude', name: 'Claude Code' },
