@@ -25,12 +25,14 @@ const handle = computed(() => (awesome?.name || '').toLowerCase().replace(/\s+/g
 <template>
   <section id="about" class="px-4 sm:px-8 pt-14 sm:pt-[72px] pb-14 flex flex-col gap-7">
     <!-- Decoration: the heading and tagline below say the same in words. -->
-    <!-- Each flag stays whole: a line break after its leading dashes reads as
-         a typo. The flags share a line in the source because the compiler
-         drops whitespace that spans a newline between two elements. -->
-    <p class="text-sm sm:text-[15px] text-muted" aria-hidden="true">
-      $ <span class="text-slate-200">deploy</span> {{ handle }}
-      <span class="whitespace-nowrap text-primary-400">--env=production</span> <span class="whitespace-nowrap">--since={{ careerStartYear }}<span class="prompt-cursor" /></span>
+    <!-- Always one line, like a real prompt. Below `sm` the full command
+         (~58 characters) cannot fit at a readable size, so it drops the
+         handle — the name is right below in the heading — and the rest
+         (~40 characters) scales with the viewport down to 320px. Kept on one
+         source line: the compiler drops whitespace that spans a newline
+         between two elements. -->
+    <p class="whitespace-nowrap text-[clamp(0.6875rem,3.4vw,0.875rem)] sm:text-[15px] text-muted" aria-hidden="true">
+      $ <span class="text-slate-200">deploy</span> <span class="hidden sm:inline">{{ handle }}</span> <span class="text-primary-400">--env=production</span> --since={{ careerStartYear }}<span class="prompt-cursor" />
     </p>
 
     <!-- No entrance animation: this is the LCP candidate, and gating it
