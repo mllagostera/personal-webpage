@@ -35,25 +35,16 @@ const scrollToTop = () => {
     <button
       v-show="isVisible"
       :aria-label="$t('backToTop')"
-      class="fixed bottom-6 right-6 z-50 group"
+      class="fixed bottom-6 right-6 z-50 group grid place-items-center size-11 rounded-lg
+             bg-panel/90 backdrop-blur-md border border-line hover:border-primary-500
+             shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-colors"
       @click="scrollToTop"
     >
-      <!-- Inner wrapper provides the relative context for the glow ring -->
-      <div class="relative w-12 h-12">
-        <!-- Glow ring -->
-        <span class="absolute inset-0 rounded-full bg-primary-500 opacity-0 group-hover:opacity-40 blur-md transition-all duration-300 scale-125"/>
-        <!-- Button body -->
-        <span
-class="relative flex items-center justify-center w-12 h-12 rounded-full
-                     bg-dark-900/70 backdrop-blur-md
-                     border border-white/10 group-hover:border-primary-500/60
-                     shadow-xl transition-all duration-300 group-hover:scale-110">
-          <Icon 
-            name="heroicons:chevron-up-20-solid" 
-            class="w-6 h-6 text-secondary-400 group-hover:text-white group-hover:-translate-y-0.5 transition-all duration-300" 
-          />
-        </span>
-      </div>
+      <Icon
+        name="heroicons:chevron-up-20-solid"
+        class="text-2xl text-primary-400 group-hover:-translate-y-0.5 transition-transform"
+        aria-hidden="true"
+      />
     </button>
   </Transition>
 </template>

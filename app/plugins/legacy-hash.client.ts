@@ -11,6 +11,8 @@
 const LEGACY_ANCHORS: Record<string, string> = {
   '#workExperience': '/experience',
   '#education': '/experience#education',
+  '#technologies': '/experience#technologies',
+  '#softskills': '/experience#softskills',
   '#projects': '/projects',
   '#github-collaborations': '/projects#github-collaborations',
 }

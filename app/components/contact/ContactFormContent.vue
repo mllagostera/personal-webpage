@@ -3,15 +3,13 @@ import type { FetchError } from 'ofetch'
 
 const { t } = useI18n()
 
-// Unique per instance: /contact renders this component inline *and* the global
-// modal renders a second copy, so hard-coded ids would collide and every
-// `<label for>` in the modal would resolve to the field behind it.
+// Unique per instance, so the ids can never collide if the form is ever
+// rendered twice on one page.
 const uid = useId()
 const nameId = `${uid}-name`
 const emailId = `${uid}-email`
 const messageId = `${uid}-message`
 const messageHintId = `${uid}-message-hint`
-const messageCounterId = `${uid}-message-counter`
 const honeypotId = `${uid}-hp`
 
 const form = reactive({
@@ -94,38 +92,42 @@ async function submit() {
 </script>
 
 <template>
-  <div class="relative overflow-hidden">
-    <!-- Success state -->
-    <Transition name="fade">
-      <div
-        v-if="status === 'success'"
-        role="status"
-        class="flex flex-col items-center gap-4 py-8 text-center"
-      >
-        <div class="w-16 h-16 rounded-full bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center">
-          <Icon name="heroicons:check-badge" class="w-8 h-8 text-emerald-400" />
-        </div>
-        <h3
-          ref="successHeading"
-          tabindex="-1"
-          class="text-xl font-bold text-slate-100 font-display transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-400"
-        >{{ $t('contactSuccessTitle') }}</h3>
-        <p class="text-slate-400 text-sm">{{ $t('contactSuccessBody') }}</p>
-        <button
-          class="mt-2 text-xs text-slate-400 hover:text-slate-200 transition-colors underline underline-offset-2"
-          @click="status = 'idle'"
-        >
-          {{ $t('contactSendAnother') }}
-        </button>
-      </div>
-    </Transition>
+  <!-- A terminal window: the form is the script, the success state its output. -->
+  <div class="flex flex-col overflow-hidden rounded-[10px] border border-line bg-panel">
+    <div class="px-4 py-3 flex items-center gap-1.5 border-b border-line" aria-hidden="true">
+      <span class="size-2.5 rounded-full bg-slate-700" />
+      <span class="size-2.5 rounded-full bg-slate-700" />
+      <span class="size-2.5 rounded-full bg-slate-700" />
+      <span class="ml-2.5 text-xs text-muted">{{ $t('contactWindowTitle') }}</span>
+    </div>
 
-    <!-- Form -->
-    <form v-if="status !== 'success'" class="space-y-6 relative z-10" @submit.prevent="submit">
-      <div class="mb-6">
-        <h3 class="text-2xl font-display font-bold text-white mb-2">{{ $t('contactTitle') }}</h3>
-        <p class="text-slate-400 text-sm italic">{{ $t('contactSubtitle', 'Me encantaría saber de ti. Envíame un mensaje y te responderé lo antes posible.') }}</p>
-      </div>
+    <div
+      v-if="status === 'success'"
+      role="status"
+      class="px-7 py-12 flex flex-col gap-4 text-sm"
+    >
+      <p class="text-muted" aria-hidden="true">$ ./contact --send</p>
+      <p>
+        <span class="text-primary-400" aria-hidden="true">✓</span> {{ $t('contactDelivered') }}
+        <span class="text-muted" aria-hidden="true">· exit 0</span>
+      </p>
+      <h2
+        ref="successHeading"
+        tabindex="-1"
+        class="font-display font-bold text-[28px] text-white"
+      >{{ $t('contactSuccessTitle') }}</h2>
+      <p class="font-sans text-base leading-relaxed text-slate-400">{{ $t('contactSuccessBody') }}</p>
+      <button
+        type="button"
+        class="self-start px-3.5 py-2.5 rounded-md border border-slate-500 hover:border-primary-500 text-[13px] text-slate-200 transition-colors"
+        @click="status = 'idle'"
+      >
+        {{ $t('contactSendAnother') }}
+      </button>
+    </div>
+
+    <form v-else class="relative p-7 flex flex-col gap-[22px]" @submit.prevent="submit">
+      <h2 class="sr-only">{{ $t('contactTitle') }}</h2>
 
       <!-- Honeypot — visually hidden, never shown to humans -->
       <div aria-hidden="true" class="absolute opacity-0 pointer-events-none -top-[9999px] -left-[9999px]" tabindex="-1">
@@ -133,17 +135,18 @@ async function submit() {
         <input
           :id="honeypotId"
           v-model="form._honey"
-          type="text" 
-          name="contact_hp_field" 
-          autocomplete="new-password" 
-          tabindex="-1" 
+          type="text"
+          name="contact_hp_field"
+          autocomplete="new-password"
+          tabindex="-1"
         >
       </div>
 
-      <!-- Name -->
-      <div class="space-y-2">
-        <label :for="nameId" class="block text-xs font-semibold uppercase tracking-wider text-secondary-400">
-          {{ $t('contactName') }}
+      <!-- Labels read as flags, `--nombre`; the dashes are hidden from
+           assistive technology, which hears just the field name. -->
+      <div class="flex flex-col gap-2">
+        <label :for="nameId" class="text-xs text-muted">
+          <span aria-hidden="true">--</span>{{ $t('contactName').toLocaleLowerCase() }}
         </label>
         <input
           :id="nameId"
@@ -155,16 +158,13 @@ async function submit() {
           maxlength="100"
           autocomplete="name"
           :placeholder="$t('contactNamePlaceholder')"
-          class="w-full bg-dark-900/60 border border-slate-700/60 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-400
-                 text-sm focus:border-primary-500/70 transition-all
-                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+          class="field-line"
         >
       </div>
 
-      <!-- Email -->
-      <div class="space-y-2">
-        <label :for="emailId" class="block text-xs font-semibold uppercase tracking-wider text-secondary-400">
-          {{ $t('contactEmail') }}
+      <div class="flex flex-col gap-2">
+        <label :for="emailId" class="text-xs text-muted">
+          <span aria-hidden="true">--</span>{{ $t('contactEmail').toLocaleLowerCase() }}
         </label>
         <input
           :id="emailId"
@@ -175,85 +175,76 @@ async function submit() {
           maxlength="200"
           autocomplete="email"
           :placeholder="$t('contactEmailPlaceholder')"
-          class="w-full bg-dark-900/60 border border-slate-700/60 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-400
-                 text-sm focus:border-primary-500/70 transition-all
-                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+          class="field-line"
         >
       </div>
 
-      <!-- Message -->
-      <div class="space-y-2">
-        <label :for="messageId" class="block text-xs font-semibold uppercase tracking-wider text-secondary-400">
-          {{ $t('contactMessage') }}
+      <div class="flex flex-col gap-2">
+        <label :for="messageId" class="text-xs text-muted">
+          <span aria-hidden="true">--</span>{{ $t('contactMessage').toLocaleLowerCase() }}
         </label>
         <textarea
           :id="messageId"
           v-model="form.message"
-          :aria-describedby="`${messageHintId} ${messageCounterId}`"
+          :aria-describedby="messageHintId"
           name="message"
           required
           minlength="10"
           maxlength="2000"
-          rows="5"
+          rows="6"
           :placeholder="$t('contactMessagePlaceholder')"
-          class="w-full bg-dark-900/60 border border-slate-700/60 rounded-lg px-4 py-3 text-slate-100 placeholder-slate-400
-                 text-sm focus:border-primary-500/70 transition-all resize-none
-                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+          class="px-3 py-3 rounded-md border border-slate-500 bg-transparent font-sans text-base text-slate-200
+                 placeholder:text-muted resize-y transition-colors
+                 focus:border-primary-500 focus-visible:outline-none"
         />
-        <!-- Announced when the field takes focus. The bounds are spelled out for
-             anyone who cannot see the counter; the browser otherwise only
-             mentions them once it has already rejected the submission. -->
-        <p :id="messageHintId" class="sr-only">{{ $t('contactMessageHint') }}</p>
-        <p :id="messageCounterId" class="text-right text-xs text-slate-400">{{ form.message.length }} / 2000</p>
+        <!-- The bounds are spelled out for anyone who cannot see the counter;
+             the browser otherwise only mentions them once it has already
+             rejected the submission. -->
+        <p :id="messageHintId" class="text-[11px] text-muted">
+          {{ $t('contactMessageHint') }} ({{ form.message.length }}/2000)
+        </p>
       </div>
 
-      <!-- Rate limit / error feedback -->
-      <Transition name="fade">
-        <div
-          v-if="status === 'ratelimit'"
-          role="alert"
-          class="flex items-center gap-2 text-amber-400 bg-amber-950/40 border border-amber-700/30 rounded-lg px-4 py-3 text-sm"
-        >
-          <Icon name="heroicons:clock" class="w-4 h-4 shrink-0" />
-          {{ $t('contactRateLimit') }}
-        </div>
-        <div
-          v-else-if="status === 'error'"
-          role="alert"
-          class="flex items-center gap-2 text-red-400 bg-red-950/40 border border-red-700/30 rounded-lg px-4 py-3 text-sm"
-        >
-          <Icon name="heroicons:exclamation-circle" class="w-4 h-4 shrink-0" />
-          {{ errorMsg || $t('contactErrorGeneric') }}
-        </div>
-      </Transition>
+      <div
+        v-if="status === 'ratelimit'"
+        role="alert"
+        class="flex items-center gap-2 px-4 py-3 rounded-md border border-amber-700/40 bg-amber-950/40 text-xs text-amber-400"
+      >
+        <Icon name="heroicons:clock" class="shrink-0 text-sm" aria-hidden="true" />
+        {{ $t('contactRateLimit') }}
+      </div>
+      <div
+        v-else-if="status === 'error'"
+        role="alert"
+        class="flex items-center gap-2 px-4 py-3 rounded-md border border-red-700/40 bg-red-950/40 text-xs text-red-400"
+      >
+        <Icon name="heroicons:exclamation-circle" class="shrink-0 text-sm" aria-hidden="true" />
+        {{ errorMsg || $t('contactErrorGeneric') }}
+      </div>
 
       <!-- Cold-start hint. Only after the wait is long enough to worry about:
            a warm submission never gets far enough to show it. -->
-      <Transition name="fade">
-        <p
-          v-if="status === 'sending' && isSlowSubmit"
-          class="flex items-center gap-2 text-xs text-gray-400"
-          role="status"
-          aria-live="polite"
-        >
-          <Icon name="heroicons:signal" class="w-3.5 h-3.5 shrink-0" />
-          {{ $t('contactSendingSlow') }}
-        </p>
-      </Transition>
+      <p
+        v-if="status === 'sending' && isSlowSubmit"
+        class="text-xs text-slate-400"
+        role="status"
+        aria-live="polite"
+      >
+        {{ $t('contactSendingSlow') }}
+      </p>
 
-      <!-- Submit -->
-      <div class="flex justify-end pt-2">
+      <div class="flex flex-wrap justify-between items-center gap-3">
+        <span class="text-xs text-muted">↵ {{ $t('contactSendNote') }}</span>
         <button
           type="submit"
           :disabled="status === 'sending'"
-          class="flex items-center gap-2 px-6 py-3 rounded-lg font-bold text-sm
-                 bg-primary-700 hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed
-                 text-white transition-all duration-200 hover:shadow-lg hover:shadow-primary-500/25
-                 active:scale-95"
+          class="flex items-center gap-2 px-5 py-3.5 rounded-lg bg-primary-700 hover:bg-primary-600
+                 disabled:bg-slate-700 disabled:cursor-not-allowed font-sans font-bold text-sm text-white transition-colors"
         >
           <Icon
             :name="status === 'sending' ? 'heroicons:arrow-path' : 'heroicons:paper-airplane'"
-            :class="['w-4 h-4', status === 'sending' ? 'animate-spin' : '']"
+            :class="status === 'sending' ? 'animate-spin' : ''"
+            aria-hidden="true"
           />
           {{ status === 'sending' ? $t('contactSending') : $t('contactSend') }}
         </button>
@@ -263,6 +254,26 @@ async function submit() {
 </template>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active { transition: opacity 0.3s ease; }
-.fade-enter-from, .fade-leave-to { opacity: 0; }
+/* Name and email are underlined fields, as in the design. Focus thickens the
+   rule and turns it green: a 2px line, as easy to spot as an outline. */
+.field-line {
+  padding: 10px 0;
+  border: 0;
+  border-bottom: 1px solid var(--color-slate-500);
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--color-slate-200);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.field-line::placeholder {
+  color: var(--color-muted);
+}
+
+.field-line:focus-visible {
+  outline: none;
+  border-bottom-color: var(--color-primary-400);
+  box-shadow: 0 1px 0 var(--color-primary-400);
+}
 </style>

@@ -1,24 +1,39 @@
 <template>
-  <div class="overflow-x-hidden min-h-screen flex flex-col bg-gray-950 transition-colors duration-300">
-    <!-- Eleven stops separate the top of the document from the content: logo,
-         language selector, contact button, four nav links and four social
-         icons. Hidden until focused. -->
+  <div class="overflow-x-clip min-h-screen flex flex-col bg-ink-950 text-slate-300 font-mono">
+    <!-- `overflow-x-clip` above, not `hidden`: hidden turns the wrapper into a
+         scroll container, and the sticky navbar would stick to it instead of
+         the viewport — that is, never. -->
+    <!-- Hidden until focused: the logo, the language selector and four nav
+         links stand between the top of the document and the content. -->
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[70]
-             focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary-700 focus:text-white
-             focus:text-sm focus:font-bold
-             focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-400"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-4 focus:z-[70]
+             focus:px-4 focus:py-2.5 focus:rounded-lg focus:bg-primary-700 focus:text-white
+             focus:font-sans focus:text-sm focus:font-bold"
     >
       {{ $t('skipToContent') }}
     </a>
     <TheNavbar />
-    <main id="main" tabindex="-1" class="flex-1 max-w-screen-2xl mx-auto w-full px-4 pt-20 pb-8 focus:outline-none">
+    <main id="main" tabindex="-1" class="flex-1 w-full max-w-7xl mx-auto focus:outline-none">
       <slot />
     </main>
-    <footer class="py-6 border-t border-gray-50/[0.2] text-center text-sm text-gray-400">
-      <div class="max-w-screen-2xl mx-auto px-4">
-        &copy; {{ new Date().getFullYear() }} {{ awesome.name }}. {{ $t('allRightsReserved') }}
+    <!-- Right padding keeps the last link clear of the back-to-top button,
+         which is fixed over this corner once the page has scrolled. -->
+    <footer class="border-t border-line">
+      <div class="max-w-7xl mx-auto pl-4 sm:pl-8 pr-20 py-5 flex flex-wrap justify-between gap-3 text-xs text-muted">
+        <span>exit 0 · &copy; {{ new Date().getFullYear() }} {{ awesome.name }}</span>
+        <ul class="flex flex-wrap gap-3">
+          <li v-for="social in socialLinks" :key="social.href">
+            <a
+              :href="social.href"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-primary-400 transition-colors"
+            >
+              {{ social.label.toLowerCase() }}<span class="sr-only"> ({{ $t('opensInNewWindow') }})</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </footer>
   </div>
@@ -26,4 +41,5 @@
 
 <script setup lang="ts">
 const { awesome } = useAppConfig()
+const socialLinks = useSocialLinks()
 </script>

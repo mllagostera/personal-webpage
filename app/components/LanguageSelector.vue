@@ -10,14 +10,14 @@ interface Language {
 }
 
 const availableLanguages: Language[] = [
-  { name: 'English', code: 'en', icon: 'flag:gb-4x3' },
   { name: 'Español', code: 'es', icon: 'flag:es-4x3' },
   { name: 'Català', code: 'ca', icon: 'flag:es-ct-4x3' },
+  { name: 'English', code: 'en', icon: 'flag:gb-4x3' },
 ]
 
 const currentLanguage = computed(() => {
-  const currentLocale = locale.value || 'en'
-  const localeCode = String(currentLocale).split('-')[0]?.toLowerCase() || 'en'
+  const currentLocale = locale.value || 'es'
+  const localeCode = String(currentLocale).split('-')[0]?.toLowerCase() || 'es'
   return (availableLanguages.find(lang => lang.code === localeCode) || availableLanguages[0]) as Language
 })
 
@@ -30,15 +30,13 @@ const setLanguage = async (code: LocaleCode) => {
   <HeadlessListbox :model-value="currentLanguage.code" @update:model-value="setLanguage">
     <div class="relative">
       <HeadlessListboxButton
-        class="p-2 rounded-lg hover:bg-gray-800 transition-colors flex items-center gap-2"
+        class="flex items-center gap-2 px-2.5 py-2 rounded-md text-slate-400 hover:text-slate-200 hover:bg-panel transition-colors"
         :title="$t('currentLanguage', { language: currentLanguage.name })"
         :aria-label="$t('currentLanguage', { language: currentLanguage.name })"
       >
-        <Icon :name="currentLanguage.icon" class="text-xl" />
-        <span class="text-sm font-medium text-gray-400 hidden sm:inline">
-          {{ currentLanguage.code.toUpperCase() }}
-        </span>
-        <Icon name="heroicons:chevron-down-20-solid" class="text-gray-400 text-xs" />
+        <Icon :name="currentLanguage.icon" class="text-base" aria-hidden="true" />
+        <span aria-hidden="true">--lang=<span class="text-slate-200">{{ currentLanguage.code }}</span></span>
+        <Icon name="heroicons:chevron-down-20-solid" class="text-xs" aria-hidden="true" />
       </HeadlessListboxButton>
 
       <transition
@@ -47,7 +45,8 @@ const setLanguage = async (code: LocaleCode) => {
         leave-to-class="opacity-0"
       >
         <HeadlessListboxOptions
-          class="absolute right-0 mt-1 max-h-60 w-40 overflow-auto rounded-md bg-gray-900 py-1 text-base shadow-lg ring-1 ring-white/10 focus:outline-none sm:text-sm z-[60]"
+          class="absolute right-0 top-[calc(100%+6px)] w-44 p-1 rounded-lg bg-panel border border-line
+                 shadow-[0_20px_40px_rgba(0,0,0,0.5)] focus:outline-none z-[60]"
         >
           <HeadlessListboxOption
             v-for="lang in availableLanguages"
@@ -57,23 +56,12 @@ const setLanguage = async (code: LocaleCode) => {
             as="template"
           >
             <li
-              :class="[
-                active ? 'bg-primary-900/20 text-primary-400' : 'text-gray-100',
-                'relative cursor-default select-none py-2 pl-10 pr-4',
-              ]"
+              class="flex items-center gap-2.5 px-2.5 py-2 rounded-md cursor-pointer select-none"
+              :class="active ? 'bg-primary-500/10 text-primary-400' : selected ? 'text-slate-200' : 'text-slate-400'"
             >
-              <span :class="[selected ? 'font-medium' : 'font-normal', 'block truncate']">
-                {{ lang.name }}
-              </span>
-              <span class="absolute inset-y-0 left-0 flex items-center pl-3">
-                <Icon :name="lang.icon" class="text-lg" />
-              </span>
-              <span
-                v-if="selected"
-                class="absolute inset-y-0 right-0 flex items-center pr-3 text-primary-400"
-              >
-                <Icon name="heroicons:check-20-solid" class="text-lg" />
-              </span>
+              <Icon :name="lang.icon" class="text-base" aria-hidden="true" />
+              <span class="flex-1 font-sans">{{ lang.name }}</span>
+              <Icon v-if="selected" name="heroicons:check-20-solid" class="text-primary-400" aria-hidden="true" />
             </li>
           </HeadlessListboxOption>
         </HeadlessListboxOptions>

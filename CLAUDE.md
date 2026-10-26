@@ -16,15 +16,16 @@ The site owner reads Spanish; the repository is written in English (see [Languag
 
 ```
 app/                      srcDir — everything Vue
-  app.vue                 root component: global head, font preloads, contact modal
+  app.vue                 root component: global head, font preloads, route loader
   error.vue               error page for every status; 404 gets its own treatment
   app.config.ts           untranslated identity: name, email, social links, navbar menus
-  pages/                  one file per route (index, experience, projects, contact)
+  pages/                  one file per route (index, experience, projects/, contact)
+    projects/[slug].vue   one page per case study, validated against SITE_ROUTES
   layouts/page.vue        the only layout: skip link, navbar, <main>, footer
   components/             navbar, language selector, back-to-top
     curriculumVitae/      one component per CV section
-    contact/              modal, form, contact details
-  composables/            useSiteSeo, useProfileJsonLd, useUi (contact modal state)
+    contact/              form, contact details
+  composables/            useSiteSeo, useProfileJsonLd, useCareer, useCaseStudies, useSocialLinks
   utils/                  TypeScript interfaces for the CV data and layout config
   plugins/                legacy-hash.client.ts — client-side hop for old #anchors
   assets/css|scss/        Tailwind theme tokens, global styles, CV-specific styles
@@ -83,7 +84,7 @@ There is **no test suite**. Verify changes by building and exercising the built 
 npm run build && node .amplify-hosting/compute/default/server.js   # listens on :3000
 ```
 
-`npm run build` currently emits **29 warnings** — `@apply` from lightningcss and Tailwind sourcemap notices. That is the expected baseline; only warnings beyond those are new. `PLUGIN_TIMINGS` warnings are timing-based and appear nondeterministically.
+`npm run build` currently emits **25 warnings** — `@apply` from lightningcss and Tailwind sourcemap notices. That is the expected baseline; only warnings beyond those are new. `PLUGIN_TIMINGS` warnings are timing-based and appear nondeterministically.
 
 Amplify installs with `npm ci --legacy-peer-deps` (see `amplify.yml`); CI uses plain `npm ci`. Both need `package-lock.json` to be in sync with `package.json` — when it is not, `npm ci` falls back to a resolving install, `vite` stops being hoisted, and the `postinstall` (`nuxt prepare`) fails to resolve it from `@tailwindcss/vite`.
 
@@ -91,7 +92,7 @@ Amplify installs with `npm ci --legacy-peer-deps` (see `amplify.yml`); CI uses p
 
 ### Content lives in the locale files, not in components
 
-All CV data — personal info, work experience, education, skills, projects — is in `i18n/locales/{es-ES,es-CA,en-US}.ts` under the `cv` key. Components read it with `tm()` and unwrap each value with `rt()`; they hold no content of their own.
+All CV data — personal info, work experience, education, skills, impact metrics, case studies — is in `i18n/locales/{es-ES,es-CA,en-US}.ts` under the `cv` key. Components read it with `tm()` and unwrap each value with `rt()`; they hold no content of their own.
 
 Consequences worth remembering:
 
@@ -100,11 +101,16 @@ Consequences worth remembering:
 
 `app/app.config.ts` holds identity that is not translated: name, email, social links, and the navbar menu definitions.
 
+### Visual language
+
+The site reads as a CI pipeline in a terminal: the career is six stages, the case studies are `artifacts/`, headings are `# comments`. Colours are tokens in `app/assets/css/main.css` (`ink-950`, `panel`, `line`, `muted`, `chip`, `running`, `primary-*`) — use them rather than raw hex. Three type roles: Outfit for display, Plus Jakarta Sans for prose, and the system monospace for everything else. The terminal decoration (`$ deploy …`, `stage 6/6`, `deps`) is `aria-hidden` wherever it would only be noise to a screen reader, with a plain-language equivalent beside it.
+
 ### SEO has a single source of truth
 
 `shared/site.ts` is imported by both the Vue app and Nitro, and owns the canonical domain, the social image, the X handle, and `SITE_ROUTES` — every indexable route with its own title and description.
 
 - **Adding a page means adding it to `SITE_ROUTES`.** The sitemap and the page metadata both read from there, so they cannot drift.
+- Case studies are the one dynamic route. `/projects/[slug]` 404s on any path missing from `SITE_ROUTES`, so a new case study needs its entry there *and* in `cv.caseStudies` in all three locales, with the same slug.
 - Pages call `useSiteSeo('/path')`, which derives title, description, canonical and the whole Open Graph / Twitter block. **Never hand-write meta tags in a component** — that is what this replaced.
 - `useProfileJsonLd()` builds the schema.org `ProfilePage` from the same i18n messages and `app.config.ts` links. It belongs on `/` only.
 
@@ -112,7 +118,7 @@ The error page is the deliberate exception: it is `noindex`, so it stays out of 
 
 ### The error page
 
-`app/error.vue` replaces `app.vue` for every unhandled error, on the server and on the client. Anything `app.vue` provides has to be repeated there — which is why the contact modal is mounted in both: the navbar button opens it, and `app.vue` does not render on an error.
+`app/error.vue` replaces `app.vue` for every unhandled error, on the server and on the client. Anything `app.vue` provides has to be repeated there — which is why it mounts its own route loader and sets `lang` and `theme-color` itself.
 
 Only 404 carries the Star Wars line; every other status renders the same layout with neutral copy. The real HTTP status is preserved in both cases.
 

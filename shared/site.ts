@@ -61,11 +61,37 @@ export const SITE_ROUTES: SiteRoute[] = [
   },
   {
     path: '/projects',
-    title: 'Proyectos y open source | Miquel Llagostera',
+    title: 'Casos de estudio y open source | Miquel Llagostera',
     description:
-      'Proyectos personales y contribuciones open source: Nuxt, Vue, Symfony y las herramientas con las que trabajo cada día.',
+      'Casos de estudio de CI/CD y DevOps con el problema, la decisión y el resultado medido, y mis repositorios open source en GitHub.',
     changefreq: 'weekly',
     priority: 0.8,
+  },
+  // Case studies. The slug must match `cv.caseStudies` in every locale: the
+  // page validates its path against this list and 404s on anything else.
+  {
+    path: '/projects/cicd-firmaprofesional',
+    title: 'De 2 horas a 5 minutos por despliegue | Miquel Llagostera',
+    description:
+      'Caso de estudio: un nuevo proceso de CI/CD con Docker y Ansible redujo los despliegues de 2 horas a 5 minutos, con Scrum en 7 equipos.',
+    changefreq: 'yearly',
+    priority: 0.7,
+  },
+  {
+    path: '/projects/pipelines-coverage',
+    title: '300 repositorios con pipeline de CI/CD | Miquel Llagostera',
+    description:
+      'Caso de estudio: cobertura de Bitbucket Pipelines del 6 % al 75 % de los repositorios y limpieza de 700 a 400, sobre AWS y Kubernetes.',
+    changefreq: 'monthly',
+    priority: 0.7,
+  },
+  {
+    path: '/projects/personal-webpage',
+    title: 'Esta web como banco de pruebas | Miquel Llagostera',
+    description:
+      'Caso de estudio: CV en tres idiomas con Nuxt 4 y SSR en AWS Amplify, con la API de GitHub y un bot de Telegram para el contacto.',
+    changefreq: 'monthly',
+    priority: 0.6,
   },
   {
     path: '/contact',

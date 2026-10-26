@@ -3,16 +3,18 @@
 @use "curriculum_vitae";
 @use 'animations/transitions';
 
-@import "@fontsource/outfit/index.css";
-@import "@fontsource/plus-jakarta-sans/index.css";
+// Only the weights the design uses. The package index ships 400 alone, and
+// every bold heading would otherwise be the browser's synthetic bold.
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/outfit/800.css";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
 
 // Global Styles
 body {
-  @apply bg-dark-950 text-neutral-300 font-sans antialiased;
-  background-image:
-    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
-  background-attachment: fixed;
+  @apply bg-ink-950 text-slate-300 font-mono antialiased;
 }
 
 h1,
@@ -30,24 +32,15 @@ h6 {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-dark-950;
+  @apply bg-ink-950;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-slate-800 rounded-full border-2 border-dark-950;
+  @apply bg-slate-800 rounded-full border-2 border-ink-950;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-slate-600;
-}
-
-// Glass Card Utility
-.glass-card {
-  @apply bg-dark-900/40 backdrop-blur-md border border-neutral-800 rounded-xl shadow-lg opacity-100 shadow-black/40;
-}
-
-.cosmic-text {
-  @apply text-white;
 }
 
 // Animations
