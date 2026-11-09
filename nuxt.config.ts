@@ -51,7 +51,6 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-headlessui',
     '@nuxt/icon',
-    '@nuxtjs/color-mode',
     // management
     '@vueuse/nuxt',
     // locale
@@ -62,8 +61,6 @@ export default defineNuxtConfig({
 
   css: [
     '~/assets/css/main.css',
-    '~/assets/scss/_variables.scss',
-    '~/assets/scss/app.scss',
   ],
 
   components: [
@@ -104,14 +101,6 @@ export default defineNuxtConfig({
         { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
       ],
     },
-  },
-
-  // module::color-mode
-  colorMode: {
-    preference: 'dark',
-    fallback: 'dark',
-    classSuffix: '',
-    storageKey: 'nuxt-color-mode'
   },
 
   // localization

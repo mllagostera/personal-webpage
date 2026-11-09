@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Miquel Llagostera's personal site, live at **https://mllagostera.com**: a digital CV and portfolio that doubles as a sandbox for trying out current web tooling. It is one small site with four pages — profile, experience and education, projects, contact — in three languages.
 
-**Nuxt 4 with SSR, deployed to AWS Amplify compute.** The nitro preset is `aws-amplify` and `srcDir` is `app/`, so this is server-rendered, not a static export: anything that must reach a crawler has to be rendered on the server. Styling is Tailwind 4 (utilities, plus a few SCSS files for what utilities cannot express), UI comes from Headless UI and `@nuxt/icon`, i18n from `@nuxtjs/i18n`, and reactivity helpers from VueUse.
+**Nuxt 4 with SSR, deployed to AWS Amplify compute.** The nitro preset is `aws-amplify` and `srcDir` is `app/`, so this is server-rendered, not a static export: anything that must reach a crawler has to be rendered on the server. Styling is Tailwind 4: utilities, plus `app/assets/css/main.css` for theme tokens and the few global rules utilities cannot express, UI comes from Headless UI and `@nuxt/icon`, i18n from `@nuxtjs/i18n`, and reactivity helpers from VueUse.
 
 Two external integrations, both behind server routes: the GitHub REST API feeds the open source section, and the Telegram Bot API receives contact form submissions.
 
@@ -28,7 +28,7 @@ app/                      srcDir — everything Vue
   composables/            useSiteSeo, useProfileJsonLd, useCareer, useCaseStudies, useSocialLinks
   utils/                  TypeScript interfaces for the CV data and layout config
   plugins/                legacy-hash.client.ts — client-side hop for old #anchors
-  assets/css|scss/        Tailwind theme tokens, global styles, CV-specific styles
+  assets/css/main.css     Tailwind theme tokens, fonts and global styles
 i18n/locales/             es-ES.ts, es-CA.ts, en-US.ts — UI strings *and* all CV content
 shared/site.ts            SEO single source of truth, imported by both Vue and Nitro
 server/
@@ -84,7 +84,7 @@ There is **no test suite**. Verify changes by building and exercising the built 
 npm run build && node .amplify-hosting/compute/default/server.js   # listens on :3000
 ```
 
-`npm run build` currently emits **25 warnings** — `@apply` from lightningcss and Tailwind sourcemap notices. That is the expected baseline; only warnings beyond those are new. `PLUGIN_TIMINGS` warnings are timing-based and appear nondeterministically.
+`npm run build` currently emits **3 warnings**, all Tailwind `SOURCEMAP_BROKEN` notices. That is the expected baseline; only warnings beyond those are new. `PLUGIN_TIMINGS` warnings are timing-based and appear nondeterministically.
 
 Amplify installs with `npm ci --legacy-peer-deps` (see `amplify.yml`); CI uses plain `npm ci`. Both need `package-lock.json` to be in sync with `package.json` — when it is not, `npm ci` falls back to a resolving install, `vite` stops being hoisted, and the `postinstall` (`nuxt prepare`) fails to resolve it from `@tailwindcss/vite`.
 

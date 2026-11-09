@@ -3,9 +3,8 @@
 // devicon / devicon-plain / heroicons are used broadly across the CV data
 // (tech stack logos, section icons) and are bundled in full, same as before.
 //
-// mdi / flag / simple-icons / tabler are each used for a
-// handful of fixed icons (social links, language flags, a couple
-// of decorative marks). Bundling those collections in full would add tens
+// mdi / flag / simple-icons are each used for a handful of fixed icons
+// (social links, language flags, a couple of stack logos). Bundling those collections in full would add tens
 // of MB of unused icon data to the server bundle, so instead we trim each
 // one down to just the icons this app actually references. Without a local
 // bundle at all, @nuxt/icon falls back to fetching unknown icons from the
@@ -15,7 +14,6 @@ import type { IconifyJSON } from '@iconify/types'
 import mdi from '@iconify-json/mdi/icons.json' with { type: 'json' }
 import flag from '@iconify-json/flag/icons.json' with { type: 'json' }
 import simpleIcons from '@iconify-json/simple-icons/icons.json' with { type: 'json' }
-import tabler from '@iconify-json/tabler/icons.json' with { type: 'json' }
 
 function pick(collection: IconifyJSON, names: string[]): IconifyJSON {
   const icons: IconifyJSON['icons'] = {}
@@ -32,8 +30,7 @@ function pick(collection: IconifyJSON, names: string[]): IconifyJSON {
 }
 
 export const trimmedIconCollections = [
-  pick(mdi as IconifyJSON, ['github', 'github-face', 'linkedin', 'stack-exchange']),
+  pick(mdi as IconifyJSON, ['github-face', 'linkedin', 'stack-exchange']),
   pick(flag as IconifyJSON, ['es-4x3', 'es-ct-4x3', 'gb-4x3']),
-  pick(simpleIcons as IconifyJSON, ['bitbucket', 'github', 'claude', 'x']),
-  pick(tabler as IconifyJSON, ['quote']),
+  pick(simpleIcons as IconifyJSON, ['bitbucket', 'claude', 'x']),
 ]
