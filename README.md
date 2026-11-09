@@ -1,41 +1,37 @@
-# Miquel Llagostera - Professional Portfolio & Tech Sandbox
+# mllagostera.com
 
-Welcome to the repository of my personal webpage! 
+Miquel Llagostera's personal site: a CV and portfolio for a DevOps engineer, presented as a CI pipeline in a terminal. It is live at **https://mllagostera.com**, in Spanish, Catalan and English.
 
-Beyond serving as my digital resume and professional portfolio, this project is designed as a **Technology Sandbox**. It is a continuous experiment where I test cutting-edge frameworks, explore new development paradigms, and refine automation strategies.
+The site is also a sandbox for trying out current web tooling and AI-assisted development. Most of its changes are made together with coding agents, and dependency upgrades are applied as soon as they are verified.
 
-## 🎯 The Vision
+## Stack
 
-This project has three primary pillars:
-1. **Professional Showcase**: A high-performance, accessible, and beautifully designed digital resume (currently featuring the *Elegancia Nocturna* dark theme).
-2. **AI-Assisted Development Sandbox**: A playground for integrating Artificial Intelligence tools directly into the software development lifecycle to accelerate building and explore modern DX (Developer Experience).
-3. **Cloud Native & Automated Deployment**: A real-world scenario for testing Continuous Integration, modern build tools, and direct cloud deployments.
+- **Nuxt 4 with server-side rendering**, deployed to AWS Amplify compute (Node 24).
+- **Tailwind CSS 4** for styling, with Headless UI and `@nuxt/icon` for components and icons.
+- **`@nuxtjs/i18n`** for the three languages. All CV content lives in the locale files, not in the components.
+- **Nitro server routes** for the parts that need a backend:
+  - the contact form, delivered to Telegram, with a honeypot, a timing check and rate limiting;
+  - public GitHub repositories, cached for an hour;
+  - a generated sitemap;
+  - `/api/health`, which reports the deployed commit.
 
-## 🛠️ Current Technology Stack
+## Running it
 
-The stack is constantly evolving as part of the sandbox philosophy. As of the latest iteration, we are using:
+Requires Node 24 or later and npm 10 or later; CI and Amplify use npm 11.8.0, which the lockfile is generated with.
 
-### Core Frameworks
-- **Vue 3 & Nuxt 3/4**: For reactive, server-side rendered (SSR) or statically generated performant web architecture.
-- **TypeScript**: Ensuring type safety, better developer tooling, and reducing runtime errors.
+```sh
+npm ci
+npm run dev        # development server
+npm run build      # production build into .amplify-hosting/
+npm run lint
+```
 
-### Styling & UI
-- **Tailwind CSS**: Utility-first CSS framework for rapid, responsive UI development.
-- **SCSS**: For structured, maintainable global theming and complex CSS utility extractions.
-- **Headless UI & Nuxt Icons**: Accessible, unstyled UI components and seamless icon rendering.
+The contact form needs `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in the environment; without them a submission fails with a server error, and the rest of the site works normally.
 
-### State & Logic
-- **Pinia**: Intuitive, type-safe state management for Vue.
-- **Nuxt i18n**: Full internationalization support (ES, CA, EN).
-- **VueUse**: Collection of essential Vue Composition Utilities.
+## Contributing
 
-### Integrations
-- **GitHub REST API**: Dynamically fetching and displaying public repositories and collaborations.
-- **Telegram Bot API**: Serving as the backend for the contact form, delivering messages directly to a private Telegram channel via a server-side Nitro event handler. This includes:
-    - **Advanced Anti-Spam (Honeypot)**: Hidden fields to trap bot submissions.
-    - **Speed Checks**: Validating human-like interaction times.
-    - **Rate Limiting**: Preventing abuse through multi-layered IP throttling.
+[`AGENTS.md`](AGENTS.md) describes how the code is organised and the rules for changing it: language, branch naming, commit style, how to verify a change, and the architectural constraints. It is written for coding agents and people alike.
 
----
+## License
 
-> *"The best way to understand an architecture or a new technology is to build something real with it."*
+[MIT](LICENSE)
