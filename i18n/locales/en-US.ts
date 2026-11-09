@@ -440,23 +440,23 @@ export default {
       },
       {
         slug: 'personal-webpage',
-        years: '2024 → now',
-        metric: 'SSR · 3 languages',
-        title: 'This site as a testbed',
-        summary: 'Nuxt 4 on AWS Amplify, the GitHub API and a Telegram bot behind the contact form.',
-        lead: 'A CV and portfolio in three languages that doubles as a lab for trying out new tools.',
+        years: '2024 → 2026',
+        metric: 'v1.0.0',
+        title: 'This site, from template to v1.0.0',
+        summary: 'From a Nuxt 3 template to v1.0.0: SSR on AWS Amplify, three languages and Claude Code to move faster.',
+        lead: 'How a CV built on a template became a product with CI, SEO, accessibility and traceable deploys, and what part AI played along the way.',
         facts: [
           {
             label: 'role',
-            value: 'Front-End Developer',
+            value: 'Development & DevOps',
           },
           {
             label: 'period',
-            value: 'Sep 2024 → present',
+            value: 'Sep 2024 → Oct 2026',
           },
           {
-            label: 'languages',
-            value: 'ES · CA · EN',
+            label: 'version',
+            value: 'v1.0.0',
           },
           {
             label: 'hosting',
@@ -466,16 +466,42 @@ export default {
         before: '1 page',
         after: '7 routes',
         unit: 'indexable, with a sitemap and JSON-LD',
+        chapters: [
+          {
+            title: 'The initial vision',
+            body: 'The site started in September 2024 on an open source Nuxt 3 portfolio template: a single page with anchor navigation and a CV that read like an imported LinkedIn profile. The goal was modest: a CV of my own on the web, and a place to practise Vue and Nuxt away from the pressure of a work project.',
+          },
+          {
+            title: 'A foundation of its own',
+            body: 'Between February and March 2026 the template stopped being one: a move to Nuxt 4 with SSR on AWS Amplify, all the CV content in three languages inside the i18n files, Tailwind 4, public repositories from the GitHub API, and a contact form delivered through a Telegram bot. It worked, but it moved in bursts, with whole months without a single commit.',
+          },
+          {
+            title: 'AI to move faster',
+            body: 'Claude Code arrived in August 2026. The split was clear from the start: I decide what gets done and why, and review every change in a pull request; the AI researches, implements and documents. The repository conventions — language, branches, how a change is verified — live in a CLAUDE.md, so every session starts from the same rules. Up to v1.0.0, 46 of the 110 commits came from those sessions, and 32 pull requests were merged in ten weeks.',
+          },
+          {
+            title: 'How it all came in',
+            body: 'In phases, one after another. Technical SEO first: robots.txt, a generated sitemap, per-route metadata and ProfilePage structured data. Then the jump from one page of anchors to real routes, with redirects so that no old link broke. Then performance — preloaded fonts, icons served from the site itself — and a WCAG 2.2 AA audit with 22 issues fixed. And finally what turns a website into a product: its own error page, feedback while a cold Lambda starts, ESLint as a gate in CI and in Amplify, Dependabot, and an /api/health endpoint that says which commit is in production.',
+          },
+          {
+            title: 'The state at v1.0.0',
+            body: 'v1.0.0 was tagged on 23 October 2026: four pages in three languages, server-rendered on Node.js 24, a single source of truth for SEO, the content rewritten around results, and a deploy that can be verified from outside. Three days later came the redesign you are looking at, a CI pipeline in a terminal, which gave each case study its own page, like this one.',
+          },
+        ],
         steps: [
-          'Nuxt 4 with SSR, deployed on AWS Amplify',
-          'Public repositories loaded from the GitHub API',
-          'Contact form through a Telegram bot, with a honeypot, a timing check and rate limiting',
-          'SEO: a unique title per route, a sitemap and ProfilePage structured data',
+          'Migration from the Nuxt 3 template to Nuxt 4 with SSR on AWS Amplify',
+          'Content in three languages in the i18n files, kept out of the components',
+          'Public repositories from the GitHub API, and contact through a Telegram bot with a honeypot, a timing check and rate limiting',
+          'SEO from a single source of truth: a title per route, a sitemap and ProfilePage JSON-LD',
+          'A WCAG 2.2 AA accessibility audit with 22 issues fixed',
+          'ESLint in CI and in Amplify, Dependabot, and /api/health with the deployed commit',
+          'Claude Code as an accelerator, with the repository rules in CLAUDE.md',
         ],
         flow: [
-          'Nuxt 4 SSR',
-          'Nitro',
-          'GitHub API / Telegram',
+          'Nuxt 3 template',
+          'Nuxt 4 · Amplify',
+          'Claude Code',
+          'v1.0.0',
         ],
         technologies: [
           'Nuxt 4',
@@ -484,6 +510,7 @@ export default {
           'Tailwind CSS',
           'AWS Amplify',
           'GitHub Actions',
+          'Claude Code',
         ],
       },
     ],

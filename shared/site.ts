@@ -87,9 +87,9 @@ export const SITE_ROUTES: SiteRoute[] = [
   },
   {
     path: '/projects/personal-webpage',
-    title: 'Esta web como banco de pruebas | Miquel Llagostera',
+    title: 'Esta web, de plantilla a v1.0.0 | Miquel Llagostera',
     description:
-      'Caso de estudio: CV en tres idiomas con Nuxt 4 y SSR en AWS Amplify, con la API de GitHub y un bot de Telegram para el contacto.',
+      'Caso de estudio: de una plantilla de Nuxt 3 a la v1.0.0, con SSR en AWS Amplify, tres idiomas, SEO, accesibilidad y Claude Code.',
     changefreq: 'monthly',
     priority: 0.6,
   },

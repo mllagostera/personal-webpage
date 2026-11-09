@@ -62,6 +62,16 @@ useSiteSeo(route.path)
     </div>
 
     <div class="max-w-[760px] px-4 sm:px-8 py-12 flex flex-col gap-7">
+      <section
+        v-for="(chapter, chapterIndex) in caseStudy.chapters"
+        :key="chapterIndex"
+        class="flex flex-col gap-2.5"
+        :aria-labelledby="`chapter-${chapterIndex}-heading`"
+      >
+        <h2 :id="`chapter-${chapterIndex}-heading`" class="font-display font-bold text-[22px] text-white">{{ chapter.title }}</h2>
+        <p class="font-sans text-base leading-relaxed text-slate-300 text-pretty">{{ chapter.body }}</p>
+      </section>
+
       <section class="flex flex-col gap-2.5" aria-labelledby="steps-heading">
         <h2 id="steps-heading" class="font-display font-bold text-[22px] text-white">{{ $t('caseWhatIDid') }}</h2>
         <ul class="flex flex-col gap-1.5">
