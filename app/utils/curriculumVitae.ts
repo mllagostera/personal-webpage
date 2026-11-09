@@ -27,10 +27,6 @@ export interface WorkExperience {
   companies?: Company[] | null
 }
 
-export interface Skill {
-  title: string
-}
-
 /** One entry of the tools grid: an Iconify name and the label shown under it. */
 export interface StackItem {
   icon: string
@@ -71,9 +67,6 @@ export interface Certification {
   scholastic?: string
   urlDescription?: string
   url?: string
-}
-export interface WorkCertification {
-  certifications?: Certification[] | null
 }
 /** One line of the home page `impacto.log`: a snake_case key and its result. */
 export interface ImpactMetric {
