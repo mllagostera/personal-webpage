@@ -2,7 +2,9 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    target-branch: "main"
+    # No target-branch: main is the default branch already, and setting one
+    # makes this block apply to version updates only, so security updates
+    # would ignore the labels and the npm-security group below.
     schedule:
       interval: "weekly"
       day: "monday"
