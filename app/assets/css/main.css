@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* Only the weights the design uses. The package index ships 400 alone, and
+   every bold heading would otherwise be the browser's synthetic bold. */
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/700.css";
+@import "@fontsource/outfit/800.css";
+@import "@fontsource/plus-jakarta-sans/400.css";
+@import "@fontsource/plus-jakarta-sans/500.css";
+@import "@fontsource/plus-jakarta-sans/700.css";
+
 @theme {
     --color-primary-400: #34d399;
     --color-primary-500: #10b981;
@@ -72,9 +81,9 @@
 }
 
 /* Reduced motion.
-   `!important` is not decoration here: app.scss redefines `.animate-fade-in-up`
-   and the keyframes, and it is loaded after this file (see nuxt.config.ts), so
-   plain declarations would lose the cascade. */
+   `!important` is not decoration here: the universal selector carries no
+   specificity, so any class that sets an animation (`.prompt-cursor`, the
+   `animate-*` utilities) would otherwise win over it. */
 @media (prefers-reduced-motion: reduce) {
 
     *,

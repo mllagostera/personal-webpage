@@ -50,7 +50,6 @@
     "@vueuse/nuxt": "^14.4.0",
     "nuxt": "^4.6.4",
     "nuxt-headlessui": "^1.2.2",
-    "sass": "^1.108.1",
     "tailwindcss": "^4.3.4"
   },
   "devDependencies": {
@@ -59,7 +58,6 @@
     "eslint": "^10.14.0"
   },
   "overrides": {
-    "immutable": "^5.1.9",
     "js-yaml": "^4.3.0"
   }
 }
