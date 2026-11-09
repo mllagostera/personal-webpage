@@ -42,7 +42,6 @@
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/simple-icons": "^1.2.101",
     "@nuxt/icon": "^2.6.2",
-    "@nuxtjs/color-mode": "^4.1.0",
     "@nuxtjs/i18n": "^10.6.0",
     "@nuxtjs/tailwindcss": "^7.0.0-beta.1",
     "@vueuse/core": "^14.4.0",
