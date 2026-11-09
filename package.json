@@ -6,23 +6,13 @@
   "private": true,
   "license": "MIT",
   "type": "module",
-  "main": "./nuxt.config.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/mllagostera/personal-webpage.git"
   },
-  "files": [
-    "app",
-    "i18n",
-    "public",
-    "nuxt.config.ts",
-    "tsconfig.json",
-    "amplify.yml"
-  ],
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --no-clear",
-    "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
