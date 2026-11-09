@@ -1,4 +1,4 @@
-import type { CaseStudy, CaseStudyFact } from '~/utils/curriculumVitae'
+import type { CaseStudy, CaseStudyChapter, CaseStudyFact } from '~/utils/curriculumVitae'
 
 /**
  * The case studies from the locale files, unwrapped, with the values the
@@ -35,6 +35,10 @@ export const useCaseStudies = () => {
         before: text(item.before),
         after: text(item.after),
         unit: text(item.unit),
+        chapters: (Array.isArray(item.chapters) ? item.chapters : []).map((chapter: CaseStudyChapter) => ({
+          title: text(chapter.title),
+          body: text(chapter.body),
+        })),
         steps: list(item.steps),
         flow: list(item.flow),
         technologies,

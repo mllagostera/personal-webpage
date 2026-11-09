@@ -79,6 +79,12 @@ export interface CaseStudyFact {
   value: string
 }
 
+/** One part of a case study told as a story: a heading and a paragraph. */
+export interface CaseStudyChapter {
+  title: string
+  body: string
+}
+
 /**
  * A case study: problem, decision and measured result. Each one is a page at
  * `/projects/<slug>`, so the slug is identical in every locale and must also be
@@ -99,6 +105,11 @@ export interface CaseStudy {
   after: string
   /** What `before` and `after` measure. */
   unit: string
+  /**
+   * Optional narrative told before the steps, for a case that needs its story
+   * and not only its result. Present or absent for the same case in every locale.
+   */
+  chapters?: CaseStudyChapter[]
   steps: string[]
   /** The stages of the pipeline the case built, drawn as a flow. */
   flow: string[]

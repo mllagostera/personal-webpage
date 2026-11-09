@@ -440,23 +440,23 @@ export default {
       },
       {
         slug: 'personal-webpage',
-        years: '2024 → hoy',
-        metric: 'SSR · 3 idiomas',
-        title: 'Esta web como banco de pruebas',
-        summary: 'Nuxt 4 en AWS Amplify, API de GitHub y bot de Telegram para el formulario de contacto.',
-        lead: 'CV y portfolio en tres idiomas que sirve de laboratorio para probar herramientas nuevas.',
+        years: '2024 → 2026',
+        metric: 'v1.0.0',
+        title: 'Esta web, de plantilla a v1.0.0',
+        summary: 'De una plantilla de Nuxt 3 a la v1.0.0: SSR en AWS Amplify, tres idiomas y Claude Code como acelerador.',
+        lead: 'Cómo un CV montado sobre una plantilla se convirtió en un producto con CI, SEO, accesibilidad y despliegues trazables, y qué papel tuvo la IA en el camino.',
         facts: [
           {
             label: 'rol',
-            value: 'Front-End Developer',
+            value: 'Desarrollo y DevOps',
           },
           {
             label: 'periodo',
-            value: 'Sep 2024 → actualidad',
+            value: 'Sep 2024 → Oct 2026',
           },
           {
-            label: 'idiomas',
-            value: 'ES · CA · EN',
+            label: 'versión',
+            value: 'v1.0.0',
           },
           {
             label: 'hosting',
@@ -466,16 +466,42 @@ export default {
         before: '1 página',
         after: '7 rutas',
         unit: 'indexables, con sitemap y JSON-LD',
+        chapters: [
+          {
+            title: 'La visión inicial',
+            body: 'La web empezó en septiembre de 2024 sobre una plantilla open source de portfolio en Nuxt 3: una sola página con navegación por anclas y un CV que parecía importado de LinkedIn. El objetivo era modesto: tener un CV propio en internet y un sitio donde practicar Vue y Nuxt sin la presión de un proyecto de empresa.',
+          },
+          {
+            title: 'Una base propia',
+            body: 'Entre febrero y marzo de 2026 la plantilla dejó de serlo: migración a Nuxt 4 con SSR en AWS Amplify, todo el contenido del CV en tres idiomas dentro de los ficheros de i18n, Tailwind 4, los repositorios públicos desde la API de GitHub y un formulario de contacto que llega por un bot de Telegram. Funcionaba, pero avanzaba a saltos: meses enteros sin un solo commit.',
+          },
+          {
+            title: 'La IA para agilizar',
+            body: 'En agosto de 2026 llegó Claude Code. El reparto quedó claro desde el principio: yo decido qué se hace y por qué, y reviso cada cambio en una pull request; la IA investiga, implementa y documenta. Las convenciones del repositorio —idioma, ramas, cómo se verifica un cambio— viven en un AGENTS.md, así que cada sesión empieza con las mismas reglas. Hasta la v1.0.0, 46 de los 110 commits salen de esas sesiones, y en diez semanas se fusionaron 32 pull requests.',
+          },
+          {
+            title: 'Cómo entró todo',
+            body: 'Por fases, una detrás de otra. Primero el SEO técnico: robots.txt, un sitemap generado, metadatos por ruta y datos estructurados ProfilePage. Después, el salto de una página con anclas a rutas reales, con redirecciones para que no se rompiera ningún enlace antiguo. Luego el rendimiento —fuentes precargadas, iconos servidos desde la propia web— y una auditoría WCAG 2.2 AA con 22 incidencias corregidas. Y al final, lo que convierte una web en un producto: una página de error propia, feedback mientras arranca una Lambda en frío, ESLint como puerta en CI y en Amplify, Dependabot y un /api/health que dice qué commit está en producción.',
+          },
+          {
+            title: 'El estado en la v1.0.0',
+            body: 'La v1.0.0 se etiquetó el 23 de octubre de 2026: cuatro páginas en tres idiomas renderizadas en servidor sobre Node.js 24, una única fuente de verdad para el SEO, el contenido reescrito en torno a resultados y un despliegue que se puede verificar desde fuera. Tres días después llegó el rediseño que estás viendo, una pipeline de CI en un terminal, que dio a cada caso de estudio su propia página, como esta.',
+          },
+        ],
         steps: [
-          'Nuxt 4 con SSR desplegado en AWS Amplify',
-          'Repositorios públicos cargados desde la API de GitHub',
-          'Formulario de contacto vía bot de Telegram con honeypot, control de velocidad y rate limiting',
-          'SEO: títulos únicos por ruta, sitemap y datos estructurados ProfilePage',
+          'Migración de la plantilla de Nuxt 3 a Nuxt 4 con SSR en AWS Amplify',
+          'Contenido en tres idiomas en los ficheros de i18n, fuera de los componentes',
+          'Repositorios públicos desde la API de GitHub y contacto vía bot de Telegram con honeypot, control de velocidad y rate limiting',
+          'SEO con una única fuente de verdad: título por ruta, sitemap y JSON-LD ProfilePage',
+          'Auditoría de accesibilidad WCAG 2.2 AA con 22 incidencias corregidas',
+          'ESLint en CI y en Amplify, Dependabot y /api/health con el commit desplegado',
+          'Claude Code como acelerador, con las reglas del repositorio en AGENTS.md',
         ],
         flow: [
-          'Nuxt 4 SSR',
-          'Nitro',
-          'GitHub API / Telegram',
+          'plantilla Nuxt 3',
+          'Nuxt 4 · Amplify',
+          'Claude Code',
+          'v1.0.0',
         ],
         technologies: [
           'Nuxt 4',
@@ -484,6 +510,7 @@ export default {
           'Tailwind CSS',
           'AWS Amplify',
           'GitHub Actions',
+          'Claude Code',
         ],
       },
     ],
