@@ -17,14 +17,7 @@
        700 gives 7.68 and 600 — the hover — 5.48. */
     --color-primary-700: #065f46;
 
-    --color-secondary-400: #f8fafc;
-    --color-secondary-500: #e2e8f0;
-
-    --color-dark-950: #0a0a0a;
     --color-dark-900: #171717;
-    --color-dark-800: #262626;
-
-    --color-black-blue: #0E6CC2;
 
     /* The "pipeline" redesign: a terminal on a near-black ground. `muted` is
        the dimmest colour any text uses — 5.3:1 on `panel`, 5.7:1 on `ink`. */
@@ -43,10 +36,6 @@
     --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     --font-sans:"Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-display: "Outfit", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-
-    --max-width-8xl: 90rem;
-
-    --background-image-cosmic-gradient: linear-gradient(to right bottom, #0a0a0a, #171717, #0f172a);
 }
 
 @layer utilities {
