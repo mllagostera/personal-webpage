@@ -477,7 +477,7 @@ export default {
           },
           {
             title: 'AI to move faster',
-            body: 'Claude Code arrived in August 2026. The split was clear from the start: I decide what gets done and why, and review every change in a pull request; the AI researches, implements and documents. The repository conventions — language, branches, how a change is verified — live in a CLAUDE.md, so every session starts from the same rules. Up to v1.0.0, 46 of the 110 commits came from those sessions, and 32 pull requests were merged in ten weeks.',
+            body: 'Claude Code arrived in August 2026. The split was clear from the start: I decide what gets done and why, and review every change in a pull request; the AI researches, implements and documents. The repository conventions — language, branches, how a change is verified — live in a AGENTS.md, so every session starts from the same rules. Up to v1.0.0, 46 of the 110 commits came from those sessions, and 32 pull requests were merged in ten weeks.',
           },
           {
             title: 'How it all came in',
@@ -495,7 +495,7 @@ export default {
           'SEO from a single source of truth: a title per route, a sitemap and ProfilePage JSON-LD',
           'A WCAG 2.2 AA accessibility audit with 22 issues fixed',
           'ESLint in CI and in Amplify, Dependabot, and /api/health with the deployed commit',
-          'Claude Code as an accelerator, with the repository rules in CLAUDE.md',
+          'Claude Code as an accelerator, with the repository rules in AGENTS.md',
         ],
         flow: [
           'Nuxt 3 template',

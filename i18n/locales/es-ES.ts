@@ -477,7 +477,7 @@ export default {
           },
           {
             title: 'La IA para agilizar',
-            body: 'En agosto de 2026 llegó Claude Code. El reparto quedó claro desde el principio: yo decido qué se hace y por qué, y reviso cada cambio en una pull request; la IA investiga, implementa y documenta. Las convenciones del repositorio —idioma, ramas, cómo se verifica un cambio— viven en un CLAUDE.md, así que cada sesión empieza con las mismas reglas. Hasta la v1.0.0, 46 de los 110 commits salen de esas sesiones, y en diez semanas se fusionaron 32 pull requests.',
+            body: 'En agosto de 2026 llegó Claude Code. El reparto quedó claro desde el principio: yo decido qué se hace y por qué, y reviso cada cambio en una pull request; la IA investiga, implementa y documenta. Las convenciones del repositorio —idioma, ramas, cómo se verifica un cambio— viven en un AGENTS.md, así que cada sesión empieza con las mismas reglas. Hasta la v1.0.0, 46 de los 110 commits salen de esas sesiones, y en diez semanas se fusionaron 32 pull requests.',
           },
           {
             title: 'Cómo entró todo',
@@ -495,7 +495,7 @@ export default {
           'SEO con una única fuente de verdad: título por ruta, sitemap y JSON-LD ProfilePage',
           'Auditoría de accesibilidad WCAG 2.2 AA con 22 incidencias corregidas',
           'ESLint en CI y en Amplify, Dependabot y /api/health con el commit desplegado',
-          'Claude Code como acelerador, con las reglas del repositorio en CLAUDE.md',
+          'Claude Code como acelerador, con las reglas del repositorio en AGENTS.md',
         ],
         flow: [
           'plantilla Nuxt 3',
